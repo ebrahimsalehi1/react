@@ -10,7 +10,9 @@ import MaskedInput from 'react-text-mask'
 
 export default (IrisaTextField)
 
+
 IrisaTextField.defaultProps = {
+  validationType: [],
   mask: null,
   format:null,
   type:'general'
@@ -111,6 +113,24 @@ IrisaTextField.propTypes = {
   rules: PropTypes.object,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
-  type: PropTypes.oneOf(['general','mask','number'])
+  type: PropTypes.oneOf(['general','mask','number']),
+
+  classes: PropTypes.object.isRequired,
+  validationType: PropTypes.oneOf(['afterDate', 'alpha', 'alphaFa',
+      'alphanumeric', 'alphanumericFa', 'email', 'equals', 'lowercase',
+      'matches', 'mobilePhone', 'number', 'numberFloat', 'numberInt', 'required', 'uppercase']),
+  validationTypeParam: PropTypes.array,
+  label: PropTypes.string,
+  name: PropTypes.string,
+  adornment: PropTypes.bool,
+  icon: PropTypes.object,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  fullWidth: PropTypes.bool,
+  rows: PropTypes.string,
+  multiline: PropTypes.bool,
+  useLov: PropTypes.bool
 
 }
+
+
