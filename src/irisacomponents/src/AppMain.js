@@ -124,7 +124,7 @@ const App = props => {
         </Grid>
 
 <Grid  item xs={8}>
-  <Paper >
+  <Paper style={{height:500}}>
  {radioValue==='IrisaTextField' && <TestTextField />}  
 
  {radioValue==='IrisaDatePicker' && <IrisaDatePicker 
