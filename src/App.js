@@ -5,6 +5,7 @@ import {Router, Route} from "react-router-dom";
 import MenuAppBar from "Components/AppBar"
 import {createBrowserHistory} from 'history';
 import {LoginProvider} from "./Utils/StateManagement";
+import App1 from './irisacomponents/src/AppMain'
 
 const history = createBrowserHistory();
 const Index = lazy(() => import('Components/Index'));
@@ -62,6 +63,7 @@ function App() {
                             <Suspense fallback={<div>Loading...</div>}>
                                 <Route path="/" exact component={Index}/>
                                 <Route path="/about/" component={Home}/>
+                                <Route path="/testcomp/" component={App1}/>
                                 <Route path="/users/" component={Users}/>
                             </Suspense>
                         </div>

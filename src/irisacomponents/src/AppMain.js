@@ -206,6 +206,8 @@ const App = props => {
 {
     radioValue==='IrisaLov' &&
     <IrisaLov
+    webElement={['popup']}
+    label={"test label1"}
     data={[
       { cod: 'Data 1', val: 10 },
       { cod: 'Data 2', val: 24 },

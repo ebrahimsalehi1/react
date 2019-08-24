@@ -45,7 +45,7 @@ export default function IrisaLov(props){
     const [open,setOpen] = React.useState(false)
     const [val,setVal] = useState({cod:'',val:''})
     const [searchVal,setSearchVal] = useState('')
-    const [dataSearch,setDataSearch] = useState([{cod:'',val:'%'}, ...datas  ])
+    const [dataSearch,setDataSearch] = useState() // [{cod:'',val:'%'}, ...datas  ]
 
     const [selectData,setSelectData] = useState('')
     const [selectPagination,setSelectPagination] = useState('')
@@ -139,17 +139,20 @@ export default function IrisaLov(props){
                 <DialogContent>
                 <List>
                     {
+                       dataSearch !== undefined ? 
                         dataSearch.map(element=>( <ListItem button autoFocus divider key={element.cod} 
                             onClick={()=>{
                             onHandlerClickItem(element)
                             setOpen(false)
-                        }}> {element.val}</ListItem>))
+                        }}> {element.val}</ListItem>)) : null
                     }
                 </List>
                 <DialogActions>
                     <Select value={selectPagination} onChange={e=>setSelectPagination(e.target.value)}>
                     {
+                        datas!==undefined ?
                         datas.map(element=>{return <option key={element.cod} value={element.cod}>{element.cod}</option>})                                             
+                        : null
                     }                                                       
                     </Select>
                 </DialogActions>
@@ -160,8 +163,10 @@ export default function IrisaLov(props){
                 <Select displayEmpty fullWidth value={selectData} onChange={(e)=>{
                     setSelectData(e.target.value)
                 }} >
-                    {                        
+                    {      
+                        dataSearch!==undefined ?                   
                         dataSearch.map(element=>{return <MenuItem key={element.cod} value={element.cod}>{element.val}</MenuItem>})                                             
+                        : null
                     }                                                       
                 </Select>                
             </div> : webElement.includes('multiple') ?
