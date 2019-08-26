@@ -2,7 +2,6 @@
 import React,{useState,useEffect} from 'react'
 import {TextField,withStyles} from '@material-ui/core'
 import {createStyles} from '@material-ui/core/styles'
-//import {styles} from './styles'
 import validation from '../Validation'
 import NumberFormat from 'react-number-format'
 import PropTypes from 'prop-types'
