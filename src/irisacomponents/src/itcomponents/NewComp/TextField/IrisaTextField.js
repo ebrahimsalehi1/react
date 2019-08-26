@@ -1,25 +1,25 @@
 
 import React,{useState,useEffect} from 'react'
 import {TextField,withStyles} from '@material-ui/core'
+import {createStyles} from '@material-ui/core/styles'
 //import {styles} from './styles'
-import validation from './Validation'
+import validation from '../Validation'
 import NumberFormat from 'react-number-format'
 import PropTypes from 'prop-types'
 import MaskedInput from 'react-text-mask'
-
-
-export default (IrisaTextField)
-
+import {useStyles} from './style'
 
 IrisaTextField.defaultProps = {
   validationType: [],
   mask: null,
   format:null,
-  type:'general'
+  type:'general',
+  variant:'outlined'
   //rules: null,
   //onChange: null,
   //onBlur: null,
 }
+
 
 function IrisaTextField(props){
 
@@ -29,35 +29,44 @@ function IrisaTextField(props){
       classes, useLov, label, name, disabled, required,
       validationType, validationTypeParam, adornment, icon, 
       select, InputProps, SelectProps,
-      fullWidth, rows, value, multiline
+      fullWidth, rows, value, multiline, variant,className
     } = props;
 
     const { rules, mask, inputRef, placeholderChar, onCustomValidation, 
       format,prefix,type,
       onChange, onBlur } =props
 
-    let resultValidation = undefined
-    if(rules!==undefined){
-      resultValidation = validation(props.value,rules.validationType,rules.validationParams)
+    let grules = rules   
+    if(grules===undefined && validationType!==undefined )  {
+      grules ={      
+        trigger: 'blur' ,
+        validationType:validationType,
+        validationParams:validationTypeParam,
+        onCustomValidation:true      
+      }      
     }
 
-    const [allValidation,setAllValidation] = useState(rules===undefined ? true:resultValidation.isValid)
+    let resultValidation = undefined
+    if(grules!==undefined){
+      resultValidation = validation(props.value,grules.validationType,grules.validationParams)
+    }
 
-      function onChangeHandler(event){
-        if(rules.trigger==='change' && onChange!==undefined )
+    const [allValidation,setAllValidation] = useState(grules===undefined ? true:resultValidation.isValid)
+
+    function onChangeHandler(event){
+        if(grules.trigger==='change' && onChange!==undefined )
           onChange(event);
 
-        if(rules.trigger==='blur' && onBlur!==undefined )
+        if(grules.trigger==='blur' && onBlur!==undefined )
           onBlur(event);
 
         const {name,value} =event.target
-        if(rules!==undefined){
-          resultValidation = validation(value,rules.validationType,rules.validationParams)
-          setAllValidation(resultValidation.isValid && rules.onCustomValidation)
+        if(grules!==undefined){
+          resultValidation = validation(value,grules.validationType,grules.validationParams)
+          setAllValidation(resultValidation.isValid && grules.onCustomValidation)
         }
 
-        //console.log('on changed',resultValidation)
-        
+        //console.log('on changed',resultValidation)        
     }      
 
     useEffect(()=>{
@@ -66,12 +75,16 @@ function IrisaTextField(props){
 
     return (<>
     { type==='general' && 
-        <TextField variant={'outlined'} 
+        <TextField 
+        variant={variant} 
+        //className={classes.textField}
+        className={fullWidth ? classes.marginFullwidth : classes.margin2}
+        fullWidth={fullWidth}        
         name={name} 
         value={value}
            //className={fullWidth ? classes.marginFullwidth : classes.margin2}
-        onChange={rules!==undefined && rules.trigger==='change' ?  onChangeHandler:null } 
-        onBlur={rules!==undefined && rules.trigger==='blur' ? onChangeHandler:null}
+        onChange={grules!==undefined && grules.trigger==='change' ?  onChangeHandler:null } 
+        onBlur={grules!==undefined && grules.trigger==='blur' ? onChangeHandler:null}
         error={!allValidation} 
         helperText={!allValidation && resultValidation.messages}
         />
@@ -79,19 +92,25 @@ function IrisaTextField(props){
     {
       type==='mask' &&
        <MaskedInput
+       variant={variant} 
+       className={fullWidth ? classes.marginFullwidth : classes.margin2}
+       fullWidth={fullWidth}        
        name={name} 
        value={value}
        ref={inputRef}
        mask={mask}
        placeholderChar={placeholderChar}
        showMask
-       onChange={rules!==undefined && rules.trigger==='change' ?  onChangeHandler:null } 
-       onBlur={rules!==undefined && rules.trigger==='blur' ? onChangeHandler:null}
+       onChange={grules!==undefined && grules.trigger==='change' ?  onChangeHandler:null } 
+       onBlur={grules!==undefined && grules.trigger==='blur' ? onChangeHandler:null}
      />   
     }
     {
       type==='number' &&
       <NumberFormat
+      variant={variant} 
+      className={fullWidth ? classes.marginFullwidth : classes.margin2}
+      fullWidth={fullWidth}        
       name={name} 
       value={value}
       getInputRef={inputRef}
@@ -105,7 +124,7 @@ function IrisaTextField(props){
       //onBlur={rules!==undefined && rules.trigger==='blur' ? onChangeHandler:null}
       />
     }
-        </>
+    </>
     )
 }
 
@@ -133,4 +152,4 @@ IrisaTextField.propTypes = {
 
 }
 
-
+export default withStyles(useStyles)(IrisaTextField)

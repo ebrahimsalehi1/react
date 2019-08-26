@@ -33,6 +33,7 @@
     "material-ui-pickers": "^2.2.4",
     "material-ui-pickers-jalali-utils": "~0.4.3",
     "moment-jalaali": "^0.8.3",
+    "jalali-moment": "^3.3.0",
     "npm": "^6.10.2",
     "react-material-ui-form-validator": "^2.0.9",
     "react-number-format": "^4.1.1",

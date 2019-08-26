@@ -7,10 +7,10 @@ import React,{useRef,useState,useEffect} from "react";
 import {Radio,RadioGroup,FormControlLabel,FormControl,FormLabel,Grid,Paper} from '@material-ui/core'
 
 import IrisaDatePicker from './itcomponents/NewComp/IrisaDatePicker'
-import IrisaTextField from './itcomponents/NewComp/IrisaTextField'
+import IrisaTextField from './itcomponents/NewComp/TextField/IrisaTextField'
 import SampleValidation from './itcomponents/NewComp/SampleValidation'
 //import IrisaDialogDatePicker from './itcomponents/NewComp/IrisaDialogDatePicker'
-import IrisaDialogDatePicker from './itcomponents/NewComp/IrisaDialogDatePickerFa'
+import IrisaDialogDatePickerFa from './itcomponents/NewComp/IrisaDialogDatePickerFa'
 
 import IrisaOutcome from './itcomponents/NewComp/IrisaOutcome'
 import IrisaSwitch from './itcomponents/NewComp/IrisaSwitch'
@@ -21,13 +21,9 @@ import IrisaTextFieldMask from './itcomponents/NewComp/IrisaTextFieldMask'
 import IrisaTextFieldMask2 from './itcomponents/NewComp/IrisaTextFieldMask2'
 import IrisaChart from './itcomponents/NewComp/IrisaChart'
 import IrisaLov from './itcomponents/NewComp/IrisaLov'
+import IrisaPTextField from './itcomponents/NewComp/IrisaNTextField'
 
 const App = props => {
-/*
-	ListAxios('GET').then((result)=>{
-		console.log(result.data)
-	})
-*/
 
   const [valarray,setValarray] = useState(
     {
@@ -35,6 +31,7 @@ const App = props => {
     'txt2':{value:'text 2'},
     'txt3':{value:'text 3'},
     'txt4':{value:''},
+    'txt6':{value:'text 6'},
     //'RadioValue':'IrisaTextField',
     'IrisaDialog':{open:false},
     //'IrisaSelect':{value:''}
@@ -81,6 +78,7 @@ const App = props => {
     <IrisaTextField name={"txt5"} value={valarray.txt4.value}  type={"number"}
       prefix={"ریال"}/>
     <br /> 
+    <IrisaPTextField value={valarray.txt6.value} name={"txt6"} onChange={handlerTextField} />
     </>)
 
 
@@ -124,7 +122,7 @@ const App = props => {
         </Grid>
 
 <Grid  item xs={8}>
-  <Paper style={{height:500}}>
+  <Paper style={{width:800,height:600}}>
  {radioValue==='IrisaTextField' && <TestTextField />}  
 
  {radioValue==='IrisaDatePicker' && <IrisaDatePicker 
@@ -139,7 +137,7 @@ const App = props => {
 
   {radioValue==='SampleValidation' && <SampleValidation />}
 
-  {radioValue==='IrisaDialogDatePicker' && <IrisaDialogDatePicker />}
+  {radioValue==='IrisaDialogDatePicker' && <IrisaDialogDatePickerFa />}
 
   {radioValue==='IrisaOutcome' && <IrisaOutcome>my outcome</IrisaOutcome>}
 

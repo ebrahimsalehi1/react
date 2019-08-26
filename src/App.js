@@ -5,7 +5,8 @@ import {Router, Route} from "react-router-dom";
 import MenuAppBar from "Components/AppBar"
 import {createBrowserHistory} from 'history';
 import {LoginProvider} from "./Utils/StateManagement";
-import App1 from './irisacomponents/src/AppMain'
+//import App1 from './irisacomponents/src/AppMain'
+import App1 from './irisacomponents/src/itcomponents/TestComp/FormTextField'
 
 const history = createBrowserHistory();
 const Index = lazy(() => import('Components/Index'));
