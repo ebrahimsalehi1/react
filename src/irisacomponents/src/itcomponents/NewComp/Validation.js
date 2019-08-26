@@ -214,12 +214,8 @@ import moment from "moment-jalaali";
     //{isValid:false,messages:{validationType:[],validationParams:[]}}
 
     return {isValid:result.isValid,
-        messages:result.messages && result.messages.validationMessage ? result.messages.validationMessage.reduce((s,item)=>{return s+item+'\n'}):''
+        messages:result.messages && result.messages.validationMessage ? result.messages.validationMessage.reduce((s,item)=>{return s+item+'\n'},''):''
     }
 };
-
-function validation1(){
-
-}
 
 export default validation
