@@ -7,10 +7,10 @@ import {
     MenuItem,Paper,Checkbox,MuiThemeProvider
 
 } from '@material-ui/core'
-import IrisaTextField from '../NewComp/TextField/IrisaTextField'
-import {theme} from '../NewComp/TextField/style'
+import IrisaTextField from '../TextField/IrisaTextField'
+//import {theme} from '../TextField/style'
 
-import { CheckBox } from '@material-ui/icons';
+//import { CheckBox } from '@material-ui/icons';
 
 export default function Form1(props){
     const [state,setState] = useState({
@@ -97,7 +97,7 @@ export default function Form1(props){
                     <MenuItem value={"filled"} label={"filled"} >filled</MenuItem>
                 </Select>
               <InputLabel>error</InputLabel>  
-              <Checkbox label={"error"}/>
+              {/* <Checkbox label={"error"}/> */}
                 <br />
                 <hr />
 

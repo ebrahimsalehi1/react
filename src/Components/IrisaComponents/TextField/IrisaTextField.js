@@ -2,7 +2,7 @@
 import React,{useState,useEffect} from 'react'
 import {TextField,withStyles} from '@material-ui/core'
 import {createStyles} from '@material-ui/core/styles'
-import validation from '../Validation'
+import validation from '../Utils/Validation'
 import NumberFormat from 'react-number-format'
 import PropTypes from 'prop-types'
 import MaskedInput from 'react-text-mask'
@@ -19,7 +19,6 @@ IrisaTextField.defaultProps = {
   //onBlur: null,
 }
 
-
 function IrisaTextField(props){
 
     //const {rules,classes,fullWidth,onCustomValidation,onChange,onBlur} = props
@@ -32,7 +31,7 @@ function IrisaTextField(props){
     } = props;
 
     const { rules, mask, inputRef, placeholderChar, onCustomValidation, 
-      format,prefix,type,
+      format,prefix,type,testId,
       onChange, onBlur } =props
 
     let grules = rules   
@@ -86,6 +85,7 @@ function IrisaTextField(props){
         onBlur={grules!==undefined && grules.trigger==='blur' ? onChangeHandler:null}
         error={!allValidation} 
         helperText={!allValidation && resultValidation.messages}
+        inputProps={{'data-testid':testId}}
         />
     }
     {
@@ -128,6 +128,8 @@ function IrisaTextField(props){
 }
 
 IrisaTextField.propTypes = {
+  testId:PropTypes.string,
+
   rules: PropTypes.object,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
@@ -143,12 +145,11 @@ IrisaTextField.propTypes = {
   adornment: PropTypes.bool,
   icon: PropTypes.object,
   value: PropTypes.string,
-  onChange: PropTypes.func,
+  ///onChange: PropTypes.func,
   fullWidth: PropTypes.bool,
   rows: PropTypes.string,
   multiline: PropTypes.bool,
   useLov: PropTypes.bool
-
 }
 
 export default withStyles(useStyles)(IrisaTextField)

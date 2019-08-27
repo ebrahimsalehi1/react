@@ -6,13 +6,13 @@ import MenuAppBar from "Components/AppBar"
 import {createBrowserHistory} from 'history';
 import {LoginProvider} from "./Utils/StateManagement";
 //import App1 from './irisacomponents/src/AppMain'
-import App1 from './irisacomponents/src/itcomponents/TestComp/FormTextField'
+import App1 from './Components/IrisaComponents/TextField/FormTextField'
 
 const history = createBrowserHistory();
 const Index = lazy(() => import('Components/Index'));
 const Users = lazy(() => import('Components/Users'));
 const Home = lazy(() => import('Components/Home'));
-
+    
 /**
  * Main File
  * @returns {*}
