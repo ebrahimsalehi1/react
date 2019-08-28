@@ -5,7 +5,6 @@ import {
     FormControl,
     FormControlLabel,InputLabel,
     MenuItem,Paper,Checkbox,MuiThemeProvider
-
 } from '@material-ui/core'
 import IrisaTextField from '../TextField/IrisaTextField'
 //import {theme} from '../TextField/style'
