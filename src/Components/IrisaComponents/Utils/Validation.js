@@ -2,13 +2,14 @@ import validator from "validator";
 import moment from "moment-jalaali";
 
 
-   function validation(text, validationType, validationTypeParam) {
+function validation(text, validationType, validationTypeParam) {
     //console.log(`${text} - ${validationType} - ${validationTypeParam}`)
 
-    if(typeof validationType==='undefined' || validationType===null)
-        return true
+    let result = {isValid:true,messages:{validationType:[],validationMessage:[]}}
 
-    let result = {isValid:false,messages:{validationType:[],validationMessage:[]}}
+    if(typeof validationType==='undefined' || validationType===null)
+        return result
+
 
     for (let i = 0; i < validationType.length; i++) {
         result.isValid = true;
@@ -85,7 +86,7 @@ import moment from "moment-jalaali";
             case "email": {
                 result.isValid =  validator.isEmail(text);
                 msg = "ایمیل معتبر نمی باشد";
- 
+
                 result.messages.validationType = [...result.messages.validationType,validationType[i]]
                 result.messages.validationMessage = [...result.messages.validationMessage,msg]
 
@@ -98,7 +99,7 @@ import moment from "moment-jalaali";
 
                 result.messages.validationType = [...result.messages.validationType,validationType[i]]
                 result.messages.validationMessage = [...result.messages.validationMessage,msg]
-                
+
                 break;
             }
 

@@ -3,6 +3,9 @@ import {render} from '@testing-library/react'
 import TextField from '../../../Components/IrisaComponents/TextField/IrisaTextField'
 import Validation from '../../../Components/IrisaComponents/Utils/Validation'
 import moment from 'moment'
+import data from './ValidationData.json'
+
+//import { DeviceSignalCellularConnectedNoInternet0Bar } from 'material-ui/svg-icons';
 
 // function add(a,b){return a+b}
 
@@ -10,21 +13,31 @@ import moment from 'moment'
 //     expect([1,2].reduce((s,i)=>s+i,0)).toBe(3)
 // })
 
+describe('validation function ---> ',()=>{
 
-it('validation ---> afterDate',()=>{
-    const msg = "20191225"
-    const result = Validation(msg,['afterDate'],null)
-    const dat = moment(new Date(msg)).local('fa').format('YYYY/MM/DD HH:mm:ss')
+    data.forEach(element => {
 
-    expect(result.messages).toBe('زمان حداقل:'+dat)
+        it('validation ---> afterDate',()=>{
+            const msg = "20191225"
+            const result = Validation(msg,[element],null)
+            const dat = moment(new Date(msg)).local('fa').format('YYYY/MM/DD HH:mm:ss')
+        
+            expect(result.messages).toBe('زمان حداقل:'+dat)
+        })
+            
+        
+    });
+
+    it('validation ---> alpha',()=>{
+        const msg = "123"
+        const result = Validation(msg,['alpha'],null)
+    
+        expect(result.messages.replace('\n','')).toBe('کاراکترهای مجاز: حروف لاتین')
+    })
+    
 })
 
-it('validation ---> alpha',()=>{
-    const msg = "123"
-    const result = Validation(msg,['alpha'],null)
 
-    expect(result.messages.replace('\n','')).toBe('کاراکترهای مجاز: حروف لاتین')
-})
 
 /*
 it('validation ---> ',()=>{

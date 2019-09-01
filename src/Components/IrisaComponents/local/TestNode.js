@@ -224,22 +224,25 @@ function validation(text, validationType, validationTypeParam) {
 //----------           Input Parameters       ---------------------------------
 //-----------------------------------------------------------------------------
 
-const text = '123'
+const text = null//'123'
 let msg = undefined
-const validationType = ['afterDate']
-const validationTypeParam = ['2019/12/25']
-
-//-----------------------------------------------------------------------------
+const validationType = null //['afterDate']
+const validationTypeParam = null //['2019/12/25']
 
 //let result = {isValid:false,messages:{validationType:[],validationMessage:[]}}
 
 //-----------------------------------------------------------------------------
 
-//const result = validation(text,validationType,validationTypeParam)
-//console.log(result)
-const targetDate = 13980112
-let displayDate = moment(new Date(targetDate)).locale('fa').format('YYYY/MM/DD HH:mm:ss');
-console.log('date',displayDate)
+let result = validation(text,validationType,validationTypeParam)
 
 //-----------------------------------------------------------------------------
 
+//const result = validation(text,validationType,validationTypeParam)
+//console.log(result)
+// const targetDate = 13980112
+// let displayDate = moment(new Date(targetDate)).locale('fa').format('YYYY/MM/DD HH:mm:ss');
+// console.log('date',displayDate)
+
+//-----------------------------------------------------------------------------
+
+console.log(result)

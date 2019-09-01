@@ -7,6 +7,8 @@ import {createBrowserHistory} from 'history';
 import {LoginProvider} from "./Utils/StateManagement";
 //import App1 from './irisacomponents/src/AppMain'
 import App1 from './Components/IrisaComponents/TextField/FormTextField'
+//import App1 from './Components/IrisaComponents/Outcome/FormOutcome'
+//import App1 from './Components/IrisaComponents/Button/FormButton'
 
 const history = createBrowserHistory();
 const Index = lazy(() => import('Components/Index'));
