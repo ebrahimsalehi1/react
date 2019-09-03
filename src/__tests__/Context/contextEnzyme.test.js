@@ -29,7 +29,6 @@ const ComponentB = function(props) {
   const context = React.useContext(Context)
   return (
     <div>
-      <span>{props.ok}</span>
       <span>{context.name}</span>
       <button data-testid='btn' onClick={() => context.setName('Mahdi')}>
         set name to Mahdi
