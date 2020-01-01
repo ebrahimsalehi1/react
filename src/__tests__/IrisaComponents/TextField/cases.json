@@ -1,0 +1,74 @@
+[
+  {
+    "type": "alpha",
+    "input": ["123", "الی"],
+    "expected": "کاراکترهای مجاز: حروف لاتین"
+  },
+  {
+    "type": "alphaFa",
+    "input": ["123", "notFa", "۱۲۳"],
+    "expected": "کاراکترهای مجاز: حروف فارسی و فاصله"
+  },
+  {
+    "type": "alphanumeric",
+    "input": ["شسیب", "۱۲۳"],
+    "expected": "کاراکترهای مجاز: حروف لاتین و عدد"
+  },
+  {
+    "type": "alphanumericFa",
+    "input": ["شیسب۱۲۳", "123da", "sadf"],
+    "expected": "کاراکترهای مجاز: حروف فارسی، فاصله و عدد"
+  },
+  {
+    "type": "email",
+    "input": ["123", "sss@", "شبس"],
+    "expected": "ایمیل معتبر نمی باشد"
+  },
+  {
+    "type": "equals",
+    "input": ["qqq"],
+    "match": "match",
+    "expected": "مقادیر مساوی نمی باشند"
+  },
+  {
+    "type": "lowercase",
+    "input": ["notLowerCase"],
+    "expected": "کاراکترهای مجاز: حروف لاتین کوچک"
+  },
+  {
+    "type": "matches",
+    "input": ["qqq"],
+    "match": "match",
+    "expected": "ورودی با عبارت منطقی مطابقت ندارد"
+  },
+  {
+    "type": "mobilePhone",
+    "input": ["123", "0999999", "99999999"],
+    "expected": "لطفا شماره موبایل وارد نمایید"
+  },
+  {
+    "type": "numberFloat",
+    "input": ["asad", "ؤئی", "۱۲۳"],
+    "expected": "لطفا عدد اعشاری وارد نمایید"
+  },
+  {
+    "type": "number",
+    "input": ["sad", "0999sad999", "۱۲۳"],
+    "expected": "لطفا عدد وارد نمایید"
+  },
+  {
+    "type": "numberInt",
+    "input": ["sad", "0999sad999", "۱۲۳"],
+    "expected": "لطفا عدد صحیح وارد نمایید"
+  },
+  {
+    "type": "required",
+    "input": [""],
+    "expected": "مقدار فیلد اجباری می باشد"
+  },
+  {
+    "type": "uppercase",
+    "input": ["adsa", "AsdfA"],
+    "expected": "کاراکترهای مجاز: حروف لاتین بزرگ"
+  }
+]

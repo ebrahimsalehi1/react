@@ -1,0 +1,250 @@
+import React from 'react';
+import {TextField, withStyles} from '@material-ui/core';
+import {styles} from '../../assets/jss/style'
+import moment from "jalali-moment";
+import PropTypes from 'prop-types';
+import validator from "validator";
+
+class IbxTextField extends TextField {
+    constructor(props) {
+        super(props);
+        this.state = {
+            errors: {},
+            helperText: "",
+            valid: true
+        };
+    }
+
+    validity = async (e, validationType, validationTypeParam) => {
+        let target = e.target;
+
+        await this.setState({valid: true});
+        for (let i = 0; i < validationType.length; i++) {
+            let isValid = true;
+            let msg = "";
+
+            switch (validationType[i]) {
+                case "afterDate": {
+                    let targetDate = validationTypeParam ? parseInt(validationTypeParam[i]) : new Date().getTime();
+                    let displayDate = moment(new Date(targetDate)).locale('fa').format('YYYY/MM/DD HH:mm:ss');
+
+                    isValid = (!isNaN(target.value) ? parseInt(target.value) : target.value) >= targetDate;
+                    msg = "زمان حداقل: " + displayDate;
+                    break;
+                }
+
+                case "alpha": {
+                    isValid = await validator.isAlpha(target.value, 'en-US');
+                    msg = "کاراکترهای مجاز: حروف لاتین";
+                    break;
+                }
+
+                case "alphaFa": {
+                    let regEx = /^[آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیي]+[آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیي ]*$/;
+                    isValid = await validator.matches(validator.rtrim(target.value), regEx);
+                    msg = "کاراکترهای مجاز: حروف فارسی و فاصله";
+                    break;
+                }
+
+                case "alphanumeric": {
+                    isValid = await validator.isAlphanumeric(target.value, 'en-US');
+                    msg = "کاراکترهای مجاز: حروف لاتین و عدد";
+                    break;
+                }
+
+                case "alphanumericFa": {
+                    let regEx = /^[٠١٢٣٤٥٦٧٨٩0-9آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیي]+[٠١٢٣٤٥٦٧٨٩0-9آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیي ]*$/;
+                    isValid = await validator.matches(validator.rtrim(target.value), regEx);
+                    msg = "کاراکترهای مجاز: حروف فارسی، فاصله و عدد";
+                    break;
+                }
+
+                case "equals": {
+                    if (validationTypeParam && validationTypeParam[i]) {
+                        isValid = await validator.equals(target.value, validationTypeParam[i]);
+                        msg = "مقادیر مساوی نمی باشند";
+                    }
+                    break;
+                }
+
+                case "email": {
+                    isValid = await validator.isEmail(target.value);
+                    msg = "ایمیل معتبر نمی باشد";
+                    break;
+                }
+
+                case "lowercase": {
+                    isValid = await validator.isLowercase(target.value);
+                    msg = "کاراکترهای مجاز: حروف لاتین کوچک";
+                    break;
+                }
+
+                case "matches": {
+                    if (validationTypeParam && validationTypeParam[i]) {
+                        isValid = await validator.matches(target.value, validationTypeParam[i]);
+                        msg = "ورودی با عبارت منطقی مطابقت ندارد";
+                    }
+
+                    break;
+                }
+
+                case "mobilePhone": {
+                    isValid = await validator.isMobilePhone(target.value, 'fa-IR');
+                    msg = "لطفا شماره موبایل وارد نمایید";
+                    break;
+                }
+
+                case "number": {
+                    isValid = await validator.isNumeric(target.value);
+                    msg = "لطفا عدد وارد نمایید";
+                    break;
+                }
+
+                case "numberFloat": {
+                    if (validationTypeParam && validationTypeParam[i]) {
+                        isValid = await validator.isFloat(target.value, validationTypeParam[i]);
+
+                        msg = `لطفا عدد اعشاری وارد نمایید` + `\n`;
+                        msg += validationTypeParam[i].min
+                            ? `بزرگ تر یا مساوی: ` + `${validationTypeParam[i].min}` + `\n` : ``;
+                        msg += validationTypeParam[i].max
+                            ? `کوچک تر یا مساوی: ` + `${validationTypeParam[i].max}` + `\n` : ``;
+                        msg += validationTypeParam[i].gt
+                            ? `بزرگ تر از: ` + `${validationTypeParam[i].gt}` + `\n` : ``;
+                        msg += validationTypeParam[i].lt
+                            ? `کوچک تر از: ` + `${validationTypeParam[i].lt}` + `\n` : ``;
+                    } else {
+                        isValid = await validator.isFloat(target.value);
+                        msg = `لطفا عدد اعشاری وارد نمایید` + `\n`;
+                    }
+
+                    break;
+                }
+
+                case "numberInt": {
+                    if (validationTypeParam && validationTypeParam[i]) {
+                        isValid = await validator.isInt(target.value, validationTypeParam[i]);
+
+                        msg = `لطفا عدد صحیح وارد نمایید` + `\n`;
+                        msg += validationTypeParam[i].min
+                            ? `بزرگ تر یا مساوی: ` + `${validationTypeParam[i].min}` + `\n` : ``;
+                        msg += validationTypeParam[i].max
+                            ? `کوچک تر یا مساوی: ` + `${validationTypeParam[i].max}` + `\n` : ``;
+                        msg += validationTypeParam[i].gt
+                            ? `بزرگ تر از: ` + `${validationTypeParam[i].gt}` + `\n` : ``;
+                        msg += validationTypeParam[i].lt
+                            ? `کوچک تر از: ` + `${validationTypeParam[i].lt}` + `\n` : ``;
+                    } else {
+                        isValid = await validator.isInt(target.value);
+                        msg = `لطفا عدد صحیح وارد نمایید` + `\n`;
+                    }
+
+                    break;
+                }
+
+                case "required": {
+                    isValid = await !validator.isEmpty(target.value);
+                    msg = "مقدار فیلد اجباری می باشد";
+                    break;
+                }
+
+                case "uppercase": {
+                    isValid = await validator.isUppercase(target.value);
+                    msg = "کاراکترهای مجاز: حروف لاتین بزرگ";
+                    break;
+                }
+
+                default: {
+                    await this.setState({valid: true});
+                }
+            }//switch end
+            await this.setErrorMsg(validationType[i], target, isValid, msg);
+
+            if (validationType[i] != "required" && target.value != "" && !isValid) {
+                await this.setState({valid: false});
+            } else if (validationType[i] == "required" && target.value == "") {
+                await this.setState({valid: false});
+            }
+        }//for end
+
+        await this.printErrorsMsgs(this.state.errors, validationType).toString();
+    };
+
+    async setErrorMsg(validationType, target, isValid, msg) {
+        await this.setState({
+            errors: {
+                ...this.state.errors,
+                [validationType]: {
+                    msg: (target.value && !isValid) || (validationType == "required" && !isValid) ? msg : ""
+                }
+            }
+        });
+    }
+
+    printErrorsMsgs = async (errors, validationType) => {
+        let str = '';
+        validationType.filter(validation => {
+            if (errors[validation].msg.length > 0 && errors[validation].msg) {
+                str += errors[validation].msg + `\n`;
+            }
+        });
+
+        await this.setState({helperText: str});
+    };
+
+    render() {
+        const {classes, label, name, required, validationType, validationTypeParam, fullWidth, rows, value, multiline, ...other} = this.props;
+        const {helperText, valid} = this.state;
+        return (
+            <TextField
+                error={!valid}
+                helperText={!valid ? helperText : undefined}
+                onBlur={(e) => {
+                    if (validationType) {
+                        this.validity(e,
+                            validationType ? validationType : false,
+                            validationTypeParam ? validationTypeParam : false);
+                    }
+                }}
+
+                required={required}
+                {...other}
+                name={name}
+                className={classes.margin}
+                InputLabelProps={{
+                    classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline,
+                    },
+                }}
+                InputProps={{
+                    classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline,
+                    },
+                }}
+                fullWidth={fullWidth}
+                rows={rows}
+                label={label}
+                value={value == null ? '' : value}
+                onChange={this.props.onChange}
+                multiline={multiline ? true : false}
+                variant="outlined"
+            />
+        )
+    }
+}
+
+IbxTextField.propTypes = {
+    classes: PropTypes.object.isRequired,
+    validationType: PropTypes.oneOf(['afterDate', 'alpha', 'alphaFa',
+        'alphanumeric', 'alphanumericFa', 'email', 'equals', 'lowercase',
+        'matches', 'mobilePhone', 'number', 'numberFloat', 'numberInt', 'required', 'uppercase']),
+    validationTypeParam: PropTypes.array,
+    label:PropTypes.string,
+    name:PropTypes.string
+};
+
+export default withStyles(styles)(IbxTextField);
