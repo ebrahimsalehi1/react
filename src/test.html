@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <script language="javascript">
+            function myTest(){
+                return new Promise(resolve=>{
+                    setTimeout(()=>{
+                        console.log('time out');
+                    },6000);                    
+                })
+            }
+            async function test(){
+                console.log("start");
+                const val = await myTest();
+                console.log('end',val);
+            }
+
+            function part2Test1(){
+                const map = v => v*v;
+                const array = Array.from([1,2,3],map);
+                const result = array.join("");
+
+                console.log([10,20,30].join(" , "));
+            }
+
+            function part2Test2(){
+                const array = [1,2,3];
+                const result = 3 in array;
+                console.log(result);
+            }
+
+            function part2Test3(){
+                const func = function(x,y=4){
+                    return x+y;
+                }
+                const result 
+            }
+            function part2Test4(){
+
+            }
+            function part2Test5(){
+
+            }   
+            function part2Test6(){
+
+            }   
+            function part2Test7(){
+
+            }   
+            function part2Test8(){
+
+            }   
+        </script>
+    </head>
+<body>
+
+    <div>
+        <p>User Name <input type='TEXT'/></p>
+        <p>Password <input type='password'/></p>
+        <button onclick="test()">Login</button>
+        <br/>
+        <br/>
+        <br/>
+        <button onclick="part2Test2()">do test</button>
+    </div>
+
+</body>
+</html>

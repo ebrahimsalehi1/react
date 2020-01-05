@@ -11,6 +11,7 @@ import {LoginProvider} from "./Utils/StateManagement";
 //import App1 from './Components/IrisaComponents/Button/FormButton'
 //import {Grid,Card} from '@material-ui/core';
 import UsersGroupsApprolesSearch from './Components/IrisaComponents/UsersGroupsApprolesSearch';
+import ReactVirtualizedTable from './Components/IrisaComponents/ReactVirtualizedTable'
 
 const history = createBrowserHistory();
 const Index = lazy(() => import('./Components/Index'));
@@ -38,10 +39,14 @@ function App() {
     const TestComp =()=> (                                   
         <div>
             <button onClick={e=>{setIsOpen(true)}}>Open Dialog</button>
-            <UsersGroupsApprolesSearch open={isOpen} data={[
+            <UsersGroupsApprolesSearch open={isOpen}
+            selectSpecial="users"
+            data={[
                   {"ID":"100","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
                   {"ID":"101","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
               ]}/>
+
+              <ReactVirtualizedTable />
         </div> 
     );
 

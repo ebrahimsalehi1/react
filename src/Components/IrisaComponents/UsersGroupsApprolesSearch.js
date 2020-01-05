@@ -4,39 +4,11 @@ import {Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,
     Table,TableBody,TableCell,TableHead,TablePagination,TableRow,TableSortLabel,TableFooter,Checkbox,Chip,Avatar} from '@material-ui/core';
 import {Search,Close} from '@material-ui/icons';
 
-function SelectedValues(props){
-    const {data} = props
-    console.log("SelectedValues is rendering",data)
-    return (
-        <div>
-            {data.map(item=>{
-                            return (
-                                <Chip
-                                avatar={
-                                  <Avatar onClick={e=>{
-                                    //selectedID.delete(item);
-                                    //setSelectedID(selectedID);
-                                  }}>
-                                    <Close />
-                                  </Avatar>
-                                }
-                                label="Clickable Deletable Chip"
-                                //onClick={handleClick}
-                                //onDelete={handleDelete}
-                                //className={classes.chip}
-                                variant="outlined"
-                              />
-                            )
-            })}
-
-        </div>
-    )
-}
-
 function UsersGroupsApprolesSearch(props){
-    const {open,data} = props;
 
-    const [selectedValueToSearch,setSelectedValueToSearch] = useState("all");
+    const {open,data,selectSpecial} = props
+
+    const [selectedValueToSearch,setSelectedValueToSearch] = useState(selectSpecial===undefined ? '':selectSpecial);
     const [valueToSearch,setValueToSearch] = useState("");
     const [firstName,setFirstName] = useState("");
     const [lastName,setLastName] = useState("");
@@ -45,8 +17,7 @@ function UsersGroupsApprolesSearch(props){
     const [isShowList,setisShowList] = useState(false);
     const [rowsPerPage,setRowsPerPage] = useState(5);
     const [page,setPage] = useState(0);
-    const [chk,setChk] = useState(false);
-    const [selectedID,setSelectedID] = useState(["123"]);
+    const [selectedID,setSelectedID] = useState([]);
 
     useEffect(()=>{
         if(firstName.length===0 && lastName.length===0 && email.length===0 && ID.length===0)
@@ -68,7 +39,7 @@ function UsersGroupsApprolesSearch(props){
             <DialogTitle>جستجوی کاربران گروهها و نقش ها</DialogTitle>
             <DialogContent>
                 {/* <DialogContentText>کاربر می تواند جستجو کند</DialogContentText> */}
-                <Grid container spacing={4}>
+                <Grid container spacing={8}>
                     <Grid item xs={1}>
                         <Button onClick={e=>{resetFields()}}>ریست</Button>
                     </Grid>   
@@ -95,7 +66,7 @@ function UsersGroupsApprolesSearch(props){
                         <Select 
                         value={selectedValueToSearch} 
                         autoWidth={true}
-                        onChange={e=>{setSelectedValueToSearch(e.target.value)}}>
+                        onChange={e=>{setSelectedValueToSearch(prev=>selectSpecial===undefined ? e.target.value:selectSpecial)}}>
                         <MenuItem value={"all"}>All</MenuItem>
                         <MenuItem value={"users"}>Users</MenuItem>
                         <MenuItem value={"groups"}>Groups</MenuItem>
@@ -106,11 +77,13 @@ function UsersGroupsApprolesSearch(props){
                 <Grid item xs={12}>
                     <Table>
                         <TableHead>
-                            <TableCell align="right">ایمیل</TableCell>  
-                            <TableCell align="right">نام خانوادگی</TableCell>
-                            <TableCell align="right">نام</TableCell>
-                            <TableCell align="right">شناسه</TableCell>
-                            <TableCell> </TableCell>
+                            <TableRow>
+                                <TableCell align="right">ایمیل</TableCell>  
+                                <TableCell align="right">نام خانوادگی</TableCell>
+                                <TableCell align="right">نام</TableCell>
+                                <TableCell align="right">شناسه</TableCell>
+                                <TableCell> </TableCell>
+                            </TableRow>
                         </TableHead>
                         <TableBody>
                         {   data!== undefined &&
@@ -119,12 +92,13 @@ function UsersGroupsApprolesSearch(props){
                                 <TableCell align="right">{row.email}</TableCell>        
                                 <TableCell align="right">{row.lastName}</TableCell>        
                                 <TableCell align="right">{row.firstName}</TableCell>        
-                                <TableCell align="right"><Checkbox name={row.ID} value={chk} onChange={e=>
-                                        {                                            
-                                            e.target.checked ? selectedID.push(e.target.name):selectedID.includes(e.target.name) ? selectedID.splice(selectedID.indexOf(e.target.name)):console.log("nothing")
-                                            setSelectedID(selectedID)
-                                            console.log(selectedID)
+                                <TableCell align="right"><Checkbox name={row.ID} checked={selectedID.includes(row.ID)} onChange={e=>
+                                        {                 
+                                            const {name,checked} = e.target  
 
+                                            setSelectedID(checked? [...selectedID,name]: selectedID.includes(name)? selectedID.filter(itm=>itm!==name):console.log('nothing'))
+
+                                            console.log(selectedID)
                                         }
                                     } /></TableCell>        
                             </TableRow>)})
@@ -142,7 +116,7 @@ function UsersGroupsApprolesSearch(props){
                                         native: true,
                                       }}
                                     onChangePage={(e,p)=>{setPage(p)}}
-                                    onChangeRowsPerPage={e=>{setRowsPerPage(e.target.value)}}
+                                    onChangeRowsPerPage={e=>{setRowsPerPage(parseInt(e.target.value))}}
                                 />
                             </TableRow>       
                         </TableFooter> 
@@ -150,36 +124,28 @@ function UsersGroupsApprolesSearch(props){
                     </Grid>
                     <Grid item >
                         Selected Items:
-                        {
-                            selectedID.map(item=>{
-                                return (
-                                    <label>{item} - </label>
-                                )
-                            })
-                        }
-                        {/* <SelectedValues data={selectedID}/> */}
-                        {/* {selectedID.map(item=>{
+
+                        {selectedID!==undefined && selectedID.map(item=>{
                             return (
                                 <Chip
-                                avatar={
-                                  <Avatar onClick={e=>{
-                                    selectedID.delete(item);
-                                    setSelectedID(selectedID);
-                                  }}>
-                                    <Close />
-                                  </Avatar>
-                                }
-                                label="Clickable Deletable Chip"
-                                //onClick={handleClick}
-                                //onDelete={handleDelete}
-                                //className={classes.chip}
+                                key={item}    
+                                name={item} 
+                                id={item}                             
+                                label={item}
+                                onDelete={(e,obj={item})=>{setSelectedID(selectedID.filter(itemFilter=>itemFilter!==obj.item))}}
+                                //className={classes.chip}  
                                 variant="outlined"
+                                deleteIcon={<Close/>}
                               />
                             )
-                        })} */}
+                        })}
                     </Grid>
 
             </DialogContent>
+            <DialogActions>
+                <Button onClick={(e,canOpen=open)=>{}}>OK</Button>
+                <Button onClick={e=>{}}>Cancel</Button>
+            </DialogActions>
         </Dialog>
         <Dialog open={isShowList}>
             <List>
@@ -193,8 +159,6 @@ function UsersGroupsApprolesSearch(props){
                     }}
                     >انصراف</Button> 
                     <Button onClick={e=>{
-                        //setValueToSearch("sdff sdfdsfdsf fsdfsddsf");
-                         //firstName+"-"+lastName+"-"+email+"-"+ID 
                         setisShowList(false) }}>تایید</Button>                               
                 </ListItem>    
             </List>            
