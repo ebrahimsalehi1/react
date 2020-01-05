@@ -29,25 +29,48 @@
             }
 
             function part2Test3(){
-                const func = function(x,y=4){
-                    return x+y;
+                const func = function(x,y=4,z=10){
+                    return x+y+z;
                 }
-                const result 
+                const result = func(2);
+                console.log(result);
             }
+
             function part2Test4(){
-
+                const numbers = [2009,95,262,901,87,123];
+                const [first,second,third, ...rest] = numbers;
+                const result = rest.length;
+                console.log('result',result);
             }
+
             function part2Test5(){
+                const o = {
+                    name: "ECMAScript",
+                    version: 2016,
+                    id: "ID"
+                };
+                const result = Object.values(o).join("-");   
+                console.log(result);
+            }
 
-            }   
             function part2Test6(){
-
+                const result = parseInt("1995ye45ar");
+                console.log(result);
             }   
+
             function part2Test7(){
+                let name = 1;
+                ({name} = {name:300});
+                console.log(name);        
+            } 
 
-            }   
             function part2Test8(){
-
+                const array = [1,2,3];
+                let result = 1;
+                for(const value of array){
+                    result *= value;
+                }
+                console.log(result);
             }   
         </script>
     </head>
@@ -60,7 +83,7 @@
         <br/>
         <br/>
         <br/>
-        <button onclick="part2Test2()">do test</button>
+        <button onclick="part2Test8()">do test</button>
     </div>
 
 </body>
