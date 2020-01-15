@@ -1,12 +1,16 @@
 import React,{useState, useEffect} from 'react';
 import {Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,
     Select,MenuItem,Grid,Button,List,TextField,Input,InputAdornment,IconButton,ListItem,
-    Table,TableBody,TableCell,TableHead,TablePagination,TableRow,TableSortLabel,TableFooter,Checkbox,Chip,Avatar} from '@material-ui/core';
+    Chip,Avatar} from '@material-ui/core';
+//import {Table,TableBody,TableCell,TableHead,TablePagination,TableRow,TableSortLabel,TableFooter,Checkbox}  from '@material-ui/core';
 import {Search,Close} from '@material-ui/icons';
+import { AutoSizer, Column, SortDirection, Table} from 'react-virtualized';
 
 function UsersGroupsApprolesSearch(props){
 
-    const {open,data,selectSpecial} = props
+    const {open,selectSpecial,data,isContainPagination} = props
+
+    const [selectedID,setSelectedID] = useState([]);
 
     const [selectedValueToSearch,setSelectedValueToSearch] = useState(selectSpecial===undefined ? '':selectSpecial);
     const [valueToSearch,setValueToSearch] = useState("");
@@ -15,9 +19,12 @@ function UsersGroupsApprolesSearch(props){
     const [email,setEmail] = useState("");
     const [ID,setID] = useState("");
     const [isShowList,setisShowList] = useState(false);
-    const [rowsPerPage,setRowsPerPage] = useState(5);
-    const [page,setPage] = useState(0);
-    const [selectedID,setSelectedID] = useState([]);
+
+    const [rowsPerPage,setRowsPerPage] = useState();
+    const [page,setPage] = useState();
+
+    const [height,setHeight] = useState(400);
+    const [width,setWidth] = useState(400);
 
     useEffect(()=>{
         if(firstName.length===0 && lastName.length===0 && email.length===0 && ID.length===0)
@@ -38,17 +45,17 @@ function UsersGroupsApprolesSearch(props){
         <Dialog open={open} fullWidth={true} maxWidth={'xl'}>
             <DialogTitle>جستجوی کاربران گروهها و نقش ها</DialogTitle>
             <DialogContent>
-                {/* <DialogContentText>کاربر می تواند جستجو کند</DialogContentText> */}
+                <DialogContentText>کاربر می تواند جستجو کند</DialogContentText>
                 <Grid container spacing={8}>
-                    <Grid item xs={1}>
+                    <Grid item  md={2} sm={6} xs={12}>
                         <Button onClick={e=>{resetFields()}}>ریست</Button>
                     </Grid>   
 
-                    <Grid item xs={1}>
+                    <Grid item md={2} sm={6} xs={12}>
                         <Button onClick={e=>{}}>جستجو</Button>
                     </Grid>
 
-                    <Grid item xs={6}>
+                    <Grid item md={2} sm={6} xs={12}>
                     <Input
                     value={valueToSearch}
                     fullWidth={true}
@@ -75,52 +82,21 @@ function UsersGroupsApprolesSearch(props){
                     </Grid>
                 </Grid>    
                 <Grid item xs={12}>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="right">ایمیل</TableCell>  
-                                <TableCell align="right">نام خانوادگی</TableCell>
-                                <TableCell align="right">نام</TableCell>
-                                <TableCell align="right">شناسه</TableCell>
-                                <TableCell> </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        {   data!== undefined &&
-                            data.slice(page*rowsPerPage,page*rowsPerPage+rowsPerPage).map(row=>{return (
-                            <TableRow key={row.ID}>
-                                <TableCell align="right">{row.email}</TableCell>        
-                                <TableCell align="right">{row.lastName}</TableCell>        
-                                <TableCell align="right">{row.firstName}</TableCell>        
-                                <TableCell align="right"><Checkbox name={row.ID} checked={selectedID.includes(row.ID)} onChange={e=>
-                                        {                 
-                                            const {name,checked} = e.target  
 
-                                            setSelectedID(checked? [...selectedID,name]: selectedID.includes(name)? selectedID.filter(itm=>itm!==name):console.log('nothing'))
-
-                                            console.log(selectedID)
-                                        }
-                                    } /></TableCell>        
-                            </TableRow>)})
+                    <AutoSizer>
+                        {
+                            ({height,width})=>(
+                               <Table
+                                   height={height}
+                                   width={width}>
+                                       {
+                                           data.map()
+                                       }
+                               </Table> 
+                            )
                         }
-                        </TableBody>   
-                        <TableFooter>
-                            <TableRow>
-                                <TablePagination
-                                    rowsPerPageOptions={[5, 10, 25]}
-                                    colSpan={3}
-                                    count={data.length}
-                                    rowsPerPage={rowsPerPage}
-                                    page={page}
-                                    SelectProps={{
-                                        native: true,
-                                      }}
-                                    onChangePage={(e,p)=>{setPage(p)}}
-                                    onChangeRowsPerPage={e=>{setRowsPerPage(parseInt(e.target.value))}}
-                                />
-                            </TableRow>       
-                        </TableFooter> 
-                    </Table>
+                    </AutoSizer>
+
                     </Grid>
                     <Grid item >
                         Selected Items:

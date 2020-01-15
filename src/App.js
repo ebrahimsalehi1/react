@@ -11,7 +11,9 @@ import {LoginProvider} from "./Utils/StateManagement";
 //import App1 from './Components/IrisaComponents/Button/FormButton'
 //import {Grid,Card} from '@material-ui/core';
 import UsersGroupsApprolesSearch from './Components/IrisaComponents/UsersGroupsApprolesSearch';
-import ReactVirtualizedTable from './Components/IrisaComponents/ReactVirtualizedTable'
+import ReactVirtualizedTable from './Components/IrisaComponents/MyGrid';
+//import MyGrid from './Components/IrisaComponents/MyGrid';
+import {Generator,UseGenerated} from './Components/IrisaComponents/ProducerConsumer';
 
 const history = createBrowserHistory();
 const Index = lazy(() => import('./Components/Index'));
@@ -34,19 +36,27 @@ function App() {
     };
 
     const [isOpen,setIsOpen] = useState(false);
-
+    const [arr,setArr] = useState([]);
                 
     const TestComp =()=> (                                   
         <div>
+
+            {/* <Generator onGenerate={(allData)=>{
+                setArr(arr.includes(allData) ? [...arr]:[...arr,allData])
+                console.log('data',arr)
+                }}/>
+            <UseGenerated data={arr} /> */}
+
             <button onClick={e=>{setIsOpen(true)}}>Open Dialog</button>
             <UsersGroupsApprolesSearch open={isOpen}
-            selectSpecial="users"
+            selectSpecial="users"  
             data={[
-                  {"ID":"100","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
-                  {"ID":"101","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
-              ]}/>
+                {"ID":"100","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
+                {"ID":"101","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
+            ]}        
+              />
 
-              <ReactVirtualizedTable />
+              {/* <ReactVirtualizedTable /> */}
         </div> 
     );
 

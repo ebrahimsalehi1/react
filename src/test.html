@@ -72,6 +72,131 @@
                 }
                 console.log(result);
             }   
+
+            function part3Test1(){
+                const result = Object.is(NaN,NaN);
+                console.log("part3Test1:",result);
+            }
+
+            function part3Test2(){
+                let result = 2009;
+                let value = 262;
+                const obj = {
+                    value: 95,
+                    a: 100,
+                    b: 200,
+                    c: 300
+                };           
+                with(obj){
+                    result = value+a+b+c;
+                }     
+                console.log(result);    
+            }
+
+
+            function part3Test3(){
+                let value = {
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 'The numbers',
+                    e: ()=>{return a}
+                };
+                delete value;
+                const result = value;
+                console.log(result);
+            }
+
+            function part3Test4(){
+                const result = undefined || null || undefined;
+                console.log("part3Test4",result);
+            }
+
+            function part3Test5(){
+                const s = new Set([1,1,2,3,4,4,5,5,5,5,6]);
+                const result = s.size;
+                console.log("part3Test5",result);
+            }
+
+            function part3Test6(){
+                const result = Number.MIN_VALUE > 0;
+                console.log(result);
+            }
+
+            function part3Test7(){
+                const result = "good" > "bad";
+                console.log(result);
+            }
+
+            function part3Test8(){
+                const array = [1,2,3,4,5];
+                const m2 = (v,i) => v*i;
+                const result = array.map(m2);
+                console.log("part3Test8:",array,result);
+            }
+
+            function daily181098(){
+                const marr = [12,34,56,78,90]
+                console.log(marr.slice(0,marr.length))
+            }
+
+            function part5Test1(){
+                const value = 23.45;
+                const result = value.toFixed(1);
+                console.log(result);
+            }
+
+            function part4Test2(){
+                const arr = [12,34,56,78,90];
+                const res1 = arr.map(item=>item*1.5);
+                console.log("map",arr,res1)
+                const res2 = arr.reduce((item,acc)=>item*acc,1);
+                console.log("reduce",arr,res2);
+                arr.forEach((item)=>{
+                    console.log("forEach",item);
+                });
+                const res3 = arr.slice(1,2);
+                console.log("slice",res3);
+            }
+
+            function testAsync(){
+                // let p = new Promise(function(resolve,reject){
+                //     console.log('start promise');
+                //     console.log('start then')
+                //     let i=0;
+                //     while(i++<999999999999){
+                        
+                //     }
+                //     console.log('end then')                    
+                // });
+                // p.then(()=>{
+                //     console.log('start then')
+                //     let i=0;
+                //     while(i++<999999999){
+                        
+                //     }
+                //     console.log('end then')
+                // });
+
+                console.log('step 1');
+                setTimeout(()=>{
+                    console.log('test');
+                },10000);    
+                console.log('step last');
+
+            }
+
+            function testString(){
+                const str = "abcdefg hijklmno pqrst uvwxyz";
+                console.log(str.slice(0,str.indexOf(' ')))
+                console.log(str.slice(str.indexOf(' ')+1,str.length))
+            }
+
+           function testArray() {
+               const arr=['A','B','C','D'];
+               console.log(arr.join(","))
+           }
+
         </script>
     </head>
 <body>
@@ -83,8 +208,7 @@
         <br/>
         <br/>
         <br/>
-        <button onclick="part2Test8()">do test</button>
+        <button onclick="testArray()">do test</button>
     </div>
-
 </body>
 </html>
