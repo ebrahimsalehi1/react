@@ -114,27 +114,33 @@ function MuiVirtualizedTable(props) {
           >
             {columns.map(({ cellContentRenderer = null, className, dataKey, ...other }, index) => {
               let renderer;
-              // if (cellContentRenderer != null) {
-              //   renderer = cellRendererProps =>
-              //     cellRenderer({
-              //       cellData: cellContentRenderer(cellRendererProps),
-              //       columnIndex: index,
-              //     });
-              // } else {
-              //   renderer = cellRenderer;
-              // }
+              if (cellContentRenderer != null) {
+                renderer = cellRendererProps =>
+                  cellRenderer({
+                    cellData: cellContentRenderer(cellRendererProps),
+                    columnIndex: index,
+                  });
+                  console.log('data',cellContentRenderer);
+                  // if(cellContentRenderer.index===999){
+                  //   console.log('must be done')
+                  //   renderer = (<button>click here!!!</button>);
+                  // }
+              } else {
+                console.log("render is done-",cellRenderer);
+                renderer = cellRenderer;
+              }
 
               return (
                 <Column
                   key={dataKey}
-                  // headerRenderer={headerProps =>
-                  //   headerRenderer({
-                  //     ...headerProps,
-                  //     columnIndex: index,
-                  //   })
-                  // }
-                  //className={classNames(classes.flexContainer, className)}
-                  //cellRenderer={renderer}
+                  headerRenderer={headerProps =>
+                    headerRenderer({
+                      ...headerProps,
+                      columnIndex: index,
+                    })
+                  }
+                  className={classNames(classes.flexContainer, className)}
+                  cellRenderer={renderer}
                   dataKey={dataKey}
                   {...other}
                 />
@@ -169,7 +175,7 @@ MuiVirtualizedTable.defaultProps = {
 };
 
 const WrappedVirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
-
+/*
 const data = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
@@ -191,52 +197,16 @@ for (let i = 0; i < 1000; i += 1) {
   rows.push(createData(...randomSelection));
   console.log(rows[i]);
 }
-
-function ReactVirtualizedTable() {
+*/
+function ReactVirtualizedTable(props) {
+  const {rows,columns} = props
   return (
     <Paper style={{ height: 400, width: '100%' }}>
       <WrappedVirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
         onRowClick={event => console.log(event)}
-        columns={[
-          {
-            width: 200,
-            flexGrow: 1.0,
-            label: 'Dessert',
-            dataKey: 'dessert',
-          },
-          {
-            width: 120,
-            label: 'Calories (g)',
-            dataKey: 'calories',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Fat (g)',
-            dataKey: 'fat',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Carbs (g)',
-            dataKey: 'carbs',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Protein (g)',
-            dataKey: 'protein',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Row Num',
-            dataKey: 'protein',
-            numeric: true,
-          },
-        ]}
+        columns={columns}
       />
     </Paper>
   );

@@ -1,112 +1,67 @@
-import React, {lazy, Suspense,useState} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {Router, Route} from "react-router-dom";
-import MenuAppBar from "./Components/AppBar"
-import {createBrowserHistory} from 'history';
-import {LoginProvider} from "./Utils/StateManagement";
-//import App1 from './irisacomponents/src/AppMain'
-//import App1 from './Components/IrisaComponents/TextField/FormTextField'
-//import App1 from './Components/IrisaComponents/Outcome/FormOutcome'
-//import App1 from './Components/IrisaComponents/Button/FormButton'
-//import {Grid,Card} from '@material-ui/core';
-import UsersGroupsApprolesSearch from './Components/IrisaComponents/UsersGroupsApprolesSearch';
-import ReactVirtualizedTable from './Components/IrisaComponents/MyGrid';
-//import MyGrid from './Components/IrisaComponents/MyGrid';
-import {Generator,UseGenerated} from './Components/IrisaComponents/ProducerConsumer';
+import React,{useState} from 'react'
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import IrisaDatePicker from './Components/IrisaComponents/IrisaDatePicker';
+import {Clock,TimePicker} from 'material-ui-time-picker';
+import CompositeTree from './Components/IrisaComponents/CompositeTree';
 
-const history = createBrowserHistory();
-const Index = lazy(() => import('./Components/Index'));
-const Users = lazy(() => import('./Components/Users'));
-const Home = lazy(() => import('./Components/Home'));
-    
-/**
- * Main File
- * @returns {*}
- * @constructor
- */
-function App() {
-
-    /**
-     * initial first states for authentication
-     * @type {{authenticated: boolean}}
-     */
-    const initialAuthState = {
-        authenticated: false
-    };
-
-    const [isOpen,setIsOpen] = useState(false);
-    const [arr,setArr] = useState([]);
-                
-    const TestComp =()=> (                                   
-        <div>
-
-            {/* <Generator onGenerate={(allData)=>{
-                setArr(arr.includes(allData) ? [...arr]:[...arr,allData])
-                console.log('data',arr)
-                }}/>
-            <UseGenerated data={arr} /> */}
-
-            <button onClick={e=>{setIsOpen(true)}}>Open Dialog</button>
-            <UsersGroupsApprolesSearch open={isOpen}
-            selectSpecial="users"  
-            data={[
-                {"ID":"100","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
-                {"ID":"101","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
-            ]}        
-              />
-
-              {/* <ReactVirtualizedTable /> */}
-        </div> 
+function TabContainer(props) {
+    return (
+      <Typography component="div" style={{ padding: 2 * 3 ,height:0}}>
+        {props.children}
+      </Typography>
     );
+  }
 
-    /**
-     * create Reducer for authentication context
-     * @param state
-     * @param action
-     * @returns {*}
-     * @constructor
-     */
-    const AuthenticationReducer = (state, action) => {
-        switch (action.type) {
-            case 'changeAuthenticate':
-                return {
-                    ...state,
-                    authenticated: action.authenticated
-                };
+function App(){
+    const [value,setValue] = useState(0)
+    const [value1,setValue1] = useState(0)
 
-            default:
-                return state;
-        }
-    };
+    const handleChange = (event, value) => {
+        setValue(value);
+        console.log(event,value)
+      };
+
+      const props1='1'
+      const props2='1'
 
     return (
-        // <div className="App">
-            <LoginProvider
-                initialState={initialAuthState}
-                reducer={AuthenticationReducer}>
-                <Router history={history}>
-                    <MenuAppBar history={history}/>
-                    <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo"/>
-                        <p>
-                            Edit <code>src/App.js</code> and save to reload.
-                        </p>
-                        <div>
-                            <Suspense fallback={<div>Loading...</div>}>
-                                <Route path="/" exact component={Index}/>
-                                <Route path="/about/" component={Home}/>
-                                <Route path="/testcomp/" component={                                    
-                                    TestComp 
-                                }/>
-                                <Route path="/users/" component={Users}/>
-                            </Suspense>
-                        </div>
-                    </header>
-                </Router>
-            </LoginProvider>
-        // </div>
-    );
+        <div>
+           
+        {props1==='1' && props2==='1' &&
+          <AppBar position="static">
+          <Tabs value={value} onChange={handleChange}>
+            <Tab label="Item One" />
+            <Tab label="Item Two" />
+            <Tab label="Item Three" />
+          </Tabs>
+        </AppBar>
+        }
+        {value === 0 && <TabContainer>Item One 1111111111</TabContainer>}
+        {value === 1 && <TabContainer>
+            <CompositeTree 
+              title="The title"
+              buttonOkTitle="تایید"
+              buttonCancelTitle="انصراف"
+              handleReturnFunction={(e)=>{
+                console.log(e)
+              }}
+              />
+            </TabContainer>}
+        {value === 2 && <TabContainer>
+            <TimePicker
+            mode={"24h"}
+            onChange={(e)=>{console.log("onChange",e.getHours(),e.getMinutes())}}
+            value={value1}
+            //onMinutesSelected={e=>{console.log("onMinutesSelected",e)}}
+            //ClockProps={this.handleClockChangeDone}
+          />
+            </TabContainer>}
+        
+        </div>        
+    )
 }
 
-export default App;
+export default App
