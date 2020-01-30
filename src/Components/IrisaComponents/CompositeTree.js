@@ -85,12 +85,13 @@ const styles = theme => ( {
   });
 
 function CompositeTree(props){
-    const {url,classes,title,handleReturnFunction,value,valueToShow} = props;
+    const {url,classes,title,handleReturnFunction,value,canSearch,valueToShow} = props;
 
     const [data,setData] = useState([]);
     const [chkClick,setChkClick] = useState(value===undefined ? []:value);
     const [open,setOpen] = useState(false);
     const [compositeName,setCompositeName] = useState('');
+    const [searchQuery,setSearchQuery] = useState('');
 
     useEffect(()=>{
         console.log('composite tree is rendering-useEffect')
@@ -145,6 +146,10 @@ function CompositeTree(props){
         }
     }
 
+    function handleSearchQueryChange(event){
+        setSearchQuery(event.target.value);
+    }
+
     //console.log('composite tree is rendering')
 
     return (
@@ -168,18 +173,22 @@ function CompositeTree(props){
             {title}
           </Typography>
           <div className={classes.grow} />
+        {canSearch!==undefined && canSearch && 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
-            </div>
+            </div>            
             <InputBase
               placeholder="جستجو"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
+              value={searchQuery}
+              onChange={handleSearchQueryChange}
             />
           </div>
+        }
           <div className={classes.grow} />
           <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer" onClick={handleReturnFunc}>
             <DoneIcon />
@@ -194,9 +203,11 @@ function CompositeTree(props){
               <div style={{ height: 400 }}>
             
         <SortableTree
+            rowDirection="rtl"
             treeData={data}
             onChange={treeData => setData( treeData )}
             canDrag={false}
+            searchQuery={searchQuery}
             generateNodeProps={({ node, path }) => ({
                 title: (    
                     <><Checkbox

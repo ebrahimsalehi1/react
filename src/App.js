@@ -16,7 +16,7 @@ function TabContainer(props) {
   }
 
 function App(){
-    const [value,setValue] = useState(0)
+    const [value,setValue] = useState(1)
     const [value1,setValue1] = useState(0)
 
     const handleChange = (event, value) => {
@@ -43,11 +43,9 @@ function App(){
         {value === 1 && <TabContainer>
             <CompositeTree 
               title="The title"
-              buttonOkTitle="تایید"
-              buttonCancelTitle="انصراف"
               handleReturnFunction={(e)=>{
                 console.log(e)
-              }}
+              }}  
               />
             </TabContainer>}
         {value === 2 && <TabContainer>

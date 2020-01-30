@@ -1,24 +1,89 @@
 import React,{useState,useEffect,useRef} from 'react';
 
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
-import DatePicker from 'react-modern-calendar-datepicker';
 import { Calendar } from "react-modern-calendar-datepicker";
 import {Card, Grid, IconButton, withStyles} from "@material-ui/core";
 import IbxTextField from "./IbxTextField";
-import {Today} from "@material-ui/icons";
+import {AlarmOn,Today} from "@material-ui/icons";
 import PropTypes from "prop-types";
 import IbxDialog from "./IbxDialog";
 import Button from '@material-ui/core/Button';
 import {styles} from "../../assets/jss/style";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import Moment from 'moment-jalaali';
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+//import { BasePicker, MuiPickersUtilsProvider, TimePickerView } from "material-ui-pickers";
+import DateFnsUtils from '@date-io/date-fns';
+//import {MuiPickersUtilsProvider, TimePickerView, BasePicker, TimePicker, InlineTimePicker} from 'material-ui-pickers';
+import {TimePicker} from 'material-ui-time-picker';
+
+import JalaliUtils from "material-ui-pickers-jalali-utils";
+import enLocale from "date-fns/locale/en-US";
+import DialogContent from "@material-ui/core/DialogContent";
+
+const MyDialogContent = withStyles(theme =>({
+    root: {
+        borderBottom: `0px solid ${theme.palette.divider}`,
+        //textAlign:'center',
+        margin: 0,
+        padding: 0,
+        backgroundColor:'#009ce6',
+        "overflow-y":'none'
+
+    }
+}))(props=> {
+    const {classes,children} = props;
+    return (
+        <DialogContent className={classes.root}>
+            {children}
+        </DialogContent>
+    );
+});
+
+const timePickerStyles ={
+            width:'100%'
+        }
+
+const MyTimePicker = withStyles(them=>({
+    root: {
+        width: '100%'
+    }
+}))(props=>{
+    const {classes,...others} = props;
+    console.log('MyTimePicker',classes);
+    return <TimePicker className={classes.root} {...others}/>
+})
+
+//     styled(TimePicker)({
+//     width:'100%'
+// })
+
+
+function convertPersianDigitsToDigit(valueToConvert){
+    return String(valueToConvert)
+        .replace(/۰/g,"0")
+        .replace(/۱/g,"1")
+        .replace(/۲/g,"2")
+        .replace(/۳/g,"3")
+        .replace(/۴/g,"4")
+        .replace(/۵/g,"5")
+        .replace(/۶/g,"6")
+        .replace(/۷/g,"7")
+        .replace(/۸/g,"8")
+        .replace(/۹/g,"9")
+}
 
 function IbxDatePicker2(props){
     const {
         classes, style, name, lang, dateType, handleDateChange, value, disabled,
         fullWidth, label, disableFuture, disablePast, required, helperText,
-        fieldName,validationType,title,locale,showButtonOnTextField, showAdvancedButtons, ...other
+        fieldName,validationType,title,locale,showButtonOnTextField, showAdvancedButtons,dateSelectionType,
+        componentType,handleTimeChange, ...other
     } = props;
+
+    //const classesTimePicker = timePickerStyles();
 
     const fromPersianYear = 1300
     const fromYear = 1918
@@ -54,20 +119,6 @@ function IbxDatePicker2(props){
         {title:"December",id:12}
         ]
 
-    function convertPersianDigitsToDigit(valueToConvert){
-        return String(valueToConvert)
-            .replace(/۰/g,"0")
-            .replace(/۱/g,"1")
-            .replace(/۲/g,"2")
-            .replace(/۳/g,"3")
-            .replace(/۴/g,"4")
-            .replace(/۵/g,"5")
-            .replace(/۶/g,"6")
-            .replace(/۷/g,"7")
-            .replace(/۸/g,"8")
-            .replace(/۹/g,"9")
-    }
-
     let currentDate0 = null
     const defaultValue=(mlocale,mvalue)=>{
         let enteredValue = Moment()
@@ -94,37 +145,28 @@ function IbxDatePicker2(props){
         //     currentDate = new Date(Number(day),Number(month),Number(year));
         // else
         //     currentDate = new Date(enteredValue.local("en").format('YYYY'),enteredValue.local("en").format('MM'),enteredValue.local("en").format('DD'));
+
         currentDate0 = {day:Number(day),month:Number(month),year:Number(year)};
         return {day:Number(day),month:Number(month),year:Number(year)};
     }
-
 
     const [open,setOpen] = useState(false);
     const [localeType,setLocaleType] = useState(locale===undefined ? "fa":locale);
 
     const [selectedDay, setSelectedDay] = useState(defaultValue(localeType,value));
-    const [selectedMonth, setSelectedMonth] = useState(currentDate0.month);
-    const [selectedYear, setSelectedYear] = useState(currentDate0.year);
+    //const [selectedMonth, setSelectedMonth] = useState(currentDate0.month);
+    //const [selectedYear, setSelectedYear] = useState(currentDate0.year);
+    const [tabIndexSelected,setTabIndexSelected] = useState(componentType==='date' || componentType==='datetime' ? 0:1);
+    const [time,setTime] = useState(new Date());//{hour:0,minute:0});
 
-    function currentDateTitle(){
-        let res ="";
-        switch(localeType){
-            case "fa":
-                res = "امروز ${} هجري خورشيدي";
-                break;
-            case "en":
-                res = "Today is ${}"; // Friday 24 January 2020
-                break;
-        }
-        return res;
-    }
+    // useEffect(()=>{
 
-    useEffect(()=>{
-        setSelectedDay(currentDate0)
-        setSelectedYear(currentDate0.year)
-        //console.log(selectedYear,selectedMonth,currentDate0)
-        setSelectedMonth(currentDate0.month)
-    },[localeType]);
+        // setSelectedDay(currentDate0)
+        //setSelectedYear(currentDate0.year)
+        //setSelectedMonth(currentDate0.month)
+    //     console.log("component is rendering","step 4",currentDate0,selectedDay)
+    //
+    // },[localeType]);
 
     function handleClose () {
         setOpen(false);
@@ -142,7 +184,7 @@ function IbxDatePicker2(props){
         //setSelectedDay(null);
     }
 
-    function handlerCalendarChange(e) {
+    function handleCalendarDateChange(e) {
         setSelectedDay(e);
         let currentDate = null;
         if (localeType === "en")
@@ -151,10 +193,34 @@ function IbxDatePicker2(props){
             const enteredValue = Moment(`${e.year}/${(Number(e.month)<10 ? '0':'')+e.month}/${(Number(e.day)<10 ? '0':'')+e.day}`,'jYYYY/jMM/jDD')
             currentDate = new Date(Number(convertPersianDigitsToDigit(enteredValue.local("en").format('YYYY'))), Number(convertPersianDigitsToDigit(enteredValue.local("en").format('MM')))-1, Number(convertPersianDigitsToDigit(enteredValue.local("en").format('DD'))));
         }
-       handleDateChange(currentDate.getTime(),name);
+        if(handleDateChange!==undefined)
+            handleDateChange(currentDate.getTime(),name);
+
+        if(dateSelectionType===undefined || dateSelectionType==='one')
+            handleClose();
     }
 
-    console.log("component is rendering",localeType,value,selectedDay,selectedYear,selectedMonth)
+
+
+    function handleTabChange(event,value){
+        setTabIndexSelected(value);
+    }
+
+    function handleLocaleChange(event){
+        setLocaleType(event.target.value);
+        defaultValue(event.target.value,value);
+        setSelectedDay(currentDate0);
+
+    }
+
+    function handleTimePickerChange(date) {
+        console.log("handleTimePickerChange",date)
+        setTime(date);
+        if(handleTimeChange!==undefined)
+            handleTimeChange({hour:date.getHours(),minute:date.getMinutes()});
+    };
+
+    console.log("component is rendering",localeType,value,selectedDay)
 
     return (
 
@@ -180,61 +246,76 @@ function IbxDatePicker2(props){
             </Grid>
 
             {open &&
-            <IbxDialog title={title === undefined || title === null ? "انتخاب تاریخ برای" : title} maxWidth="lg"
-                       TransitionComponent
-                       openModal={open} eventClose={handleClose}>
-                <Card className={classes.card}>
-                    <Grid>
+            <IbxDialog
+                title={title === undefined || title === null ? "انتخاب تاریخ برای" : title}
+                maxWidth="lg"
+                TransitionComponent
+                 //      scroll={"paper"}
+                openModal={open}
+                eventClose={handleClose}>
+
+                {/*<Card className={classes.card}>*/}
+
+                    {componentType!==undefined && componentType==='datetime' &&
+                    <AppBar position="static">
+                        <Tabs value={tabIndexSelected} onChange={handleTabChange}>
+                            <Tab icon={<Today />}></Tab>
+                            <Tab icon={<AlarmOn />}></Tab>
+                        </Tabs>
+                    </AppBar>
+                    }
+
+                    {tabIndexSelected === 0 && showAdvancedButtons !== undefined && showAdvancedButtons &&
+                        <Grid>
                         <label>{"test test"}</label>
-                    </Grid>
-                    <Grid>
-                        <NativeSelect value={localeType} onChange={(e) => {
-                            setLocaleType(e.target.value);
-                        }}>
+                        </Grid>
+                    }
+                        {tabIndexSelected === 0 &&
+                        <NativeSelect value={localeType} onChange={handleLocaleChange}>
                             <option value={"fa"}>شمسی</option>
                             <option value={"en"}>میلادی</option>
                         </NativeSelect>
-                        {showAdvancedButtons!==undefined && showAdvancedButtons &&
-                        <NativeSelect value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
-                            {localeType==="fa" && persianMonths.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
-                            {localeType==="en" && months.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
-                        </NativeSelect>
                         }
-                        {showAdvancedButtons !== undefined && showAdvancedButtons &&
-                        <NativeSelect value={selectedYear} onChange={(e) => {
-                            setSelectedYear(e.target.value);
-                        }}>
-                            {localeType === "fa" && years.map(year => <option key={year + fromPersianYear}
-                                                                              value={year + fromPersianYear}>{year + fromPersianYear}</option>)}
-                            {localeType === "en" && years.map(year => <option key={year + fromYear}
-                                                                              value={year + fromYear}>{year + fromYear}</option>)}
-                        </NativeSelect>
-                        }
-                    </Grid>
-
-                    {localeType === 'fa' ?
+                    {tabIndexSelected === 0 && localeType === 'fa' &&
+                    <Calendar
+                        style={{".Calendar__day.-selected":'blue'}}
+                        value={selectedDay}
+                        onChange={handleCalendarDateChange}
+                        locale={"fa"}
+                        shouldHighlightWeekends
+                    />
+                    }
+                    {tabIndexSelected === 0 && localeType === 'en' &&
                         <Calendar
-                            value={ selectedDay }
-                            onChange={handlerCalendarChange}
-                            locale={"fa"}
-                            shouldHighlightWeekends
-                        />
-                        :
-                        <Calendar
-                            value={ selectedDay }
-                            onChange={handlerCalendarChange}
-                            shouldHighlightWeekends
+                        style={{".Calendar__day.-selected, .Calendar__day.-selectedStart, .Calendar__day.-selectedEnd":'blue'}}
+                        value={selectedDay}
+                        onChange={handleCalendarDateChange}
+                        shouldHighlightWeekends
                         />
                     }
+                    {tabIndexSelected === 1 &&
 
-                    <Grid>
+                    <MyTimePicker
+                        style={"width:100%;"}
+                        mode={"24h"}
+                        onChange={handleTimePickerChange}
+                        value={time}
+                        //onMinutesSelected={e=>{console.log("onMinutesSelected",e)}}
+                        //ClockProps={this.handleClockChangeDone}
+                    />
+                    }
+
+                    {showAdvancedButtons !== undefined && showAdvancedButtons &&
+                        <Grid>
                         <Button onClick={handleOk
-                        }>تائید</Button>
+                    }>تائید</Button>
                         <Button onClick={() => {
-                        }}>حذف مقدار</Button>
+                    }}>حذف مقدار</Button>
                         <Button onClick={handleClose}>بستن</Button>
-                    </Grid>
-                </Card>
+                        </Grid>
+                    }
+
+                {/*</Card>*/}
             </IbxDialog>
             }
 
@@ -257,7 +338,9 @@ IbxDatePicker2.propTypes = {
     validationType: PropTypes.arrayOf(PropTypes.oneOf(['afterDate', 'alpha', 'alphaFa',
         'alphanumeric', 'alphanumericFa', 'email', 'equals', 'lowercase',
         'matches', 'mobilePhone', 'number', 'numberFloat', 'numberInt', 'required', 'uppercase'])),
-    validationTypeParam: PropTypes.array
+    validationTypeParam: PropTypes.array,
+    dateSelectionType: PropTypes.arrayOf(['one','multi','range']),
+    componentType: PropTypes.string//.arrayOf(PropTypes.oneOf(['date','time','datetime'])),
 };
 
 export default withStyles(styles)(IbxDatePicker2);
