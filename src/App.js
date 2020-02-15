@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IrisaDatePicker from './Components/IrisaComponents/IrisaDatePicker';
 import {Clock,TimePicker} from 'material-ui-time-picker';
 import CompositeTree from './Components/IrisaComponents/CompositeTree';
+import TreeLargeData from './Components/IrisaComponents/TreeLargeData';
 
 function TabContainer(props) {
     return (
@@ -17,7 +18,7 @@ function TabContainer(props) {
 
 function App(){
     const [value,setValue] = useState(1)
-    const [value1,setValue1] = useState(0)
+    const [value1,setValue1] = useState(new Date())
 
     const handleChange = (event, value) => {
         setValue(value);
@@ -36,6 +37,7 @@ function App(){
             <Tab label="Item One" />
             <Tab label="Item Two" />
             <Tab label="Item Three" />
+            <Tab label="Tree Large Data" />
           </Tabs>
         </AppBar>
         }
@@ -51,12 +53,16 @@ function App(){
         {value === 2 && <TabContainer>
             <TimePicker
             mode={"24h"}
-            onChange={(e)=>{console.log("onChange",e.getHours(),e.getMinutes())}}
+            onChange={(e)=>{console.log("onChange",e)}}
             value={value1}
             //onMinutesSelected={e=>{console.log("onMinutesSelected",e)}}
             //ClockProps={this.handleClockChangeDone}
           />
             </TabContainer>}
+
+        {value===3 && <TabContainer>
+            <TreeLargeData />
+          </TabContainer>}    
         
         </div>        
     )
