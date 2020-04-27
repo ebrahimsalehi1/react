@@ -9,11 +9,13 @@ import PropTypes from 'prop-types';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import {styles} from '../../assets/jss/style'
+import '../../assets/css/stylesDNDTree.css';
 
 // const Transition = React.forwardRef(function Transition(props, ref) {
 //     return <Slide direction="up" ref={ref} {...props} />;
 //   });
-
+/*
 const styles = theme => ( {
     appBar: {
       position: 'static',
@@ -83,7 +85,7 @@ const styles = theme => ( {
         // },
       },
   });
-
+*/
 function CompositeTree(props){
     const {url,classes,title,handleReturnFunction,value,canSearch,valueToShow} = props;
 
@@ -99,8 +101,8 @@ function CompositeTree(props){
         let isLoaded = false;
         async function callWebserviceGetPersonInfo(){
             if(!isLoaded){
-              const recievedData=[{title:"A",children:[{title:"B"}]}]
-                //const recievedData = [{"applicationType":"ACM","persianName":"سیستم اقدامات-فرآیند شناسایی و تحلیل اقدام","compositeName":"ACM_ActionAnalysis_PRJ"},{"applicationType":"ACM","persianName":"سیستم اقدامات-فرایند ارزیابی","compositeName":"ACM_Assessment_PRJ"},{"applicationType":"ACM","persianName":"فرآیند شناسایی تغییرات","compositeName":"ACM_ChangeIdentify_PRJ"},{"applicationType":"ACM","persianName":"فرآیند مدیریت تغییرات پروژه های بهبود","compositeName":"ACM_ChangePrjPlan_PRJ"},{"applicationType":"ACM","persianName":"فرآیند پایش و اجرای پروژه","compositeName":"ACM_Monitoring_PRJ"},{"applicationType":"ACM","persianName":"فرآیند برنامه ریزی و تکمیل اطلاعات پروژه","compositeName":"ACM_Planing_PRJ"},{"applicationType":"ACM","persianName":"سیستم اقدامات-فرایند پایش و اجرای QF","compositeName":"ACM_QF_Monitoring_PRJ"},{"applicationType":"ACM","persianName":"سیستم اقدامات-فرآیند پاداش پروژه","compositeName":"ACM_Reward_PRJ"},{"applicationType":"ACM","persianName":"فرآیند صورتجلسه","compositeName":"ACM_SessionFyi_PRJ"},{"applicationType":"ACM","persianName":"سیستم اقدامات-فرآیند تائید پروژه ویژه","compositeName":"ACM_SpecialPrjApproval_PRJ"},{"applicationType":"HSE","persianName":"Acm_Process","compositeName":"BpmProject1"},{"applicationType":"HSE","persianName":"درخواست تحویل دارو","compositeName":"HSE_DrugRequest_PRJ"},{"applicationType":"HSE","persianName":"فرایند اورژانس","compositeName":"HSE_Emergency_PRJ"},{"applicationType":"HSE","persianName":"فرایند کميسيون پزشکي","compositeName":"HSE_MedicalCommission_PRJ"},{"applicationType":"HSE","persianName":"HSE_ReferralExam_PROC","compositeName":"HSE_ReferralExam_PRJ"},{"applicationType":"HSE","persianName":"اندازه گيری جنبه هاي زيست محيطي(حادثه ای)","compositeName":"HSE_RequestEnvironmentalAspects_PRJ"},{"applicationType":"HSE","persianName":"درخواست اندازه گیری عوامل زیان آور شغلی","compositeName":"HSE_RequestMeasuringHarmfulFactors_PRJ"},{"applicationType":"HSE","persianName":"فرایند مدیریت ریسک","compositeName":"HSE_Risk_PRJ"},{"applicationType":"HSE","persianName":"اندازه گیری عوامل زیان آور شغلی","compositeName":"HSE_MeasuringHarmfulFactor_PRJ"},{"applicationType":"LAB","persianName":"LAB_DonNoneRoutinsSamples_PROC","compositeName":"LAB_NonRoutineSamples_PRJ"},{"applicationType":"LAB","persianName":"فرآیند آزمون نمونه روانکارها","compositeName":"LAB_Lubricant_PRJ"},{"applicationType":"HSE","persianName":"ارزیابی توسط چک لیست ها","compositeName":"HSE_CheckList_PRJ"},{"applicationType":"HSE","persianName":"ارزیابی جنبه های زیست محیطی(عادی و غیر عادی،حادثه ای)","compositeName":"hse_AssessmentEnvironmentalAspects_PRJ"},{"applicationType":"HSE","persianName":"فرایند سم پاشی","compositeName":"HSE_Spraying_PRJ"}];    
+              //const recievedData=[{title:"A",children:[{title:"B"}]}]
+                const recievedData = [{"applicationType":"ACM","persianName":"سیستم اقدامات-فرآیند شناسایی و تحلیل اقدام","compositeName":"ACM_ActionAnalysis_PRJ"},{"applicationType":"ACM","persianName":"سیستم اقدامات-فرایند ارزیابی","compositeName":"ACM_Assessment_PRJ"},{"applicationType":"ACM","persianName":"فرآیند شناسایی تغییرات","compositeName":"ACM_ChangeIdentify_PRJ"},{"applicationType":"ACM","persianName":"فرآیند مدیریت تغییرات پروژه های بهبود","compositeName":"ACM_ChangePrjPlan_PRJ"},{"applicationType":"ACM","persianName":"فرآیند پایش و اجرای پروژه","compositeName":"ACM_Monitoring_PRJ"},{"applicationType":"ACM","persianName":"فرآیند برنامه ریزی و تکمیل اطلاعات پروژه","compositeName":"ACM_Planing_PRJ"},{"applicationType":"ACM","persianName":"سیستم اقدامات-فرایند پایش و اجرای QF","compositeName":"ACM_QF_Monitoring_PRJ"},{"applicationType":"ACM","persianName":"سیستم اقدامات-فرآیند پاداش پروژه","compositeName":"ACM_Reward_PRJ"},{"applicationType":"ACM","persianName":"فرآیند صورتجلسه","compositeName":"ACM_SessionFyi_PRJ"},{"applicationType":"ACM","persianName":"سیستم اقدامات-فرآیند تائید پروژه ویژه","compositeName":"ACM_SpecialPrjApproval_PRJ"},{"applicationType":"HSE","persianName":"Acm_Process","compositeName":"BpmProject1"},{"applicationType":"HSE","persianName":"درخواست تحویل دارو","compositeName":"HSE_DrugRequest_PRJ"},{"applicationType":"HSE","persianName":"فرایند اورژانس","compositeName":"HSE_Emergency_PRJ"},{"applicationType":"HSE","persianName":"فرایند کميسيون پزشکي","compositeName":"HSE_MedicalCommission_PRJ"},{"applicationType":"HSE","persianName":"HSE_ReferralExam_PROC","compositeName":"HSE_ReferralExam_PRJ"},{"applicationType":"HSE","persianName":"اندازه گيری جنبه هاي زيست محيطي(حادثه ای)","compositeName":"HSE_RequestEnvironmentalAspects_PRJ"},{"applicationType":"HSE","persianName":"درخواست اندازه گیری عوامل زیان آور شغلی","compositeName":"HSE_RequestMeasuringHarmfulFactors_PRJ"},{"applicationType":"HSE","persianName":"فرایند مدیریت ریسک","compositeName":"HSE_Risk_PRJ"},{"applicationType":"HSE","persianName":"اندازه گیری عوامل زیان آور شغلی","compositeName":"HSE_MeasuringHarmfulFactor_PRJ"},{"applicationType":"LAB","persianName":"LAB_DonNoneRoutinsSamples_PROC","compositeName":"LAB_NonRoutineSamples_PRJ"},{"applicationType":"LAB","persianName":"فرآیند آزمون نمونه روانکارها","compositeName":"LAB_Lubricant_PRJ"},{"applicationType":"HSE","persianName":"ارزیابی توسط چک لیست ها","compositeName":"HSE_CheckList_PRJ"},{"applicationType":"HSE","persianName":"ارزیابی جنبه های زیست محیطی(عادی و غیر عادی،حادثه ای)","compositeName":"hse_AssessmentEnvironmentalAspects_PRJ"},{"applicationType":"HSE","persianName":"فرایند سم پاشی","compositeName":"HSE_Spraying_PRJ"}];    
                 //const recievedData = [{"applicationType":"ACM","persianName":"سیستم اقدامات-فرآیند شناسایی و تحلیل اقدام","compositeName":"ACM_ActionAnalysis_PRJ"},{"applicationType":"HSE","persianName":"Acm_Process","compositeName":"BpmProject1"},{"applicationType":"HSE","persianName":"درخواست تحویل دارو","compositeName":"HSE_DrugRequest_PRJ"}];    
 
                 const appTypes = new Set()

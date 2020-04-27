@@ -26,8 +26,7 @@ function App(props){
   const [val,setVal] = useState(1000)
   const [isCompleteDownload,setIsCompleteDownload] = useState(false)
 
-  async function webService1(){
-    // progress();
+  async function webServiceMain(){
     setIsCompleteDownload(true)
 
     axios.get(`http://localhost:8080/getall/${val}`).
@@ -42,6 +41,96 @@ function App(props){
         alert('error in fetching the data')
       }
     })
+  }
+
+  async function webService1(){
+    console.log('webService1')
+    let resAll =[]
+    await axios.get(`http://localhost:8080/get1`).
+    then(res=>{
+      if(res.status===200){
+        resAll = res.data;
+        console.log('webService1 end')
+      }
+      else{
+        alert('error in fetching the data')
+      }
+    })
+
+    return resAll
+  }
+
+  async function webService2(){
+    console.log('webService2')
+
+    let resAll =[]
+    await axios.get(`http://localhost:8080/get2`).
+    then(res=>{
+      if(res.status===200){
+        resAll = res.data;
+        console.log('webService2 end')
+
+      }
+      else{
+        alert('error in fetching the data')
+      }
+    })
+
+    return  resAll
+  }
+
+  async function webService3(){
+    console.log('webService3')
+    let resAll =[]
+    await axios.get(`http://localhost:8080/get3`).
+    then(res=>{
+      if(res.status===200){
+        resAll = res.data;
+        console.log('webService3 end')
+
+      }
+      else{
+        alert('error in fetching the data')
+      }
+    })
+    return resAll
+  }
+
+  async function webService4(){
+    console.log('webService4')
+
+    //await window.setTimeout(async ()=>{console.log('wait')},5000)
+
+    let resAll =[]
+    await axios.get(`http://localhost:8080/get4`).
+    then(res=>{
+      if(res.status===200){
+        resAll = res.data;
+        console.log('webService4 end')
+      }
+      else{
+        alert('error in fetching the data')
+      }
+    })
+
+    return resAll
+  }
+
+  async function webServiceAll(){
+    setIsCompleteDownload(true)
+
+    const p1 = webService1();
+    const p2 = webService2();
+    const p3 = webService3();
+    const p4 = webService4();
+
+    Promise.all([p1,p2,p3,p4])
+    .then(([p1,p2,p3,p4])=>{
+      console.log("step 1",p1,p2,p3,p4)
+      setIsCompleteDownload(false)
+
+    })
+
   }
 
   // useEffect(()=>{
@@ -76,11 +165,11 @@ function App(props){
          {isCompleteDownload && <CircularProgress/>}
         {/* </Backdrop> */}
             {/* <input type='TEXT' onKeyDown={e=>{console.log(e.key)}}/> */}
-            <Button onClick={webService1}>Load Data</Button>
+            <Button onClick={webServiceAll}>Load Data</Button>
 
         <SortableTree
           treeData={dataRows}
-          onChange={treeData => setDataRows(treeData)}
+          onChange={treeData => setDataRows(treeData)}          
           //onClick={e=>{console.log(e)}}
           // map={({
           //   treeData,
@@ -89,7 +178,6 @@ function App(props){
           //   ignoreCollapsed = true,
           // })=>({})}
         />
-
 
 
         </div>

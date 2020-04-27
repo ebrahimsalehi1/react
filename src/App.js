@@ -7,6 +7,7 @@ import IrisaDatePicker from './Components/IrisaComponents/IrisaDatePicker';
 import {Clock,TimePicker} from 'material-ui-time-picker';
 import CompositeTree from './Components/IrisaComponents/CompositeTree';
 import TreeLargeData from './Components/IrisaComponents/TreeLargeData';
+import UsersGroupsApprolesSearch from './Components/IrisaComponents/UsersGroupsApprolesSearch'
 
 function TabContainer(props) {
     return (
@@ -25,6 +26,8 @@ function App(){
         console.log(event,value)
       };
 
+
+
       const props1='1'
       const props2='1'
 
@@ -38,6 +41,8 @@ function App(){
             <Tab label="Item Two" />
             <Tab label="Item Three" />
             <Tab label="Tree Large Data" />
+            <Tab label="User Groups Approles" />
+
           </Tabs>
         </AppBar>
         }
@@ -62,7 +67,18 @@ function App(){
 
         {value===3 && <TabContainer>
             <TreeLargeData />
-          </TabContainer>}    
+          </TabContainer>}
+
+          {value===4 && <TabContainer>
+            <UsersGroupsApprolesSearch 
+            selectSpecial="users"  
+            data={[
+                {"ID":"100","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
+                {"ID":"101","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
+            ]}  />
+          </TabContainer>
+
+          }    
         
         </div>        
     )

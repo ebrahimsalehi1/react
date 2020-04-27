@@ -3,12 +3,12 @@ import {Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,
     Select,MenuItem,Grid,Button,List,TextField,Input,InputAdornment,IconButton,ListItem,
     Chip,Avatar} from '@material-ui/core';
 //import {Table,TableBody,TableCell,TableHead,TablePagination,TableRow,TableSortLabel,TableFooter,Checkbox}  from '@material-ui/core';
-import {Search,Close} from '@material-ui/icons';
+import {Search,Close, SettingsPowerRounded} from '@material-ui/icons';
 import { AutoSizer, Column, SortDirection, Table} from 'react-virtualized';
 
 function UsersGroupsApprolesSearch(props){
 
-    const {open,selectSpecial,data,isContainPagination} = props
+    const {selectSpecial,data,isContainPagination} = props
 
     const [selectedID,setSelectedID] = useState([]);
 
@@ -26,6 +26,8 @@ function UsersGroupsApprolesSearch(props){
     const [height,setHeight] = useState(400);
     const [width,setWidth] = useState(400);
 
+    const [open,setOpen] = useState(false)
+
     useEffect(()=>{
         if(firstName.length===0 && lastName.length===0 && email.length===0 && ID.length===0)
             setValueToSearch("")
@@ -42,7 +44,9 @@ function UsersGroupsApprolesSearch(props){
 
     return (
         <div>
-        <Dialog open={open} fullWidth={true} maxWidth={'xl'}>
+        <TextField onClick={e=>{setOpen(true)}}/>
+        {open && 
+        <Dialog open={true} fullWidth={true} maxWidth={'xl'}>
             <DialogTitle>جستجوی کاربران گروهها و نقش ها</DialogTitle>
             <DialogContent>
                 <DialogContentText>کاربر می تواند جستجو کند</DialogContentText>
@@ -83,19 +87,7 @@ function UsersGroupsApprolesSearch(props){
                 </Grid>    
                 <Grid item xs={12}>
 
-                    <AutoSizer>
-                        {
-                            ({height,width})=>(
-                               <Table
-                                   height={height}
-                                   width={width}>
-                                       {
-                                           data.map()
-                                       }
-                               </Table> 
-                            )
-                        }
-                    </AutoSizer>
+
 
                     </Grid>
                     <Grid item >
@@ -123,6 +115,8 @@ function UsersGroupsApprolesSearch(props){
                 <Button onClick={e=>{}}>Cancel</Button>
             </DialogActions>
         </Dialog>
+
+        }
         <Dialog open={isShowList}>
             <List>
                 <ListItem key="firstName"><TextField label="نام" value={firstName} onChange={e=>setFirstName(e.target.value)}/></ListItem>
