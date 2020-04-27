@@ -10,10 +10,9 @@ import {SnackbarProvider} from "notistack";
 import JssProvider from 'react-jss/lib/JssProvider';
 import {create} from 'jss';
 import rtl from 'jss-rtl';
-import {Provider} from 'react-redux';
+//import {Provider} from 'react-redux';
 
-const jss =import {Provider} from 'react-redux';
- create({plugins: [...jssPreset().plugins, rtl()]});
+const jss = create({plugins: [...jssPreset().plugins, rtl()]});
 
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>

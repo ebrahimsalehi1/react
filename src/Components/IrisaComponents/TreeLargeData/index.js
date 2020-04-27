@@ -19,7 +19,10 @@ const progress= ()=>(<CircularProgress/>)
 
 function App(props){
 
-  const [dataRows,setDataRows] = useState(   [] 
+  const [dataRows,setDataRows] = useState([
+    {title:'A',children:[{title:'B'},{title:'C'}]}
+
+  ] 
   );
   const [firstRendered,setFirstRendered] = useState(true);
   const num = useRef(0);
@@ -29,7 +32,11 @@ function App(props){
   async function webServiceMain(){
     setIsCompleteDownload(true)
 
-    axios.get(`http://localhost:8080/getall/${val}`).
+    axios({ 
+      method:'get',
+      url:'http://localhost:8080/getall/100',
+      origin: "CORS",
+    }).
     then(res=>{
       if(res.status===200){
         setDataRows(res.data);
@@ -134,18 +141,19 @@ function App(props){
   }
 
   // useEffect(()=>{
-  //   if(firstRendered){
-  //     setFirstRendered(!firstRendered)
-  //   }
-  //   //console.log('useEffect');
-  //   if(firstRendered){
-  //     //console.log('start of ....');
-  //     setFirstRendered(false);
+    // if(firstRendered){
+    //   setFirstRendered(!firstRendered)
+    // }
+    //webServiceMain();
+    /*
+    if(firstRendered){
+      setFirstRendered(false);
 
-  //     return ()=>{
-  //       setFirstRendered(false);
-  //     }
-  //   }
+      return ()=>{
+        setFirstRendered(false);
+      }
+    }
+    */
   // })
 
     return (
