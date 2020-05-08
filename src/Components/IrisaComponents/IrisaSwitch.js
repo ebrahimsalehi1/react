@@ -1,6 +1,6 @@
 import React from 'react';
 import {withStyles, Switch, FormControlLabel, Checkbox} from '@material-ui/core';
-//import {styles} from '../../assets/jss/style'
+//import {styles} from '../../../assets/jss/style'
 import PropTypes from 'prop-types';
 
 //export default withStyles(styles)(IbxSwitch);

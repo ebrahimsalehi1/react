@@ -4,7 +4,7 @@ import {withStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
-//import {styles} from '../../assets/jss/style'
+//import {styles} from '../../../assets/jss/style'
 import PropTypes from "prop-types";
 import Slide from "@material-ui/core/Slide";
 //import DialogActions from "@material-ui/core/DialogActions";

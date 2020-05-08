@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import IrisaDatePicker from './Components/IrisaComponents/IrisaDatePicker';
+import IbxDatePicker2 from './Components/IrisaComponents/Mydate/IbxDatePicker2';
 import {Clock,TimePicker} from 'material-ui-time-picker';
 import CompositeTree from './Components/IrisaComponents/CompositeTree';
 import TreeLargeData from './Components/IrisaComponents/TreeLargeData';
@@ -18,8 +18,9 @@ function TabContainer(props) {
   }
 
 function App(){
-    const [value,setValue] = useState(1)
+    const [value,setValue] = useState(0)
     const [value1,setValue1] = useState(new Date())
+    const [valDateTime,setValDateTime] = useState(new Date())
 
     const handleChange = (event, value) => {
         setValue(value);
@@ -37,7 +38,7 @@ function App(){
         {props1==='1' && props2==='1' &&
           <AppBar position="static">
           <Tabs value={value} onChange={handleChange}>
-            <Tab label="Item One" />
+            <Tab label="Date Time Picker" />
             <Tab label="Item Two" />
             <Tab label="Item Three" />
             <Tab label="Tree Large Data" />
@@ -46,7 +47,13 @@ function App(){
           </Tabs>
         </AppBar>
         }
-        {value === 0 && <TabContainer>Item One 1111111111</TabContainer>}
+        {value === 0 && <TabContainer>
+          <IbxDatePicker2 
+          componentType="datetime" 
+          value={valDateTime}  
+          handleDateChange={(e)=>{console.log("handleDateChange",e)}}
+          />
+        </TabContainer>}
         {value === 1 && <TabContainer>
             <CompositeTree 
               title="The title"

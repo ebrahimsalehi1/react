@@ -1,6 +1,6 @@
 import React from 'react';
 import {withStyles, Checkbox} from '@material-ui/core';
-//import {styles} from '../../assets/jss/style'
+//import {styles} from '../../../assets/jss/style'
 import PropTypes from 'prop-types';
 
 function IrisaCheckbox(props) {
