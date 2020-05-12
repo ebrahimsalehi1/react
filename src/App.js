@@ -52,6 +52,7 @@ function App(){
           componentType="datetime" 
           value={valDateTime}  
           handleDateChange={(e)=>{console.log("handleDateChange",e)}}
+          locale={"en"}
           />
         </TabContainer>}
         {value === 1 && <TabContainer>
