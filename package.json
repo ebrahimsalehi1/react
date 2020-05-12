@@ -47,15 +47,13 @@
     "react-virtualized": "^9.21.2",
     "styletron-engine-atomic": "^1.4.0",
     "styletron-react": "^5.2.0",
-    "tui-jsdoc-template": "^1.2.2",
-    "validator": "^10.11.0"
+    "validator": "^13.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "document": "jsdoc src --readme README.md -r -c jsdoc-config.json  -t node_modules/tui-jsdoc-template/"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

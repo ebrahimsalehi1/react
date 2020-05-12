@@ -20,7 +20,7 @@ function TabContainer(props) {
 function App(){
     const [value,setValue] = useState(0)
     const [value1,setValue1] = useState(new Date())
-    const [valDateTime,setValDateTime] = useState(new Date())
+    const [valDateTime,setValDateTime] = useState(new Date(2020,0,17,0,0,0,0).getTime())
 
     const handleChange = (event, value) => {
         setValue(value);
@@ -48,11 +48,17 @@ function App(){
         </AppBar>
         }
         {value === 0 && <TabContainer>
-          <IbxDatePicker2 
-          componentType="datetime" 
-          value={valDateTime}  
-          handleDateChange={(e)=>{console.log("handleDateChange",e)}}
-          locale={"en"}
+          <IbxDatePicker2
+            componentType="datetime"
+            value={valDateTime}
+            handleDateChange={(e,name) => {
+              console.log("handleDateChange", e,name);
+              setValDateTime(e);
+            }}
+            // handleTimeChange={e=>{
+            //   console.log("handleTimeChange",e);
+            // }}
+            locale={"en"}
           />
         </TabContainer>}
         {value === 1 && <TabContainer>
