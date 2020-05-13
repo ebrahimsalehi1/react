@@ -1,0 +1,612 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: Utils/MaterialTheme/ThemeGenerator.js | Source: Utils/MaterialTheme/ThemeGenerator.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="">
+        
+            <img src="img/toast-ui.png" width="100%" height="100%">
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Source: Utils/MaterialTheme/ThemeGenerator.js</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="App.html">App</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="App_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="App.html#~initialAuthState">initialAuthState</a></li><li><a href="App.html#~initialAuthState">initialAuthState</a></li></ul></div></li><li><a href="App-AuthenticationReducer.html">AuthenticationReducer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="App~AuthenticationReducer_sub"></div></li><li><a href="ListAxios.html">ListAxios</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ListAxios_sub"></div></li><li><a href="LoginProvider.html">LoginProvider</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="LoginProvider_sub"></div></li><li><a href="MenuAppBar.html">MenuAppBar</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MenuAppBar_sub"></div></li><li><a href="ShowList.html">ShowList</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ShowList_sub"></div></li><li><a href="Users.html">Users</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Users_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Users.html#~getPosts">getPosts</a></li><li><a href="Users.html#~getPosts">getPosts</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#length">length</a></li><li><a href="global.html#LoginStateContext">LoginStateContext</a></li><li><a href="global.html#raleway">raleway</a></li><li><a href="global.html#Routes">Routes</a></li><li><a href="global.html#theme">theme</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import RalewayWoff2 from 'assets/fonts/Ralisto.ttf.woff';
+import {createMuiTheme} from "@material-ui/core";
+import {grey, lime} from '@material-ui/core/colors';
+
+/**
+ * font face a font
+ * @type {{fontFamily: string, fontStyle: string, fontDisplay: string, fontWeight: number, src: string, unicodeRange: string}}
+ */
+const raleway = {
+    fontFamily: 'Raleway',
+    fontStyle: 'normal',
+    fontDisplay: 'swap',
+    fontWeight: 400,
+    src: `
+    local('Raleway'),
+    local('Raleway-Regular'),
+    url(${RalewayWoff2}) format('woff2')
+  `,
+    unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+};
+/**
+ * generate Material-ui Theme
+ * @type {Theme}
+ */
+export const theme = createMuiTheme({
+    typography: {
+        fontFamily: [
+            'Raleway',
+            '-apple-system',
+        ].join(','),
+        useNextVariants: true,
+    },
+    overrides: {
+        MuiCssBaseline: {
+            '@global': {
+                '@font-face': [raleway],
+            },
+        },
+    },
+
+    palette: {
+        primary: {
+            main: '#3b5998'
+        },
+        secondary: {
+            main: '#6497b1',
+            light: '#ffcc5c',
+            dark: "#9c9c9c"
+
+        },
+        error: {
+            main: '#ee453e'
+        },
+        common: {
+            white: "#ffffff",
+        },
+        type: "light",
+    },
+    direction: 'rtl',
+    typography: {
+        fontFamily: [
+            'IRANSans-web',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(','),
+        useNextVariants: true,
+    },
+    overrides: {
+        MuiSvgIcon: {
+            root: {
+                fontSize: 16
+            }
+        },
+        MuiChip: {
+            root: {
+                color: 'inherit',
+                fontSize: '0.75rem'
+            },
+            outlined: {
+                backgroundColor: '#b3cde0'
+            }
+        },
+        MuiToolbar: {
+            regular: {
+                minHeight: '49px !important'
+            }
+        },
+        MuiListItem: {
+            root: {
+                paddingTop: '3px',
+                paddingBottom: '3px',
+            }, button: {
+                paddingRight: '0px',
+                // hover menu item of sidebar
+                '&amp;:hover': {
+                    backgroundColor: "#337ab786",
+                    borderRadius: '5px 0 0 5px',
+                    margin: 0,
+                    width: '98%',
+                },
+            }
+        }, MuiListItemText: {
+            root: {
+                padding: 0,
+            }
+        },
+        //add by Mohsen
+        MuiExpansionPanelSummary: {
+            expandIcon: {
+                right: 'auto',
+                left: '8px',
+            }
+        },
+        MuiExpansionPanel: {
+            expanded: {
+                backgroundColor: "inherit",
+                color: "inherit",
+            }
+        },
+        MuiTypography: {
+            body1: {
+                //text item in sidebar
+                color: "grey[800]",
+                fontSize: 11,
+                fontWeight: 'bold'
+            },
+            body2: {
+                color: "inherit",
+                fontSize: "12px"
+            }, subtitle1: {
+                fontSize: '0.85rem',
+                color: '#ffffff'
+            }, h5: {
+                color: 'inherit',
+                fontSize: '1rem'
+            }, h6: {
+                color: '#fffafe',
+                fontSize: '0.75rem',
+                fontWeight: 'bold'
+            }
+        }, MuiTab: {
+            //Tab in sidbar
+
+            root: {
+                '&amp;:hover': {
+                    color: "#000000",
+                    backgroundColor: "#337ab7"
+                },
+                fontSize: '11px'
+                , backgroundColor: "#3b5998"
+            },
+            labelIcon: {
+                paddingTop: 0,
+                minHeight: '55px'
+            },
+            labelContainer: {
+                paddingTop: '0px !important',
+                paddingBottom: '0px !important',
+            }
+        }, MuiDrawer: {
+            root: {
+                position: 'absolute',
+            },
+            paperAnchorDockedRight: {
+                width: 225
+            },
+            paper: {
+                backgroundColor: '#18202c',
+            },
+
+
+        }, MuiTableCell: {
+            root: {
+                padding: '0 4px',
+                textAlign:"center"
+            },
+            body: {
+                fontSize: '0.7rem'
+            },
+            head: {
+                fontSize: '0.7rem',
+                height: 40
+            },
+        },
+        MuiTablePagination:{
+            caption:{
+                fontSize:'0.65rem'
+            }
+        }
+        , MuiIconButton: {
+            root: {
+                color: 'inherit',
+                padding: 2,
+                margin: '0 12px'
+            },
+        },
+        // begin changed by Mohsen
+        MuiButton: {
+            root: {
+                color: 'inherit',
+                padding: "0 16px",
+                minHeight: 24,
+                backgroundPosition: 'left',
+                minWidth: 32,
+                margin: '12px 16px 8px'
+
+            },
+            containedPrimary: {
+                color: '#009ce6',
+                border: '1px solid #009ce6',
+                backgroundColor: '#e6f5fc',
+                '&amp;:hover': {
+                    backgroundColor: '#009ce6',
+                    color: '#ffffff',
+                    transition: 'all 0.5s ease'
+                },
+            },
+            containedSecondary: {
+                color: '#009ce6',
+                borderColor: '#009ce6',
+                backgroundColor: '#e6f5fc',
+                '&amp;:hover': {
+                    backgroundColor: '#009ce6',
+                    color: '#ffffff',
+                    transition: 'all 0.5s ease'
+                },
+            },
+            contained: {
+                color: '#009ce6',
+                borderColor: '#009ce6',
+                backgroundColor: '#e6f5fc',
+                boxShadow: 'none'
+            },
+            label: {
+                fontSize: 12,
+            },
+            sizeSmall: {
+                padding: "0 4px",
+                fontSize: 9
+            },sizeLarge:{
+                padding:'4px 12px'
+            }
+            // end changed by Mohsen
+        }, MuiAvatar: {
+            colorDefault: {
+                backgroundColor: "#ffffff",
+            },
+        }, MuiDialog: {
+            paper: {
+                backgroundColor: "#ffffff00",
+                overflowY: 'inherit'
+            }, container: {
+                backgroundColor: "#0000006b"
+            }
+        }, MuiDialogTitle: {
+            root: {
+                backgroundColor: grey[800],
+                padding: "15px 15px 15px"
+            }
+        }, MuiDialogContent: {
+            root: {
+                backgroundColor: '#f8fafc',
+                borderRadius: 4
+            }
+        },
+        MuiMenuItem: {
+            root: {
+                fontSize: 11
+            }
+        },
+        MuiFab: {
+            root:{
+                boxShadow:'0'
+            },
+            extended: {
+                height: 34
+            }
+        },
+        MuiCardHeader: {
+            root: {
+                padding: '8px'
+            }, title: {
+                fontSize: '0.75rem',
+                fontWeight: 'bold',
+                color: '#009ce6'
+            }, action: {
+                marginTop: 0
+            }, avatar: {
+                marginRight: "auto",
+                marginLeft: 5,
+            }
+        },
+        Pagination:{
+            activeButton: {
+                color: '#009ce6',
+                backgroundColor: '#e6f5fc !important'
+            }
+        },
+        MuiCardContent: {
+            root: {
+                padding: 0
+            },
+            Pager: {
+                marginTop: '8px',
+                justifyContent: 'center'
+
+            },
+        }, MuiTableSortLabel: {
+            root: {
+                color: "#009ce6"
+            },
+        }
+        // begin change by Mohsen
+        , MuiInputLabel: {
+            shrink: {
+                top: 0,
+                padding: '0px 8px',
+                color: "#666"
+            },
+            // add by Mohsen
+            '&amp;:outlined': {
+                transform: 'translate(12px, 12px) scale(1)',
+                color: "#666', // !important",
+                fontSize: 11,
+            },
+            formControl: {
+                top: -8,
+            },
+            focused: {
+                color: '#009ce6 !important',
+                fontSize: 11
+            }
+        },
+        MuiOutlinedInput: {
+            input: {
+                padding: '0 12px',
+                backgroundColor: '#fafafa ',
+                //color: '#009ce6'
+            },
+            notchedOutline: {
+                border: '1px solid',
+                color: '#e6e6e6',
+            },
+            root: {
+                borderColor: '#e6e6e6 !important',
+                backgroundColor: '#fafafa',
+                '&amp;:hover:not($disabled):not($focused):not($error) $notchedOutline': {
+                    border: "1px solid !important",
+                    borderColor: "#89d1f3 !important",
+                },
+                '&amp;$focused $notchedOutline': {
+                    borderColor: "#009ce6",
+                    borderWidth: 1,
+                    boxShadow: '0 0 8px #009ce680',
+                }
+            },
+            inputAdornedEnd: {
+                paddingRight: 8
+            }
+
+        },
+        // end change by Mohsen
+        MuiPrivateNotchedOutline: {
+            root: {
+                borderWidth: 0,
+            },
+            legend: {
+                textAlign: "-webkit-auto"
+            }
+        },
+        MuiListItemIcon: {
+            root: {
+                color: 'none',
+                display: 'inline',
+                margin: '2px 8px',
+                marginRight: 12
+            }
+        }, MuiFormLabel: {
+            root: {
+                fontSize: '0.75rem',
+                color: '#9c9c9c'
+            },
+            focused: {
+                borderColor: "#009ce6",
+                color: '#009ce6 !important'
+            },
+        },
+        MuiInput: {
+            underline: {
+                '&amp;:before': {
+                    borderBottom: '0'
+                },
+                '&amp;:after': {
+                    borderBottom: '0'
+                },
+
+            }
+        },
+        MuiSelect: {
+            root: {
+                padding: 8,
+            },
+            selectMenu: {
+                padding: '8px 12px',
+            },
+            icon: {
+                right: 8,
+                top: 'calc(50% - 10px)'
+            },select:{
+                paddingRight:24
+            },outlined:{
+                width:'calc(100% - 32px)'
+            }
+        },
+        MuiTableRow: {
+            root: {
+                height: 35
+            },
+            head: {
+                height: 40,
+                borderBottom: "1px solid #c7c7c7"
+            }
+        }
+        //begin change by Mohsen
+        , MuiInputBase: {
+            root: {
+                color: 'inherit',
+                lineHeight: '0.85em',
+            },
+            disabled:{
+                backgroundColor:"#dedede !important",
+                color:'#333 !important',
+                cursor:"no-drop"
+            },
+            input: {
+                height: 32,
+                fontSize: 12,
+                fontWeight: 'normal',
+                fontFamily: 'vazir',
+                color: '#666'
+            },
+            inputType: {
+                height: 'none'
+            },
+            fullWidth:{
+                width:'97%'
+            }
+
+        },
+        //end change by Mohsen
+        //add for menu by ehsan
+        MuiAppBar: {
+            colorPrimary: {
+                backgroundColor: '#009ce6'
+            }
+        },
+        MuiStepIcon: {
+            root: {
+                width: '2em',
+                height: '2em'
+            }
+        },
+        MuiMobileStepper: {
+            root: {
+                padding: 8
+            },
+            dot: {
+                backgroundColor: '#ddd'
+            },
+            dotActive: {
+                backgroundColor: '#009ce6'
+            }
+        },
+        MuiPaper: {
+            root: {
+                borderRadius: 0
+            },
+            elevation2: {
+                boxShadow: "0px 0px 5px #C7C7C7"
+            }, elevation24: {
+                boxShadow: '0'
+            }
+        },
+        MuiBackdrop: {
+            root: {
+                backgroundColor: 'rgba(255, 255, 255, 0.3)'
+            }
+        },
+        MuiLink: {
+            underlineHover: {
+                '&amp;:hover': {
+                    textDecoration: 'none',
+                    color: '#009ce6',
+                    cursor: "pointer",
+                    transition: 'all 0.5s ease'
+                }
+            }
+        },
+        MuiFormControlLabel: {
+            root: {
+                marginTop: 12,
+                marginRight: 16,
+                marginLeft: 16
+            }
+        },
+        MuiFormControl:{
+            fullWidth:{
+                width:'98%'
+            }
+        },
+        MuiSnackbarContent: {
+            message: {
+                fontSize: 11,
+                fontWeight: 'bold'
+            },
+            action: {
+                paddingLeft: 8
+            }
+        },
+        MuiInputAdornment: {
+            root: {
+                color: "#009ce6"
+            }
+        }
+    }    
+
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="img/toast-ui.png" style="">
+    <div class="footer-text">NHN Entertainment. Frontend Development Lab</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>

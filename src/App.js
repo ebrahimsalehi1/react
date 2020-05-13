@@ -4,6 +4,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import IbxDatePicker2 from './Components/IrisaComponents/Mydate/IbxDatePicker2';
+import IbxTimePicker2 from './Components/IrisaComponents/Mydate/IbxTimePicker2';
 import {Clock,TimePicker} from 'material-ui-time-picker';
 import CompositeTree from './Components/IrisaComponents/CompositeTree';
 import TreeLargeData from './Components/IrisaComponents/TreeLargeData';
@@ -32,9 +33,17 @@ function App(){
       const props1='1'
       const props2='1'
 
-    return (
-        <div>
+  return (
+    <div>
            
+
+        <IbxTimePicker2
+        value={value1}
+        onChange={(e)=>{
+          console.log("onChange",e);              
+        }}
+        />
+
         {props1==='1' && props2==='1' &&
           <AppBar position="static">
           <Tabs value={value} onChange={handleChange}>

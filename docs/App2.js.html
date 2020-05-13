@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: App2.js | Source: App2.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="">
+        
+            <img src="img/toast-ui.png" width="100%" height="100%">
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Source: App2.js</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="App.html">App</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="App_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="App.html#~initialAuthState">initialAuthState</a></li><li><a href="App.html#~initialAuthState">initialAuthState</a></li></ul></div></li><li><a href="App-AuthenticationReducer.html">AuthenticationReducer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="App~AuthenticationReducer_sub"></div></li><li><a href="ListAxios.html">ListAxios</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ListAxios_sub"></div></li><li><a href="LoginProvider.html">LoginProvider</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="LoginProvider_sub"></div></li><li><a href="MenuAppBar.html">MenuAppBar</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MenuAppBar_sub"></div></li><li><a href="ShowList.html">ShowList</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ShowList_sub"></div></li><li><a href="Users.html">Users</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Users_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Users.html#~getPosts">getPosts</a></li><li><a href="Users.html#~getPosts">getPosts</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#length">length</a></li><li><a href="global.html#LoginStateContext">LoginStateContext</a></li><li><a href="global.html#raleway">raleway</a></li><li><a href="global.html#Routes">Routes</a></li><li><a href="global.html#theme">theme</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {lazy, Suspense,useState} from 'react';
+import logo from './logo.svg';
+import './App.css';
+import {Router, Route} from "react-router-dom";
+import MenuAppBar from "./Components/AppBar"
+import {createBrowserHistory} from 'history';
+import {LoginProvider} from "./Utils/StateManagement";
+//import App1 from './irisacomponents/src/AppMain'
+//import App1 from './Components/IrisaComponents/TextField/FormTextField'
+//import App1 from './Components/IrisaComponents/Outcome/FormOutcome'
+//import App1 from './Components/IrisaComponents/Button/FormButton'
+//import {Grid,Card} from '@material-ui/core';
+import UsersGroupsApprolesSearch from './Components/IrisaComponents/UsersGroupsApprolesSearch';
+import ReactVirtualizedTable from './Components/IrisaComponents/MyGrid';
+//import MyGrid from './Components/IrisaComponents/MyGrid';
+import {Generator,UseGenerated} from './Components/IrisaComponents/ProducerConsumer';
+
+const history = createBrowserHistory();
+const Index = lazy(() => import('./Components/Index'));
+const Users = lazy(() => import('./Components/Users'));
+const Home = lazy(() => import('./Components/Home'));
+    
+/**
+ * Main File
+ * @returns {*}
+ * @constructor
+ */
+function App() {
+
+    /**
+     * initial first states for authentication
+     * @type {{authenticated: boolean}}
+     */
+    const initialAuthState = {
+        authenticated: false
+    };
+
+    const [isOpen,setIsOpen] = useState(false);
+    const [arr,setArr] = useState([]);
+                
+    const TestComp =()=> (                                   
+        &lt;div>
+
+            {/* &lt;Generator onGenerate={(allData)=>{
+                setArr(arr.includes(allData) ? [...arr]:[...arr,allData])
+                console.log('data',arr)
+                }}/>
+            &lt;UseGenerated data={arr} /> */}
+
+            &lt;button onClick={e=>{setIsOpen(true)}}>Open Dialog&lt;/button>
+            &lt;UsersGroupsApprolesSearch open={isOpen}
+            selectSpecial="users"  
+            data={[
+                {"ID":"100","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
+                {"ID":"101","firstName":"LAB_Lubricant_PRJ.Reception","lastName":"z.rahimi, b.ghazi","email":"desc 1"},
+            ]}        
+              />
+
+              {/* &lt;ReactVirtualizedTable /> */}
+        &lt;/div> 
+    );
+
+    /**
+     * create Reducer for authentication context
+     * @param state
+     * @param action
+     * @returns {*}
+     * @constructor
+     */
+    const AuthenticationReducer = (state, action) => {
+        switch (action.type) {
+            case 'changeAuthenticate':
+                return {
+                    ...state,
+                    authenticated: action.authenticated
+                };
+
+            default:
+                return state;
+        }
+    };
+
+    return (
+        // &lt;div className="App">
+            &lt;LoginProvider
+                initialState={initialAuthState}
+                reducer={AuthenticationReducer}>
+                &lt;Router history={history}>
+                    &lt;MenuAppBar history={history}/>
+                    &lt;header className="App-header">
+                        &lt;img src={logo} className="App-logo" alt="logo"/>
+                        &lt;p>
+                            Edit &lt;code>src/App.js&lt;/code> and save to reload.
+                        &lt;/p>
+                        &lt;div>
+                            &lt;Suspense fallback={&lt;div>Loading...&lt;/div>}>
+                                &lt;Route path="/" exact component={Index}/>
+                                &lt;Route path="/about/" component={Home}/>
+                                &lt;Route path="/testcomp/" component={                                    
+                                    TestComp 
+                                }/>
+                                &lt;Route path="/users/" component={Users}/>
+                            &lt;/Suspense>
+                        &lt;/div>
+                    &lt;/header>
+                &lt;/Router>
+            &lt;/LoginProvider>
+        // &lt;/div>
+    );
+}
+
+export default App;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="img/toast-ui.png" style="">
+    <div class="footer-text">NHN Entertainment. Frontend Development Lab</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>
