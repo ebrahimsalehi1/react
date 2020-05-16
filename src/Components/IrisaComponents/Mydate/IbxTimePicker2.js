@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { BasePicker, MuiPickersUtilsProvider, TimePickerView } from "material-ui-pickers";
+import { MuiPickersUtilsProvider, TimePickerView } from "material-ui-pickers";
 import DateFnsUtils from "@date-io/date-fns"; 
 import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types';
@@ -8,11 +8,10 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const styles = {
-  root: {
-    justify: 'cener',
+  root: {    
+    justify: 'cener',    
     alignContent: 'center'  
   },
   buttonActive:{
@@ -30,11 +29,9 @@ function IbxTimePicker2(props){
     const {value,onChange,classes} = props;
 
     const [buttonPress,setButtonPrress] = useState(0);
-    const [selectedDate,setSelectedDate] = useState(value)
-    let {hour,minute} = 0; //(new Date().getHours(),new Date().getMinutes())
+    const [selectedDate,setSelectedDate] = useState(value ? value:new Date())
 
     function handleChangeButton(event,value){
-        console.log("handleChangeButton",value);    
 
         switch (value) {
           case 0:
@@ -52,15 +49,13 @@ function IbxTimePicker2(props){
 
       setSelectedDate(event);
 
-      if(!onChange)
+      if(onChange)        
         onChange(event);
-      
-      console.log("handleChangeDate",event);  
-
-
-            
+                  
     }
 
+    console.log("render-IbxTimePicker2",selectedDate);
+    
     return (
       <Grid container spacing={0} className={classes.root}>
         <Grid item xs={12} md={12}>
@@ -75,7 +70,33 @@ function IbxTimePicker2(props){
         </Grid>
         <Grid item xs={12} md={12}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <BasePicker onChange={handleChangeDate}>
+            <>
+            { buttonPress===0 &&
+              <TimePickerView
+              type="hours"
+              date={selectedDate}
+              ampm={false}
+              onHourChange={handleChangeDate}
+              onMinutesChange={handleChangeDate}
+              onSecondsChange={handleChangeDate}
+              />          
+            
+            }
+
+            { buttonPress===1 &&
+              <TimePickerView
+              type="minutes"
+              date={selectedDate}
+              ampm={false}
+              onHourChange={handleChangeDate}
+              onMinutesChange={handleChangeDate}
+              onSecondsChange={handleChangeDate}
+              />          
+            
+            }
+            </>
+
+          {/* <BasePicker onChange={handleChangeDate} >
                   {({
                     date,
                     handleAccept,
@@ -86,13 +107,7 @@ function IbxTimePicker2(props){
                     handleTextFieldChange,
                     pick12hOr24hFormat,
                   }) => {
-                    handleChangeDate(date);
-
-                    hour   = date.getHours();
-                    minute = date.getMinutes();
-
-                    console.log("hour:minute",hour,minute);
-                    
+                    handleChangeDate(date);                    
 
                     if(buttonPress===0)
                       return (                      
@@ -118,12 +133,18 @@ function IbxTimePicker2(props){
                         )
                       
                       }}
-                      </BasePicker>
+                      </BasePicker> */}
           </MuiPickersUtilsProvider>
       </Grid>
     </Grid>
   )
 
+}
+
+IbxTimePicker2.propTypes = {
+  classes: PropTypes.object,
+  onChange: PropTypes.func,
+  mode: PropTypes.string,  
 }
 
 export default withStyles(styles)(IbxTimePicker2)

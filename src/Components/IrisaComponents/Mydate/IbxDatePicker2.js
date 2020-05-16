@@ -14,23 +14,24 @@ import Moment from "moment-jalaali";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import TimePicker from './IbxTimePicker2';
 //import { BasePicker, MuiPickersUtilsProvider, TimePickerView } from "material-ui-pickers";
 // import DateFnsUtils from "@date-io/date-fns";
 //import {MuiPickersUtilsProvider, TimePickerView, BasePicker, TimePicker, InlineTimePicker} from 'material-ui-pickers';
-import { TimePicker } from "material-ui-time-picker";
+//import { TimePicker } from "material-ui-time-picker";
 // import JalaliUtils from "material-ui-pickers-jalali-utils";
 // import enLocale from "date-fns/locale/en-US";
 // import DialogContent from "@material-ui/core/DialogContent";
 
 
-const MyTimePicker = withStyles(them => ({
-  root: {
-    width: "100%"
-  }
-}))(props => {
-  const { classes, ...others } = props;
-  return <TimePicker className={classes.root} {...others} />;
-});
+// const MyTimePicker = withStyles(them => ({
+//   root: {
+//     width: "100%"
+//   }
+// }))(props => {
+//   const { classes, ...others } = props;
+//   return <TimePicker className={classes.root} {...others} />;
+// });
 
 function convertPersianDigitsToDigit(valueToConvert) {
   return String(valueToConvert)
@@ -71,7 +72,6 @@ function IbxDatePicker2(props) {
     dateSelectionType,
     componentType,
     handleTimeChange,
-    ...other
   } = props;
 
   let currentDate0 = null;
@@ -139,8 +139,9 @@ function IbxDatePicker2(props) {
   const [tabIndexSelected, setTabIndexSelected] = useState(
     componentType === "date" || componentType === "datetime" ? 0 : 1
   );
-  const [time, setTime] = useState({ hour: new Date().getHours(), minute: new Date().getMinutes() }); 
-
+  //const [time, setTime] = useState({ hour: new Date().getHours(), minute: new Date().getMinutes() }); 
+  const [timeValue, setTimeValue] = useState(value ? new Date(value):new Date()); 
+    
   function handleClose() {
     setOpen(false);
   }
@@ -156,14 +157,15 @@ function IbxDatePicker2(props) {
 
   function handleCalendarDateChange(e) {
     setSelectedDay(e);
+    //setTimeValue(e);
     let currentDate = null;
     if (localeType === "en")
       currentDate = new Date(
         Number(e.year),
         Number(e.month) - 1,
         Number(e.day),
-        time.hour,
-        time.minute
+        timeValue.getHours(),
+        timeValue.getMinutes()
       );
     else {
       const enteredValue = Moment(
@@ -184,8 +186,8 @@ function IbxDatePicker2(props) {
         Number(
           convertPersianDigitsToDigit(enteredValue.local("en").format("DD"))
         ),
-        time.hour,
-        time.minute
+        timeValue.getHours(),
+        timeValue.getMinutes()
       );
     }
     if (handleDateChange !== undefined)
@@ -207,16 +209,18 @@ function IbxDatePicker2(props) {
 
   function handleTimePickerChange(date) {
 
-    setTime({ hour: date.getHours(), minute: date.getMinutes() });
-
+    //setTime({ hour: date.getHours(), minute: date.getMinutes() });
+    setTimeValue(date);
+    //console.log("handleTimePickerChange",date);
+    
     let currentDate = null;
     if (localeType === "en")
       currentDate = new Date(
         Number(selectedDay.year),
         Number(selectedDay.month) - 1,
         Number(selectedDay.day),
-        time.hour,
-        time.minute,
+        timeValue.getHours(),
+        timeValue.getMinutes(),
         0,
         0
       );
@@ -239,8 +243,8 @@ function IbxDatePicker2(props) {
         Number(
           convertPersianDigitsToDigit(enteredValue.local("en").format("DD"))
         ),
-        time.hour,
-        time.minute,
+        timeValue.getHours(),
+        timeValue.getMinutes(),
         0,
         0
       );
@@ -269,15 +273,14 @@ function IbxDatePicker2(props) {
             selectedDay.day;
         break;
       case "time":
-        console.log("time", time);
 
-        if (time !== undefined)
+        if (timeValue !== undefined)
           res =
-            (time.hour < 10 ? "0" : "") +
-            time.hour +
+            (timeValue.getHours() < 10 ? "0" : "") +
+            timeValue.getHours() +
             ":" +
-            (time.minute < 10 ? "0" : "") +
-            time.minute;
+            (timeValue.getMinutes() < 10 ? "0" : "") +
+            timeValue.getMinutes();
         break;
       case "datetime":
         res =
@@ -289,11 +292,11 @@ function IbxDatePicker2(props) {
           (selectedDay.day < 10 ? "0" : "") +
           selectedDay.day +
           " " +
-          (time.hour < 10 ? "0" : "") +
-          time.hour +
+          (timeValue.getHours() < 10 ? "0" : "") +
+          timeValue.getHours() +
           ":" +
-          (time.minute < 10 ? "0" : "") +
-          time.minute;
+          (timeValue.getMinutes() < 10 ? "0" : "") +
+          timeValue.getMinutes();
         break;
       default:
         res = "Error in componentType props";
@@ -302,10 +305,11 @@ function IbxDatePicker2(props) {
     return res;
   }
 
-  console.log("rendering");
+  //console.log("render-timeValue",timeValue,value);
 
   return (
     <div>
+      {selectedDay.year+"/"+selectedDay.month+"/"+selectedDay.day+"-"+timeValue.getHours()+":"+timeValue.getMinutes()+"* "+value}
       <Grid sm item>
         {showButtonOnTextField !== undefined && showButtonOnTextField && (
           <IbxTextField
@@ -346,7 +350,6 @@ function IbxDatePicker2(props) {
           openModal={open}
           eventClose={handleClose}
         >
-          {/*<Card className={classes.card}>*/}
 
           {componentType !== undefined && componentType === "datetime" && (
             <AppBar position="static">
@@ -391,8 +394,8 @@ function IbxDatePicker2(props) {
             />
           )}
           {tabIndexSelected === 1 && (
-            <MyTimePicker
-              style={"width:100%;"}
+            <TimePicker
+              //style={"width:100%;"}
               mode={"24h"}
               onChange={handleTimePickerChange}
               value={
@@ -400,8 +403,8 @@ function IbxDatePicker2(props) {
                   selectedDay.year,
                   selectedDay.month,
                   selectedDay.day,
-                  time.hour,
-                  time.minute,
+                  timeValue.getHours(),
+                  timeValue.getMinutes(),
                   0,
                   0
                 )
@@ -419,7 +422,6 @@ function IbxDatePicker2(props) {
             </Grid>
           )}
 
-          {/*</Card>*/}
         </IrisaDialog>
       )}
     </div>
