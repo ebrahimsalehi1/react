@@ -4,8 +4,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import IbxDatePicker2 from './Components/IrisaComponents/Mydate/IbxDatePicker2';
-import IbxTimePicker2 from './Components/IrisaComponents/Mydate/IbxTimePicker2';
-import {TimePicker} from 'material-ui-time-picker';
+import TimePicker from './Components/IrisaComponents/Mydate/IbxTimePicker2';
+//import {TimePicker} from 'material-ui-time-picker';
 import CompositeTree from './Components/IrisaComponents/CompositeTree';
 import TreeLargeData from './Components/IrisaComponents/TreeLargeData';
 import UsersGroupsApprolesSearch from './Components/IrisaComponents/UsersGroupsApprolesSearch'
