@@ -230,7 +230,7 @@ function TabContainer(props) {
         {props.children}
       </Typography>
     );
-  }
+  } 
 
 function App(){
     const [value,setValue] = useState(0)
@@ -261,7 +261,7 @@ function App(){
           jSonString = [...jSonString,{title:item,children:filteredData.map(obj=>{return {title:obj.persianName,compositeName:obj.compositeName,children:[]}})}]
       })
 
-      const dataComposite = dataComposite1
+      const dataComposite = jSonString
 
       console.log("dataComposite",dataComposite)
 

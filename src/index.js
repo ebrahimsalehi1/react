@@ -10,16 +10,16 @@ import {theme} from "Utils/MaterialTheme/theme";
 import JssProvider from 'react-jss/lib/JssProvider';
 import {create} from 'jss';
 import rtl from 'jss-rtl';
-//import {Provider} from 'react-redux';
+import {Provider} from 'react-redux';
 
 const jss = create({plugins: [...jssPreset().plugins, rtl()]});
 
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
         <JssProvider jss={jss}>
-            {/* <SnackbarProvider maxSnack={10}> */}
+            <SnackbarProvider maxSnack={10}>
                 <App/>
-            {/* </SnackbarProvider> */}
+            </SnackbarProvider>
         </JssProvider>
     </MuiThemeProvider>
     , document.getElementById('root'));
