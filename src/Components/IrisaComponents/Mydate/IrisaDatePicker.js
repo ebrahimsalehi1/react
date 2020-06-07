@@ -14,7 +14,7 @@ import Moment from "moment-jalaali";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import TimePicker from './IbxTimePicker2';
+import TimePicker from './IrisaTimePicker';
 //import { BasePicker, MuiPickersUtilsProvider, TimePickerView } from "material-ui-pickers";
 // import DateFnsUtils from "@date-io/date-fns";
 //import {MuiPickersUtilsProvider, TimePickerView, BasePicker, TimePicker, InlineTimePicker} from 'material-ui-pickers';
@@ -47,7 +47,7 @@ function convertPersianDigitsToDigit(valueToConvert) {
     .replace(/۹/g, "9");
 }
 
-function IbxDatePicker2(props) {
+function IrisaDatePicker(props) {
   const {
     classes,
     style,
@@ -428,7 +428,7 @@ function IbxDatePicker2(props) {
   );
 }
 
-IbxDatePicker2.propTypes = {
+IrisaDatePicker.propTypes = {
   classes: PropTypes.object,
   handleDateChange: PropTypes.func,
   value: PropTypes.number, 
@@ -466,4 +466,4 @@ IbxDatePicker2.propTypes = {
 
 };
 
-export default withStyles(styles)(IbxDatePicker2);
+export default withStyles(styles)(IrisaDatePicker);

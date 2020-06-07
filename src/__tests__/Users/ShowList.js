@@ -19,7 +19,6 @@ it('render list and count it', () => {
     const Wrapper = mount(
         <ShowList data={data}/>
     )
-
     expect(Wrapper.find('.list').length === length(data)).toBe(true)
 
 

@@ -1,0 +1,68 @@
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {styles} from '../../assets/jss/style';
+import {FormControl, InputLabel, MenuItem, OutlinedInput, Select, withStyles} from '@material-ui/core';
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/es/IconButton";
+import IbxTextField from "../";
+
+
+class Select extends Component {
+
+    state = {
+        labelWidth: 60
+    };
+
+    render() {
+
+        const {classes, label, buttons, disabled, name, value, onChange, items, required, validationType, useLov, ...other} = this.props;
+        return (
+            <IbxTextField
+                //useLov={useLov}
+                validationType={validationType}
+                select
+                name={name}
+                label={label}
+                required={required}
+                disabled={disabled}
+                value={value}
+                onChange={onChange}
+                SelectProps={{
+                    native: true
+                }}
+                InputProps={
+                    buttons ?
+                        <InputAdornment
+                            position="end">
+                            {buttons.map(button => (
+                                <IconButton title={button.title}
+                                            onClick={() => {
+                                                button.cb(value)
+                                            }}>
+                                    <button.icon/>
+                                </IconButton>
+                            ))}
+
+                        </InputAdornment> : null
+                }
+            >
+                {(items != null) ?
+                    <option value={''}>{''}</option>
+                    : ""
+                }
+                {(items != null) ?
+                    items.map((item, key) => {
+                            return <option value={item.value} key={key}>{item.name}</option>
+                        }
+                    ) : ""
+                }
+            </IbxTextField>
+        )
+    }
+}
+
+Select.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Select);

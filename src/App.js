@@ -3,12 +3,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import IbxDatePicker2 from './Components/IrisaComponents/Mydate/IbxDatePicker2';
-import TimePicker from './Components/IrisaComponents/Mydate/IbxTimePicker2';
+import IrisaDatePicker from './Components/IrisaComponents/Mydate/IrisaDatePicker';
+import TimePicker from './Components/IrisaComponents/Mydate/IrisaTimePicker';
 //import {TimePicker} from 'material-ui-time-picker';
 import CompositeTree from './Components/IrisaComponents/CompositeTree';
 import TreeLargeData from './Components/IrisaComponents/TreeLargeData';
 import UsersGroupsApprolesSearch from './Components/IrisaComponents/UsersGroupsApprolesSearch'
+import IrisaGrid from './Components/IrisaComponents/DXGrid';
 
 const dataComposite1 = [
   {
@@ -284,11 +285,13 @@ function App(){
             <Tab label="Tree Large Data" />
             <Tab label="User Groups Approles" />
             <Tab label="Composite Tree" />
+            <Tab label="DX Grid" />
+
           </Tabs>
         </AppBar>
         }
         {value === 0 && <TabContainer>
-          <IbxDatePicker2
+          <IrisaDatePicker
             componentType="datetime"
             value={valDateTime}
             handleDateChange={(e,name) => {
@@ -349,6 +352,54 @@ function App(){
             isActive={true}
         /></TabContainer>
         }
+
+        {value===6 && <TabContainer>
+          <p>DXGrid</p>
+          <IrisaGrid
+            gridReload={true}
+            columns={[
+                {name: 'codAssignedType', title: ' ', getCellValue: null},
+                {name: 'desAction', title: 'نام فعالیت'},
+                {name: 'desStatus', title: 'وضعیت'},
+                {name: 'datAssigned', title: 'تاریخ ایجاد'},
+                {name: 'datDone', title: 'تاریخ تکمیل'},
+                {name: 'datExpire', title: 'تاریخ انقضا'},
+                {name: 'member', title: 'مشارکت کنندگان'  , getCellValue:
+                        function(row){
+                        let memArray=[];
+                        if(row!==null && row.member!==null){
+                            return row.member.map(member =>  <label>{member.displayName}<br/></label>)
+                            //return memArray
+                        }else{
+                            return''
+                        }
+
+                        },},
+            ]}
+            tableColumnExtensions={[
+                {columnName: 'codAssignedType',align: 'center',wordWrapEnabled: true,filteringEnabled: false },
+                {columnName: 'desAction',align: 'center',wordWrapEnabled: true,filteringEnabled: false },
+                {columnName: 'desStatus',align: 'center',wordWrapEnabled: true,filteringEnabled: false },
+                {columnName: 'datAssigned',align: 'center',wordWrapEnabled: true,filteringEnabled: false },
+                {columnName: 'datDone',align: 'center',wordWrapEnabled: true,filteringEnabled: false },
+                {columnName: 'datExpire',align: 'center',wordWrapEnabled: true,filteringEnabled: false },
+                {columnName: 'member',align: 'center',wordWrapEnabled: true,filteringEnabled: false},
+            ]}
+            typeColumnsShow={[
+                {columnName: 'datAssigned', type: "DatePersian"},
+                {columnName: 'datExpire', type: "DatePersian"},
+                {columnName: 'datDone', type: "DatePersian"},
+            ]}
+            editable={false}
+            showAddCommand={false}
+            showDeleteCommand={false}
+            showEditCommand={false}
+            url={`/KAR/api/v1.0/logSearch/?`}
+        />
+
+        </TabContainer>
+        }
+
         </div>        
     )
 }

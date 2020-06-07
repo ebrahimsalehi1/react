@@ -24,7 +24,7 @@ const styles = {
   }
 };
 
-function IbxTimePicker2(props){
+function IrisaTimePicker(props){
 
     const {value,onChange,classes} = props;
 
@@ -141,10 +141,10 @@ function IbxTimePicker2(props){
 
 }
 
-IbxTimePicker2.propTypes = {
+IrisaTimePicker.propTypes = {
   classes: PropTypes.object,
   onChange: PropTypes.func,
   mode: PropTypes.string,  
 }
 
-export default withStyles(styles)(IbxTimePicker2)
+export default withStyles(styles)(IrisaTimePicker)

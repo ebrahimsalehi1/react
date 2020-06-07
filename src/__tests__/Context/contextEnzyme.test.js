@@ -1,5 +1,8 @@
 import React from 'react'
-import { mount } from 'enzyme'
+//import { mount } from 'enzyme'
+import {
+  mount
+} from '../../../enzymeConfig'
 
 const Context = React.createContext()
 
@@ -40,6 +43,7 @@ const ComponentB = function(props) {
 describe('testing context', () => {
   it('should pass the context', () => {
     const comp = mount(<RootComponent />)
+
     expect(comp.find('ComponentB').prop('id')).toBe(2)
     expect(
       comp

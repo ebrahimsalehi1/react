@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {MuiThemeProvider,jssPreset} from '@material-ui/core/styles';
 //import {theme} from "Utils/MaterialTheme/ThemeGenerator";
 import {theme} from "Utils/MaterialTheme/theme";
-//import {SnackbarProvider} from "notistack";
+import {SnackbarProvider} from "notistack";
 import JssProvider from 'react-jss/lib/JssProvider';
 import {create} from 'jss';
 import rtl from 'jss-rtl';
