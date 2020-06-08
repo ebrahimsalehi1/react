@@ -10,6 +10,9 @@ import CompositeTree from './Components/IrisaComponents/CompositeTree';
 import TreeLargeData from './Components/IrisaComponents/TreeLargeData';
 import UsersGroupsApprolesSearch from './Components/IrisaComponents/UsersGroupsApprolesSearch'
 import IrisaGrid from './Components/IrisaComponents/DXGrid';
+import MiniDrawer from './Components/Drawer/MiniDrawer';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import NodeJS from './NodejsSample/index';
 
 const dataComposite1 = [
   {
@@ -233,17 +236,18 @@ function TabContainer(props) {
     );
   } 
 
-function App(){
+function App(props){
+
     const [value,setValue] = useState(0)
     const [value1,setValue1] = useState(new Date())
     const [valDateTime,setValDateTime] = useState(new Date().getTime())
+
+    const {type} = props;
 
     const handleChange = (event, value) => {
         setValue(value);
         console.log(event,value)
     };
-
-
 
       const props1='1'
       const props2='1'
@@ -268,15 +272,16 @@ function App(){
 
   return (
     <div>
-           
-        {/* <IbxTimePicker2
-        value={value1}
-        onChange={(e)=>{
-          console.log("onChange",e);              
-        }}
-        /> */}
+        {
+            type==='NODEJS' && <NodeJS />
+        }
 
-        {props1==='1' && props2==='1' &&
+        {/* <MiniDrawer data={
+            [
+                'Inbox','Starred','Send email','Drafts',
+            ]}/> */}
+
+        {type==='OTHERS' && props1==='1' && props2==='1' &&
           <AppBar position="static">
           <Tabs value={value} onChange={handleChange}>
             <Tab label="Date Time Picker" />
@@ -290,21 +295,17 @@ function App(){
           </Tabs>
         </AppBar>
         }
-        {value === 0 && <TabContainer>
+        {type==='OTHERS' &&  value === 0 && <TabContainer>
           <IrisaDatePicker
             componentType="datetime"
             value={valDateTime}
             handleDateChange={(e,name) => {
-              //console.log("handleDateChange", e,name);
               setValDateTime(e);
             }}
-            // handleTimeChange={e=>{
-            //   console.log("handleTimeChange",e);
-            // }}
             locale={"en"}
           />
         </TabContainer>}
-        {value === 1 && <TabContainer>
+        {type==='OTHERS' && value === 1 && <TabContainer>
             <CompositeTree 
               title="The title"
               handleReturnFunction={(e)=>{
@@ -312,21 +313,19 @@ function App(){
               }}  
               />
             </TabContainer>}
-        {value === 2 && <TabContainer>
+        {type==='OTHERS' && value === 2 && <TabContainer>
             <TimePicker
             mode={"24h"}
             onChange={(e)=>{console.log("onChange",e)}}
             value={value1}
-            //onMinutesSelected={e=>{console.log("onMinutesSelected",e)}}
-            //ClockProps={this.handleClockChangeDone}
           />
             </TabContainer>}
 
-        {value===3 && <TabContainer>
+        {type==='OTHERS' && value===3 && <TabContainer>
             <TreeLargeData />
           </TabContainer>}
 
-          {value===4 && <TabContainer>
+          {type==='OTHERS' && value===4 && <TabContainer>
             <UsersGroupsApprolesSearch 
             selectSpecial="users"  
             data={[
@@ -338,7 +337,7 @@ function App(){
           }    
         
 
-        {value===5 && <TabContainer>
+        {type==='OTHERS' && value===5 && <TabContainer>
           <p>this is a test</p>
         <CompositeTree
             title="لیست فرآیندها"
@@ -353,7 +352,7 @@ function App(){
         /></TabContainer>
         }
 
-        {value===6 && <TabContainer>
+        {type==='OTHERS' && value===6 && <TabContainer>
           <p>DXGrid</p>
           <IrisaGrid
             gridReload={true}

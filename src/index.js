@@ -11,17 +11,31 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import {create} from 'jss';
 import rtl from 'jss-rtl';
 import {Provider} from 'react-redux';
+import {INCLUDE_IRISA_THEME,PROJECT_TYPE} from './config';
 
 const jss = create({plugins: [...jssPreset().plugins, rtl()]});
 
-ReactDOM.render(
-    <MuiThemeProvider theme={theme}>
+const IndexComponent = ()=>(
+<>
+    {
+        INCLUDE_IRISA_THEME && 
+        <MuiThemeProvider theme={theme}>
         <JssProvider jss={jss}>
             <SnackbarProvider maxSnack={10}>
-                <App/>
+                <App type={PROJECT_TYPE}/>
             </SnackbarProvider>
         </JssProvider>
-    </MuiThemeProvider>
+        </MuiThemeProvider>
+    }
+    {
+        !INCLUDE_IRISA_THEME && 
+        <App type={PROJECT_TYPE}/>
+    }
+</>
+)
+
+ReactDOM.render(
+    <IndexComponent />
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
