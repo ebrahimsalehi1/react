@@ -6,6 +6,7 @@ import IrisaDatePicker from '../../Components/IrisaComponents/Mydate/IrisaDatePi
 import TimePicker from '../../Components/IrisaComponents/Mydate/IrisaTimePicker';
 import {expect} from 'chai';
 import { Calendar } from "react-modern-calendar-datepicker";
+import TextField from '@material-ui/core/TextField';
 
 function MyTimeComp(props){
     return (<div><TimePicker
@@ -50,9 +51,79 @@ describe('IrisaDatePicker test suites',()=>{
 
     });
 
+    it('search a special component in multi wrapper',()=>{
+
+        const Comp1 = () => {
+            const [val,setVal] = React.useState('Comp1')
+            return (
+            <div>
+                <div>
+                <div>
+                <div>
+                <div>
+                    <TextField 
+                        value={val} 
+                        onChange={setVal} 
+                        className="foo" 
+                        data-point="IRISATEXTFIELD"/>
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            )
+        }
+
+        const Comp2 = ()=>{
+            return (<Comp1/>)
+        }
+
+        const Comp3 = ()=>{
+            return (<Comp2/>)
+        }
+
+        const Comp4 = ()=>{
+            return (<Comp3/>)
+        }
+
+        const Comp5 = ()=>{
+            return (<Comp4/>)
+        }
+
+        const Comp6 = ()=>{
+            return (<Comp5/>)
+        }
+
+        const CompFinal = () =>{
+            return (
+            <>
+            <Comp1 />
+            {/* <Comp2 />
+            <Comp3 />
+            <Comp4 />
+            <Comp5 /> */}
+            </>
+            )
+        }
+
+        const wrapper = mount(<CompFinal />);
+        //expect(wrapper.find(TextField)).to.have.lengthOf(1);
+        let count = 0;
+        let countAll = 0;
+        wrapper.find('.foo').forEach(node=>{
+            countAll++;
+            //if(node.prop('data-point')==='IRISATEXTFIELD')
+            if(expect(node.hasClass('foo')).to.equal(true))
+                count++;
+        })
+
+        console.log('number of is',count,countAll);   
+        
+        expect(wrapper.find(TextField)).to.have.lengthOf(1);
+
+    });
+
 });
 
-
 //expect(comp.find('.date1').exists()).to.equal(false);        
-
 //expect(comp.prop('componentType')).to.equal('datetime');

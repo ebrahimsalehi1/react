@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { Grid, IconButton, withStyles } from "@material-ui/core";
-import IbxTextField from "./IbxTextField.js";
+import TextField from "@material-ui/core/TextField";
 import { AlarmOn, Today } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import IrisaDialog from "../Dialog";
@@ -15,23 +15,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TimePicker from './IrisaTimePicker';
-//import { BasePicker, MuiPickersUtilsProvider, TimePickerView } from "material-ui-pickers";
-// import DateFnsUtils from "@date-io/date-fns";
-//import {MuiPickersUtilsProvider, TimePickerView, BasePicker, TimePicker, InlineTimePicker} from 'material-ui-pickers';
-//import { TimePicker } from "material-ui-time-picker";
-// import JalaliUtils from "material-ui-pickers-jalali-utils";
-// import enLocale from "date-fns/locale/en-US";
-// import DialogContent from "@material-ui/core/DialogContent";
-
-
-// const MyTimePicker = withStyles(them => ({
-//   root: {
-//     width: "100%"
-//   }
-// }))(props => {
-//   const { classes, ...others } = props;
-//   return <TimePicker className={classes.root} {...others} />;
-// });
 
 function convertPersianDigitsToDigit(valueToConvert) {
   return String(valueToConvert)
@@ -134,12 +117,9 @@ function IrisaDatePicker(props) {
   const [selectedDay, setSelectedDay] = useState(
     defaultValue(localeType, value)
   );
-  //const [selectedMonth, setSelectedMonth] = useState(currentDate0.month);
-  //const [selectedYear, setSelectedYear] = useState(currentDate0.year);
   const [tabIndexSelected, setTabIndexSelected] = useState(
     componentType === "date" || componentType === "datetime" ? 0 : 1
   );
-  //const [time, setTime] = useState({ hour: new Date().getHours(), minute: new Date().getMinutes() }); 
   const [timeValue, setTimeValue] = useState(value ? new Date(value):new Date()); 
     
   function handleClose() {
@@ -157,7 +137,7 @@ function IrisaDatePicker(props) {
 
   function handleCalendarDateChange(e) {
     setSelectedDay(e);
-    //setTimeValue(e);
+
     let currentDate = null;
     if (localeType === "en")
       currentDate = new Date(
@@ -309,10 +289,10 @@ function IrisaDatePicker(props) {
 
   return (
     <div>
-      {selectedDay.year+"/"+selectedDay.month+"/"+selectedDay.day+"-"+timeValue.getHours()+":"+timeValue.getMinutes()+"* "+value}
+      {/* {selectedDay.year+"/"+selectedDay.month+"/"+selectedDay.day+"-"+timeValue.getHours()+":"+timeValue.getMinutes()+"* "+value} */}
       <Grid sm item>
         {showButtonOnTextField !== undefined && showButtonOnTextField && (
-          <IbxTextField
+          <TextField
             name={name === undefined ? fieldName : name}
             label={label}
             adornment
@@ -328,7 +308,7 @@ function IrisaDatePicker(props) {
           />
         )}
         {(showButtonOnTextField === undefined || !showButtonOnTextField) && (
-          <IbxTextField
+          <TextField
             name={name === undefined ? fieldName : name}
             label={label}
             required={required}

@@ -24,6 +24,10 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 
+import {Route,BrowserRouter as Router,Switch,Link} from 'react-router-dom';
+
+import Person from './Person/Person';
+
 const style = theme => ({
     root: {
         width: '100%',
@@ -62,6 +66,7 @@ function ActivityList(props){
     };
     
     return (
+      <Switch>
         <List
         component="nav"
         //subheader={<ListSubheader component="div">Nested List Items</ListSubheader>}
@@ -75,22 +80,23 @@ function ActivityList(props){
                     
                     setOpen(prev=>prev===item.id ? '':item.id);
                     
-                    if(item.isPerform){
+                    //if(!item.isPerform){
                         if(onChangeHandler)
                             onChangeHandler(e,item);
-                    }                
+                    //}                
                 }} key={item.id}>
                     <ListItemIcon>{item.icon}</ListItemIcon>
                     <ListItemText>{item.text} - {index}</ListItemText>
                     {open===item.id ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
-                    <Collapse in={open===item.id} timeout="auto" unmountOnExit>
+                    <Collapse in={open===item.id} timeout="auto" unmountOnExit>                      
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                         <ListItemIcon>
                             <StarBorder />
                         </ListItemIcon>
-                        <ListItemText inset primary="Starred" />
+                        {/* <ListItemText inset primary="Starred" /> */}
+                        <Link to="/person"> EBI </Link>
                         </ListItem>
                     </List>
                     </Collapse>
@@ -116,7 +122,7 @@ function ActivityList(props){
           </List>
         </Collapse>
       </List>
-
+      </Switch>
     )
 }
 
