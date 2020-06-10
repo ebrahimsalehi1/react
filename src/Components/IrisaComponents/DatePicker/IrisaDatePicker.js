@@ -137,7 +137,6 @@ function IrisaDatePicker(props) {
 
   function handleCalendarDateChange(e) {
     setSelectedDay(e);
-
     let currentDate = null;
     if (localeType === "en")
       currentDate = new Date(
@@ -290,7 +289,6 @@ function IrisaDatePicker(props) {
   return (
     <div>
       {/* {selectedDay.year+"/"+selectedDay.month+"/"+selectedDay.day+"-"+timeValue.getHours()+":"+timeValue.getMinutes()+"* "+value} */}
-      <Grid sm item>
         {showButtonOnTextField !== undefined && showButtonOnTextField && (
           <TextField
             name={name === undefined ? fieldName : name}
@@ -317,7 +315,6 @@ function IrisaDatePicker(props) {
             onClick={handleOpen}
           />
         )}
-      </Grid>
 
       {open && (
         <IrisaDialog
@@ -343,9 +340,7 @@ function IrisaDatePicker(props) {
           {tabIndexSelected === 0 &&
             showAdvancedButtons !== undefined &&
             showAdvancedButtons && (
-              <Grid>
                 <label>{"test test"}</label>
-              </Grid>
             )}
           {tabIndexSelected === 0 && (
             <NativeSelect value={localeType} onChange={handleLocaleChange}>

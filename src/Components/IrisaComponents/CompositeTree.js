@@ -9,7 +9,8 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 // import MenuIcon from '@material-ui/icons/Menu';
-import IrisaTextField from '../../Components/IrisaComponents/Mydate/IbxTextField';
+//import IrisaTextField from '../../Components/IrisaComponents/Mydate/IbxTextField';
+import TextField from '@material-ui/core/TextField';
 // import IrisaDialog from "../../components/common/IbxDialog";
 // import IbxDNDTree from "../../components/common/IbxDNDTree";
 import Card from "@material-ui/core/Card";
@@ -174,12 +175,12 @@ function CompositeTree(props){
                 onChange={handleChangeCheckbox}
             />
             <label>تفویض کارتابل</label>
-            <IrisaTextField
+            <TextField
                 name={fieldName}
                 adornment
                 multiline
                 disabled={isActive ? isCompositeShow:value.length===0}
-                validationType={validationType}
+                //validationType={validationType}
                 value={value.length>0 ? value.map(item=>item.persianName).join('\n') : chkClick.map(item=>item.persianName).join('\n')}
                 onClick={handleOpen}
                 icon={<IconButton disabled={disabled} >

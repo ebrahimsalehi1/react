@@ -30,7 +30,7 @@ const IndexComponent = ()=>(
     {
         !INCLUDE_IRISA_THEME && 
         <App type={PROJECT_TYPE}/>
-    }
+    }    
 </>
 )
 

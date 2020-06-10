@@ -10,9 +10,10 @@ import CompositeTree from './Components/IrisaComponents/CompositeTree';
 import TreeLargeData from './Components/IrisaComponents/TreeLargeData';
 import UsersGroupsApprolesSearch from './Components/IrisaComponents/UsersGroupsApprolesSearch'
 import IrisaGrid from './Components/IrisaComponents/DXGrid';
-import MiniDrawer from './Components/Drawer/MiniDrawer';
+import MiniDrawer from './ComponentSamples/MiniDrawer';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import NodeJS from './NodejsSample/index';
+import ComponentSamples from './ComponentSamples/index';
 
 const dataComposite1 = [
   {
@@ -275,11 +276,9 @@ function App(props){
         {
             type==='NODEJS' && <NodeJS />
         }
-
-        {/* <MiniDrawer data={
-            [
-                'Inbox','Starred','Send email','Drafts',
-            ]}/> */}
+        {
+            type==='COMPONENT_SAMPLE' && <ComponentSamples />
+        }
 
         {type==='OTHERS' && props1==='1' && props2==='1' &&
           <AppBar position="static">
@@ -295,6 +294,7 @@ function App(props){
           </Tabs>
         </AppBar>
         }
+
         {type==='OTHERS' &&  value === 0 && <TabContainer>
           <IrisaDatePicker
             componentType="datetime"
@@ -305,6 +305,7 @@ function App(props){
             locale={"en"}
           />
         </TabContainer>}
+        
         {type==='OTHERS' && value === 1 && <TabContainer>
             <CompositeTree 
               title="The title"
@@ -313,6 +314,7 @@ function App(props){
               }}  
               />
             </TabContainer>}
+        
         {type==='OTHERS' && value === 2 && <TabContainer>
             <TimePicker
             mode={"24h"}
