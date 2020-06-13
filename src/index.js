@@ -5,7 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {MuiThemeProvider,jssPreset} from '@material-ui/core/styles';
 //import {theme} from "Utils/MaterialTheme/ThemeGenerator";
-import {theme} from "Utils/MaterialTheme/theme";
+//import {theme} from "Utils/MaterialTheme/theme";
+import {theme} from "Utils/MaterialTheme/theme2";
+
 import {SnackbarProvider} from "notistack";
 import JssProvider from 'react-jss/lib/JssProvider';
 import {create} from 'jss';

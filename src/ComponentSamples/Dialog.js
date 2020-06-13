@@ -4,28 +4,31 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-import IrisaDialog from "../Components/IrisaComponents/Dialog";
+import Dialog from "../Components/IrisaComponents/Dialog";
+
+//import Dialog from '../components/common/IbxDialog';
+import {Switch as SwitchUI} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+//import IbxDNDTree from "../components/common/IbxDNDTree";
+import Card from "@material-ui/core/Card";
+
 
 class MyDialog extends React.Component {
     constructor(props){
         super(props);
         this.state={
             open: false,
+            checked: false,
         }
     }
     render() {
         return (
         <div>
-            <button onClick={(e)=>
-                {
-                    this.setState({open: true});
-                    console.log(this.state.open);                    
-                }
-                }>Show Dialog</button>
-            <IrisaDialog
+            <button onClick={(e)=>{this.setState({open: true})}}>Show Dialog</button>
+            <Dialog
                 open={this.state.open}
                 title={"Edit Customer"}
-                maxWidth={"xs"}
+                maxWidth={"lg"}
                 //fullScreen
                 //useOwnDialog={true}
                 TransitionComponent
@@ -34,15 +37,12 @@ class MyDialog extends React.Component {
                 }}
                 actionBar={
                     <>
-                    <Grid item xs={6} md={6}>
-                        <Button color={"primary"} variant={"outlined"}>Ok</Button>
-                    </Grid>
-                    <Grid item xs={6} md={6}>
-                        <Button color={"primary"} variant={"outlined"}>Cancel</Button>
-                    </Grid>
-                    </>}
+                        <Button color={"primary"} variant={"outlined"} style={{"width":"75px","margin":"2px"}}>Ok</Button>
+                        <Button color={"primary"} variant={"outlined"} style={{"width":"75px","margin":"2px"}}>Cancel</Button>
+                    </>
+                }
             >
-                <Grid container spacing={4}>
+                <Grid container spacing={16} >
                     <Grid item xs={6} md={6}>
                         <TextField  placeholder={"Email address"} variant={"outlined"}/>
                     </Grid>
@@ -64,21 +64,72 @@ class MyDialog extends React.Component {
                         <TextField  placeholder={"Address 1"} variant={"outlined"}/>
                     </Grid>
 
-                    <Grid item xs={6} md={6}>
+                    <Grid item xs={12} md={12}>
                         <TextField  placeholder={"Address 2"} variant={"outlined"}/>
                     </Grid>
+
                     <Grid item xs={6} md={6}>
+                        <Typography gutterBottom variant={"h5"}>
+                            Discounted Prices
+                        </Typography>
+
+                        <Typography gutterBottom component="h6" variant="h6">
+                            This will give the user discountedprices for all products
+                        </Typography>
+                        <SwitchUI
+                         checked={!this.state.checked}
+                         value={"check box 1"}
+                         color={"primary"}
+                         onChange={(e)=>{
+                             this.setState({checked:!this.state.checked});
+                             console.log("checked 1",e);
+                         }}
+                        />
+                    </Grid>
+                    <Grid item xs={6} md={6}>
+
+                        <Typography gutterBottom variant={"h5"}>
+                            Email Verified
+                        </Typography>
+
+                        <Typography gutterBottom component="h6" variant="h6">
+                            Disabling this will automatically send the user a
+                            verification email
+                        </Typography>
+                        <SwitchUI
+                         checked={this.state.checked}
+                         value={"check box 2"}
+                         color={"primary"}
+                         onChange={(e)=>{
+                             this.setState({checked:!this.state.checked});
+                             console.log("checked 2",this.state.checked);
+                         }}
+                        />
                     </Grid>
 
-                    {/* <Grid item xs={6} md={6}>
-                        <Switch/>
-                    </Grid>
                     <Grid item xs={6} md={6}>
-                        <Switch/>
-                    </Grid> */}
+                        <Typography variant={"h5"} gutterBottom>
+                            The sample text in middle of form
+                        </Typography>
+                    </Grid>
 
-                </Grid>
-            </IrisaDialog>
+                    <Grid item xs={6} md={6}>
+                        <Typography variant={"h5"} gutterBottom>
+                            This is a test
+                        </Typography>
+                    </Grid>
+
+                    <Grid item xs={12} md={12}>
+                        <Card style={{"min-height:":"100px","max-height:":"300px","overflow-y":"auto","border":"2px solid red"}}>
+                        {/* <IbxDNDTree
+                            data={
+                              [{title:'A',children:[{title:'B',children:[{title:'B11'},{title:'B12',children:[{title:'B121'},{title:'B122'}]},{title:'B13'}]},{title:'C'}]}]
+                            }/> */}
+                        </Card>
+                    </Grid>
+
+                 </Grid>
+            </Dialog>
         </div>
         );
     }
