@@ -180,7 +180,9 @@ IbxDialog.propTypes = {
     TransitionComponent:PropTypes.bool,
     actionBar:PropTypes.node
 };
+
 export default IbxDialog;
+
 //export default withStyles(styles)(IbxDialog);
 
 

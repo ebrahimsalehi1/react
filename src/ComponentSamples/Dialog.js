@@ -4,14 +4,14 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-import Dialog from "../Components/IrisaComponents/Dialog";
+import DialogNewComponent from "../Components/IrisaComponents/Dialog";
 
 //import Dialog from '../components/common/IbxDialog';
 import {Switch as SwitchUI} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 //import IbxDNDTree from "../components/common/IbxDNDTree";
 import Card from "@material-ui/core/Card";
-
+import IrisaButton from '../Components/IrisaComponents/Button/IrisaButton';
 
 class MyDialog extends React.Component {
     constructor(props){
@@ -25,12 +25,11 @@ class MyDialog extends React.Component {
         return (
         <div>
             <button onClick={(e)=>{this.setState({open: true})}}>Show Dialog</button>
-            <Dialog
+            <DialogNewComponent
                 open={this.state.open}
                 title={"Edit Customer"}
                 maxWidth={"lg"}
                 //fullScreen
-                //useOwnDialog={true}
                 TransitionComponent
                 eventClose={(e) => {
                     this.setState({open: false});
@@ -39,6 +38,7 @@ class MyDialog extends React.Component {
                     <>
                         <Button color={"primary"} variant={"outlined"} style={{"width":"75px","margin":"2px"}}>Ok</Button>
                         <Button color={"primary"} variant={"outlined"} style={{"width":"75px","margin":"2px"}}>Cancel</Button>
+                        <IrisaButton label={"Irisa Button"} variant={"outlined"} style={{"width":"75px","margin":"2px"}}/>
                     </>
                 }
             >
@@ -129,7 +129,7 @@ class MyDialog extends React.Component {
                     </Grid>
 
                  </Grid>
-            </Dialog>
+            </DialogNewComponent>
         </div>
         );
     }
