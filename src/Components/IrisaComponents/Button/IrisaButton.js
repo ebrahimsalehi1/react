@@ -9,10 +9,9 @@ function IrisaButton(props){
     const {classes,variant,label} = props
 
     return (<Button
-            //className={classes}
-            className={"irisabutton"}
+            className={classes}
+            //className={"irisabutton"}
             variant={variant}
-            data-testid={"IRISA_BUTTON"}
         >{label}</Button>
     )
 }

@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import IrisaButton from '../Components/IrisaComponents/Button/IrisaButton';
 
+
 class MyDialog extends React.Component {
     constructor(props){
         super(props);
@@ -44,6 +45,7 @@ class MyDialog extends React.Component {
             >
                 <Grid container spacing={16} >
                     <Grid item xs={6} md={6}>
+
                         <TextField  placeholder={"Email address"} variant={"outlined"}/>
                     </Grid>
                     <Grid item xs={6} md={6}>
@@ -65,7 +67,11 @@ class MyDialog extends React.Component {
                     </Grid>
 
                     <Grid item xs={12} md={12}>
+                        <Grid container spacing={0}>
+                        <Grid item xs={12} md={12}>
                         <TextField  placeholder={"Address 2"} variant={"outlined"}/>
+                        </Grid>
+                        </Grid>
                     </Grid>
 
                     <Grid item xs={6} md={6}>
