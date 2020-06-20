@@ -1,3 +1,3 @@
 
-export const INCLUDE_IRISA_THEME = false;
-export const PROJECT_TYPE = 'COMPONENT_SAMPLE';
+export const INCLUDE_IRISA_THEME = true;
+export const PROJECT_TYPE = 'NODEJS';

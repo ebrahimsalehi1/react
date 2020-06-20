@@ -14,27 +14,56 @@ function Person(props){
     return (
         <Card>
         <Grid container spacing={2} >
-            <Grid item xs={12} md={12}>
-                First Name: <TextField variant="outlined"/>
+
+            <Grid item xs={3} md={3}>
+                First Name: 
             </Grid>
-            <Grid item xs={12} md={12}>
-                Last Name: <TextField variant="outlined"/>
+            <Grid item xs={9} md={9}>
+                <TextField variant="outlined"/>
             </Grid>
-            <Grid item xs={12} md={12}>
-                Birth Date: <DatePicker componentType="date"/>
+
+            <Grid item xs={3} md={3}>
+                Last Name: 
             </Grid>
-            <Grid item xs={12} md={12}>
-                Code Nationality: <TextField variant="outlined"/>
+            <Grid item xs={9} md={9}>
+                <TextField variant="outlined"/>
             </Grid>
-            <Grid item xs={12} md={12}>
-                Code Passport: <TextField variant="outlined"/>
+
+            <Grid item xs={3} md={3}>
+                Birth Date: 
             </Grid>
-            <Grid item xs={12} md={12}>
-                Code Economic: <TextField variant="outlined"/>
+            <Grid item xs={9} md={9}>
+                <DatePicker componentType="date"/>
             </Grid>
-            <Grid item xs={12} md={12}>
-                Code Nationality Company: <TextField variant="outlined"/>
-            </Grid>            
+
+            <Grid item xs={3} md={3}>
+                Code Nationality: 
+            </Grid>
+            <Grid item xs={9} md={9}>
+                <TextField variant="outlined"/>
+            </Grid>
+
+            <Grid item xs={3} md={3}>
+                Code Passport: 
+            </Grid>
+            <Grid item xs={9} md={9}>
+                <TextField variant="outlined"/>
+            </Grid>
+
+            <Grid item xs={3} md={3}>
+                Code Economic: 
+            </Grid>
+            <Grid item xs={9} md={9}>
+                <TextField variant="outlined"/>
+            </Grid>
+
+            <Grid item xs={3} md={3}>
+                Code Nationality Company: 
+            </Grid>
+            <Grid item xs={9} md={9}>
+                <TextField variant="outlined"/>
+            </Grid>     
+
         </Grid>
         </Card>
     )
