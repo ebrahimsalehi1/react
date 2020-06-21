@@ -293,11 +293,12 @@ function IrisaDatePicker(props) {
           <TextField
             name={name === undefined ? fieldName : name}
             label={label}
-            adornment
+            //adornment
             required={required}
             validationType={validationType}
             value={getText()}
             onClick={handleOpen}
+            variant="outlined"
             icon={
               <IconButton disabled={disabled} onClick={handleOpen}>
                 <Today />
