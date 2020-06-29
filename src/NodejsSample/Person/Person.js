@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {withStyles} from '@material-ui/core/styles';
-import DatePicker from '../../Components/IrisaComponents/DatePicker/IrisaDatePicker';
+import DatePicker from '../../Components/EbiComponents/DatePicker/IrisaDatePicker';
 import Card from '@material-ui/core/Card';
 
 const styles = {

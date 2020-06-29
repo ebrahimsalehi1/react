@@ -5,7 +5,7 @@ import Dialog from '../../ComponentSamples/Dialog';
 import { Calendar } from "react-modern-calendar-datepicker";
 import TextField from '@material-ui/core/TextField';
 import DialogMaterial from '@material-ui/core/Dialog';
-import IrisaButton from '../../Components/IrisaComponents/Button/IrisaButton';
+import IrisaButton from '../../Components/EbiComponents/Button/IrisaButton';
 
 describe('test dialog',()=>{
 

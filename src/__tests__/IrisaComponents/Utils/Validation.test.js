@@ -1,7 +1,7 @@
 import React from 'react'
 import {render} from '@testing-library/react'
-import TextField from '../../../Components/IrisaComponents/TextField/IrisaTextField'
-import Validation from '../../../Components/IrisaComponents/Utils/Validation'
+import TextField from '../../../Components/EbiComponents/TextField/IrisaTextField'
+import Validation from '../../../Components/EbiComponents/Utils/Validation'
 import moment from 'moment'
 import data from './ValidationData.json'
 

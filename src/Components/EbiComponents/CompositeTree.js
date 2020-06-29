@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 // import MenuIcon from '@material-ui/icons/Menu';
-//import IrisaTextField from '../../Components/IrisaComponents/Mydate/IbxTextField';
+//import IrisaTextField from '../../Components/EbiComponents/Mydate/IbxTextField';
 import TextField from '@material-ui/core/TextField';
 // import IrisaDialog from "../../components/common/IbxDialog";
 // import IbxDNDTree from "../../components/common/IbxDNDTree";

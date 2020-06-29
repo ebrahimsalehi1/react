@@ -2,8 +2,8 @@ import React from 'react';
 import {
   mount,shallow,render
 } from '../../../enzymeConfig';
-import IrisaDatePicker from '../../Components/IrisaComponents/Mydate/IrisaDatePicker';
-import TimePicker from '../../Components/IrisaComponents/Mydate/IrisaTimePicker';
+import IrisaDatePicker from '../../Components/EbiComponents/Mydate/IrisaDatePicker';
+import TimePicker from '../../Components/EbiComponents/Mydate/IrisaTimePicker';
 import {expect} from 'chai';
 import { Calendar } from "react-modern-calendar-datepicker";
 import TextField from '@material-ui/core/TextField';

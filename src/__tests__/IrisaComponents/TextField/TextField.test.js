@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import TextField from '../../../Components/IrisaComponents/TextField/IrisaTextField'
+import TextField from '../../../Components/EbiComponents/TextField/IrisaTextField'
 import cases from './cases.json' //all cases
 
 describe('<IrisaTextField />', () => {

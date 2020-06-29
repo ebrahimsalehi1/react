@@ -4,14 +4,14 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-import DialogNewComponent from "../Components/IrisaComponents/Dialog";
+import DialogNewComponent from "../Components/EbiComponents/Dialog";
 
 //import Dialog from '../components/common/IbxDialog';
 import {Switch as SwitchUI} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 //import IbxDNDTree from "../components/common/IbxDNDTree";
 import Card from "@material-ui/core/Card";
-import IrisaButton from '../Components/IrisaComponents/Button/IrisaButton';
+import IrisaButton from '../Components/EbiComponents/Button';
 
 
 class MyDialog extends React.Component {

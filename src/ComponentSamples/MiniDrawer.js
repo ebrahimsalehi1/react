@@ -98,7 +98,7 @@ class MiniDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme, data, Nodejs } = this.props;
+    const { classes, theme, data, Nodejs,children, onClick } = this.props;
 
     return (
       <div className={classes.root}>
@@ -120,7 +120,7 @@ class MiniDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Mini variant drawer
+              Component Samples
             </Typography>
           </Toolbar>
         </AppBar>
@@ -145,21 +145,15 @@ class MiniDrawer extends React.Component {
           </div>
           <Divider />
           <List>
-            {data.map((text, index) => (
-              <ListItem button key={text} onClick={(e)=>{
-                console.log('this is a test',index);
-                switch(index){
-                  case 0:
-                    this.setState({selectedValue:'NODEJS'});
-                    break;
-                  case 1:
-                    this.setState({selectedValue:'OTHERS'});
-                  break;
+            {data.map((obj, index) => (
+              <ListItem button key={obj.text} onClick={(e)=>{
+                    //this.setState({selectedValue:obj.text});
+                    onClick(obj.text);
+                    //console.log('text',obj.text);                    
                 }
-              }
               }>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemIcon>{<obj.icon/>}</ListItemIcon>
+                <ListItemText primary={obj.text} />
               </ListItem>
             ))}
           </List>
@@ -176,8 +170,14 @@ class MiniDrawer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {
-            this.state.selectedValue==='NODEJS' &&
-            Nodejs
+            //this.state.selectedValue==='NODEJS' &&
+            //Nodejs ---------------
+            // data.filter(obj=> obj.text===this.state.selectedValue && obj.component).
+            // map(foundedObj=>{
+            //   return {foundedObj.component}
+            // })
+
+            children
 
           }
           {/* <Typography paragraph>

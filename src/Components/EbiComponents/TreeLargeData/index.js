@@ -9,7 +9,7 @@ import Sample from '../Sample1';
 import { SelectValidator } from 'react-material-ui-form-validator';
 import IrisaDateTime from '../IrisaDateTime';
 import Moment from 'moment-jalaali';
-//import IbxDatePicker2 from './Components/IrisaComponents/Mydate/IbxDatePicker2'
+//import IbxDatePicker2 from './Components/EbiComponents/Mydate/IbxDatePicker2'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
