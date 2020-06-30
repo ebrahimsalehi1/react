@@ -1,11 +1,9 @@
 import React from 'react';
 import Button from '../Components/EbiComponents/Button';
-import Card from '@material-ui/core/Card';
 
 function ButtonSample(props){
     return (
     <>
-        <Card style={{"padding":"24px"}}>
             <Button type='reg_send'/>
             <br />    
             <br />    
@@ -36,7 +34,6 @@ function ButtonSample(props){
             <Button type='return_for_completing'/>
             <br />    
             <br />   
-        </Card>
     </>
     )
 }

@@ -18,11 +18,29 @@ import {
 } from '@material-ui/icons';
 
 import ButtonSample from '../ComponentSamples/Button';
-
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import {useTranslation} from 'react-i18next';
 
 export default function ComponentSamples(props){
 
     const [selectedValue,setSelectedValue] = React.useState('');
+    const dataItems = [
+        {text: 'Button', icon:IconButton },
+        {text: 'Checkbox', icon:IconCheckbox},
+        {text: 'Radio Button', icon:IconRadio},
+        {text: 'Radio Button Group', icon:IconRadioGroup},
+        {text: 'TextField', icon:IconTextField},
+        {text: 'Image', icon:IconImage},
+        {text: 'DisplayTextField', icon:IconDisplayTextField},
+        {text: 'Combobox', icon:IconCombobox},
+        {text: 'Tree', icon:IconTree},
+        {text: 'Tabs', icon:IconTabs},
+        {text: 'StackedCanvas', icon:IconStackedCanvas},
+    ];
+
+    const {t} = useTranslation();
 
     function onClick(type){
         setSelectedValue(type);
@@ -31,44 +49,42 @@ export default function ComponentSamples(props){
 
     return (
         <>
-           <MiniDrawer data={
-            [
-                {text: 'Button', icon:IconButton },
-                {text: 'Checkbox', icon:IconCheckbox},
-                {text: 'Radio Button', icon:IconRadio},
-                {text: 'Radio Button Group', icon:IconRadioGroup},
-                {text: 'TextField', icon:IconTextField},
-                {text: 'Image', icon:IconImage},
-                {text: 'DisplayTextField', icon:IconDisplayTextField},
-                {text: 'Combobox', icon:IconCombobox},
-                {text: 'Tree', icon:IconTree},
-                {text: 'Tabs', icon:IconTabs},
-                {text: 'StackedCanvas', icon:IconStackedCanvas},
-            ]}
+           <MiniDrawer data={dataItems}
             onClick={onClick}
             >
+            <Card style={{"padding":"24px","height":"600px"}}>
+            <Grid container spacing={0}>
+                    <Grid item xs={3} md={3}>
 
-                {selectedValue==='Button' && <ButtonSample/>}
-                
-                {/* {selectedValue==='Checkbox' && <ButtonSample/>}
+                        {selectedValue==='Button' && <ButtonSample/>}
 
-                {selectedValue==='Radio Button' && <ButtonSample/>}
+                        {/* {selectedValue==='Checkbox' && <ButtonSample/>}
 
-                {selectedValue==='Radio Button Group' && <ButtonSample/>}
+                        {selectedValue==='Radio Button' && <ButtonSample/>}
 
-                {selectedValue==='TextField' && <ButtonSample/>}
+                        {selectedValue==='Radio Button Group' && <ButtonSample/>}
 
-                {selectedValue==='Image' && <ButtonSample/>}
+                        {selectedValue==='TextField' && <ButtonSample/>}
 
-                {selectedValue==='DisplayTextField' && <ButtonSample/>}
+                        {selectedValue==='Image' && <ButtonSample/>}
 
-                {selectedValue==='Combobox' && <ButtonSample/>}
+                        {selectedValue==='DisplayTextField' && <ButtonSample/>}
 
-                {selectedValue==='Tree' && <ButtonSample/>}
+                        {selectedValue==='Combobox' && <ButtonSample/>}
 
-                {selectedValue==='Tabs' && <ButtonSample/>}
+                        {selectedValue==='Tree' && <ButtonSample/>}
 
-                {selectedValue==='StackedCanvas' && <ButtonSample/>} */}
+                        {selectedValue==='Tabs' && <ButtonSample/>}
+
+                        {selectedValue==='StackedCanvas' && <ButtonSample/>} */}
+                    </Grid>                    
+                    <Grid item xs={9} md={9}>
+                        
+                    {selectedValue==='Button' && <>{String(t('Button_Desc.1'))}</>}
+                                                                                      
+                    </Grid>        
+                </Grid>
+                </Card>
 
             </MiniDrawer>
 

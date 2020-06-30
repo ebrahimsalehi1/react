@@ -18,6 +18,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import {Language} from '@material-ui/icons';
+import Button from '@material-ui/core/Button';
+import ButtonLanguage from './ButtonLanguage';
 
 const drawerWidth = 240;
 
@@ -25,7 +28,7 @@ const styles = theme => ({
   root: {
     display: 'flex',
   },
-  appBar: {
+  appBar: {    
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -81,6 +84,10 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
+  button: {
+    marginLeft: '950px',
+  },
+
 });
 
 class MiniDrawer extends React.Component {
@@ -122,7 +129,18 @@ class MiniDrawer extends React.Component {
             <Typography variant="h6" color="inherit" noWrap>
               Component Samples
             </Typography>
-          </Toolbar>
+
+            <ButtonLanguage />
+            {/* <IconButton 
+                color="inherit"
+                className={classes.button}
+                onClick={e=>{alert('click')}}>
+                  <Language/>
+            </IconButton> */}
+
+            {/* <Button color="inherit">Login</Button> */}
+          </Toolbar>          
+
         </AppBar>
         <Drawer
           variant="permanent"

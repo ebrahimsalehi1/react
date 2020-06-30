@@ -1,0 +1,15 @@
+{   
+    "Button_Desc":{"1":
+    "مستند مربوط به دکمه را اینجا مشاهده نمایید \n"
+    },
+    "Checkbox":{"1":""},
+    "Radio Button":{"1":""},
+    "Radio Button Group":{"1":""},
+    "TextField":{"1":""},
+    "Image":{"1":""},
+    "DisplayTextField":{"1":""},
+    "Combobox":{"1":""},
+    "Tree":{"1":""},
+    "Tabs":{"1":""},
+    "StackedCanvas":{"1":""}
+}

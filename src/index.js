@@ -18,7 +18,7 @@ import {INCLUDE_IRISA_THEME,PROJECT_TYPE} from './config';
 const jss = create({plugins: [...jssPreset().plugins, rtl()]});
 
 const IndexComponent = ()=>(
-<>
+<React.Suspense fallback={<h1>Loading profile...</h1>}>
     {
         INCLUDE_IRISA_THEME && 
         <MuiThemeProvider theme={theme}>
@@ -33,7 +33,7 @@ const IndexComponent = ()=>(
         !INCLUDE_IRISA_THEME && 
         <App type={PROJECT_TYPE}/>
     }    
-</>
+</React.Suspense>
 )
 
 ReactDOM.render(
