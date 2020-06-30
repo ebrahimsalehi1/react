@@ -32,20 +32,20 @@ function convertPersianDigitsToDigit(valueToConvert) {
 
 function IrisaDatePicker(props) {
   const {
-    classes,
-    style,
+    //classes,
+    //style,
     name,
-    lang,
-    dateType,
+    //lang,
+    //dateType,
     handleDateChange,
     value,
     disabled,
-    fullWidth,
+    //fullWidth,
     label,
-    disableFuture,
-    disablePast,
+    //disableFuture,
+    //disablePast,
     required,
-    helperText,
+    //helperText,
     fieldName,
     validationType,
     title,
@@ -54,7 +54,7 @@ function IrisaDatePicker(props) {
     showAdvancedButtons,
     dateSelectionType,
     componentType,
-    handleTimeChange,
+    //handleTimeChange,
   } = props;
 
   let currentDate0 = null;

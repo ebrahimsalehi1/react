@@ -1,4 +1,4 @@
-import React,{memo} from 'react';
+import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import {withStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
@@ -9,14 +9,14 @@ import PropTypes from "prop-types";
 import Slide from "@material-ui/core/Slide";
 //import DialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
-import {Close} from "@material-ui/icons";
-import Card from "@material-ui/core/Card";
+// import {Close} from "@material-ui/icons";
+// import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
-import Divider from '@material-ui/core/Divider';
-import Button from "@material-ui/core/Button";
+// import Divider from '@material-ui/core/Divider';
+// import Button from "@material-ui/core/Button";
 
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
+// import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import CloseIcon from '@material-ui/icons/Close';
 

@@ -4,7 +4,6 @@ import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
-import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 //import ListSubheader from '@material-ui/core/ListSubheader';
 import {
@@ -12,21 +11,21 @@ import {
     Tonality as IconTonality,
     Transform as IconTransform,
     Wc as IconWc,
-    Toll as IconToll,
-    ExpandLess as IconExpandLess,
-    ExpandMore as IconExpandMore,
+    //Toll as IconToll,
+    //ExpandLess as IconExpandLess,
+    //ExpandMore as IconExpandMore,
 } from '@material-ui/icons';
 
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
+//import DraftsIcon from '@material-ui/icons/Drafts';
+//import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 
-import {Route,BrowserRouter as Router,Switch,Link} from 'react-router-dom';
+import {Switch,Link} from 'react-router-dom';
 
-import Person from './Person/Person';
+//import Person from './Person/Person';
 
 const style = theme => ({
     root: {
@@ -42,7 +41,7 @@ const style = theme => ({
 function ActivityList(props){
     const {onChangeHandler,classes} = props;
 
-    const [selectedItem,setSelectedItem] = React.useState('');
+    //const [selectedItem,setSelectedItem] = React.useState('');
     const [open,setOpen] = React.useState('');
 
     const data = [

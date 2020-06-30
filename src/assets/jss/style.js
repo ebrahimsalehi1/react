@@ -2,7 +2,7 @@ import {fade} from '@material-ui/core/styles/colorManipulator';
 import {grey} from '@material-ui/core/colors';
 
 const drawerWidth = 240;
-const appBarHeight = 64;
+// const appBarHeight = 64;
 
 export const styles = theme => ({
     backWarning: {

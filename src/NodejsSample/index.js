@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ActivityList from './ActivityList';
 
-import {Route,BrowserRouter as Router,Switch,NavLink} from 'react-router-dom';
+import {Route,BrowserRouter as Router} from 'react-router-dom';
 import Person from './Person/Person';
 
 const styles = {

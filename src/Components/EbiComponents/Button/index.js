@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import {withStyles} from '@material-ui/core'
-import {createStyles} from '@material-ui/core/styles'
+
 /*
 export const useStyles = createStyles(theme=>({
     button: {
@@ -133,7 +133,7 @@ const style={
 
 function EbiButton(props){
 
-    const {classes,variant,label,type} = props
+    const {classes,type} = props
 
     function realizeType(){
         let res = {title:'',style:{}};

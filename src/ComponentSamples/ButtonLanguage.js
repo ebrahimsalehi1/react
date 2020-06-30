@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -44,9 +43,9 @@ const StyledMenuItem = withStyles((theme) => ({
 
 
 const countries = [
-  { code: "US", label: "United States", phone: "1", suggested: true },
-  { code: "IR", label: "Iran, Islamic Republic of", phone: "98",suggested: false },
-  { code: "DE", label: "Germany", phone: "49", suggested: false },
+  { code: "US",lang:"en", label: "United States", phone: "1", suggested: true },
+  { code: "IR",lang:"fa", label: "Iran, Islamic Republic of", phone: "98",suggested: false },
+  { code: "DE",lang:"ge", label: "Germany", phone: "49", suggested: false },
 ];
 
 export default function ButtonLanguage(props) {
@@ -60,14 +59,14 @@ export default function ButtonLanguage(props) {
     setAnchorEl(null);
   };
 
-  const handleMenuItemClick = (e) => {
-      console.log('handleMenuItemClick',e);      
-  }
+  // const handleMenuItemClick = (e,nam) => {
+  //     console.log('handleMenuItemClick',e,nam);      
+  // }
 
   const { i18n } = useTranslation();
-  const handleChangeLanguage= (lang) => {
-      i18n.changeLanguage(lang);
-  }
+  // const handleChangeLanguage= (lang) => {
+  //     i18n.changeLanguage(lang);
+  // }
 
   return (
     <div>
@@ -87,7 +86,9 @@ export default function ButtonLanguage(props) {
       >
       {
         countries.map(item => (
-          <StyledMenuItem onChange={handleMenuItemClick(item.code)}>
+          <StyledMenuItem onClick={e=>{
+              i18n.changeLanguage(item.lang);
+          }}>
             <ListItemIcon>
                 <SendIcon fontSize="small" />
             </ListItemIcon> 

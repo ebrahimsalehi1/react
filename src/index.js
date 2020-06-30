@@ -12,7 +12,7 @@ import {SnackbarProvider} from "notistack";
 import JssProvider from 'react-jss/lib/JssProvider';
 import {create} from 'jss';
 import rtl from 'jss-rtl';
-import {Provider} from 'react-redux';
+// import {Provider} from 'react-redux';
 import {INCLUDE_IRISA_THEME,PROJECT_TYPE} from './config';
 
 const jss = create({plugins: [...jssPreset().plugins, rtl()]});

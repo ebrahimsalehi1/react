@@ -1,6 +1,6 @@
 import React from 'react';
-import Dialog from './Dialog';
-import TreeViewSample from './TreeViewSample';
+//import Dialog from './Dialog';
+//import TreeViewSample from './TreeViewSample';
 import MiniDrawer from './MiniDrawer';
 import {
     Brightness2 as IconButton,
@@ -14,12 +14,12 @@ import {
     DeleteOutline as IconTree,
     DepartureBoard as IconTabs,
     DirectionsBike as IconStackedCanvas,
-    DirectionsRun,
+    //DirectionsRun,
 } from '@material-ui/icons';
 
 import ButtonSample from '../ComponentSamples/Button';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+//import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import {useTranslation} from 'react-i18next';
 
