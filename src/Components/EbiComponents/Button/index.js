@@ -81,7 +81,7 @@ const style={
             boxShadow: '1px'        
         },
     },
-    DEFFER:{
+    DEFER:{
         backgroundColor: '#ffffff',
         color: '#000000',
         border: '1px solid #000000',
@@ -105,7 +105,7 @@ const style={
             boxShadow: '1px'        
         },
     },
-    DEFFERFORCOMPLETING:{
+    DEFERFORCOMPLETING:{
         backgroundColor: '#f6f4f5',
         color: '#000000',
         border: '1px solid #000000',
@@ -147,14 +147,14 @@ function EbiButton(props){
             case 'ACCEPT':
                 res = {title:'قبول',style:classes.ACCEPT}; // ACCEPT
                 break;
-            case 'DEFFER':
-                res = {title:'برگشت جهت ارسال',style:classes.DEFFER}; // DEFFER
+            case 'DEFER':
+                res = {title:'برگشت جهت ارسال',style:classes.DEFER}; // DEFER
                 break;
             case 'SENDTOEXPERT':
                 res = {title:'ارسال جهت کارشناسی',style:classes.SENDTOEXPERT}; // SENDTOEXPERT
                 break;                
-            case 'DEFFERFORCOMPLETING':
-                res = {title:'بازگشت جهت تکمیل اطلاعات',style:classes.DEFFERFORCOMPLETING}; // 
+            case 'DEFERFORCOMPLETING':
+                res = {title:'بازگشت جهت تکمیل اطلاعات',style:classes.DEFERFORCOMPLETING}; // 
                 break;                
             default:            
         }
@@ -175,7 +175,7 @@ function EbiButton(props){
 EbiButton.propTypes = {
     type: PropTypes.oneOf([
         'SUBMIT','NO','APPROVE','REJECT','OK',
-        'COMPLETED','ACCEPT','DEFFER','SENDTOEXPERT','DEFFERFORCOMPLETING'
+        'COMPLETED','ACCEPT','DEFER','SENDTOEXPERT','DEFERFORCOMPLETING'
     ]).isRequired,
     onClick: PropTypes.func.isRequired,
 };

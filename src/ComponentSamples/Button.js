@@ -28,13 +28,13 @@ function ButtonSample(props){
             <Button type='ACCEPT' onClick={e=>{alert('ACCEPT');}}/>
             <br />    
             <br />   
-            <Button type='DEFFER' onClick={e=>{alert('DEFFER');}}/>
+            <Button type='DEFER' onClick={e=>{alert('DEFER');}}/>
             <br />    
             <br />   
             <Button type='SENDTOEXPERT' onClick={e=>{alert('SENDTOEXPERT');}}/>
             <br />    
             <br />   
-            <Button type='DEFFERFORCOMPLETING' onClick={e=>{alert('DEFFERFORCOMPLETING');}}/>
+            <Button type='DEFERFORCOMPLETING' onClick={e=>{alert('DEFERFORCOMPLETING');}}/>
             <br />    
             {/* <br />   
             <MaterialButton>This is a test</MaterialButton> */}
