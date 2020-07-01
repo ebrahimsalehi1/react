@@ -3,170 +3,158 @@ import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import {withStyles} from '@material-ui/core'
 
-/*
-export const useStyles = createStyles(theme=>({
-    button: {
-        margin: '0 5px',
-        fontSize: 11,
-    },     
-    input: {
-      display: 'none',
-    },         
-  }));
-*/
-
 const style={
-    reg_send:{
-        backgroundColor: '#7687e0',
+    SUBMIT:{
+        backgroundColor: '#424fb5',
         color: '#ffffff',
         boxShadow: 'none', 
         fontFamily: 'arial',       
         '&:hover': {
-            backgroundColor: '#7687e0',
+            backgroundColor: '#2f409a',
             color: '#ffffff',  
-            boxShadow: 'none'        
+            boxShadow: '1px'        
         },
     },
-    cancel:{
+    NO:{
         backgroundColor: '#e33a35',
         color: '#ffffff',
         boxShadow: 'none',        
         '&:hover': {
-            backgroundColor: '#e33a35',
+            backgroundColor: '#c93532',
             color: '#ffffff',  
-            boxShadow: 'none'        
+            boxShadow: '1px'        
         },
     },
-    ok:{
+    APPROVE:{
         backgroundColor: '#42a145',
         color: '#ffffff',
         boxShadow: 'none',        
         '&:hover': {
-            backgroundColor: '#42a145',
+            backgroundColor: '#3a853e',
             color: '#ffffff',  
-            boxShadow: 'none'        
+            boxShadow: '1px'        
         },
     },
-    not_ok:{
+    REJECT:{
         backgroundColor: '#ffffff',
         color: '#9a5957',
-        border: '2px solid #9a5957',
+        border: '1px solid #9a5957',
         boxShadow: 'none',        
         '&:hover': {
-            backgroundColor: '#ffffff',
+            backgroundColor: '#f3f3f3',
             color: '#9a5957',  
-            border: '2px solid #9a5957',
-            boxShadow: 'none'        
+            border: '1px solid #9a5957',
+            boxShadow: '1px'        
         },
     },
-    saw:{
+    OK:{
         backgroundColor: '#ffffff',
         color: '#4e557f',
-        border: '2px solid #4e557f',
+        border: '1px solid #4e557f',
         boxShadow: 'none',        
         '&:hover': {
-            backgroundColor: '#ffffff',
+            backgroundColor: '#f3f3f3',
             color: '#4e557f',  
-            border: '2px solid #4e557f',
-            boxShadow: 'none'        
+            border: '1px solid #4e557f',
+            boxShadow: '1px'        
         },
     },
-    complete:{
+    COMPLETED:{
         backgroundColor: '#2b61ff',
         color: '#ffffff',
         boxShadow: 'none',        
         '&:hover': {
-            backgroundColor: '#2b61ff',
+            backgroundColor: '#224ecc',
             color: '#ffffff',  
-            boxShadow: 'none'        
+            boxShadow: '1px'        
         },
     },
-    accept:{
+    ACCEPT:{
         backgroundColor: '#ffffff',
         color: '#6c8669',
-        border: '2px solid #6c8669',
+        border: '1px solid #6c8669',
         boxShadow: 'none',        
         '&:hover': {
-            backgroundColor: '#ffffff',
+            backgroundColor: '#f3f3f3',
             color: '#6c8669',  
-            border: '2px solid #6c8669',
-            boxShadow: 'none'        
+            border: '1px solid #6c8669',
+            boxShadow: '1px'        
         },
     },
-    return_for_sending:{
+    DEFFER:{
         backgroundColor: '#ffffff',
         color: '#000000',
-        border: '2px solid #000000',
+        border: '1px solid #000000',
         boxShadow: 'none',        
         '&:hover': {
-            backgroundColor: '#ffffff',
+            backgroundColor: '#f3f3f3',
             color: '#000000',  
-            border: '2px solid #000000',
-            boxShadow: 'none'        
+            border: '1px solid #000000',
+            boxShadow: '1px'        
         },
     },
-    send_for_considering:{
+    SENDTOEXPERT:{
         backgroundColor: '#ffffff',
         color: '#4865a1',
-        border: '2px solid #4865a1',
+        border: '1px solid #4865a1',
         boxShadow: 'none',        
         '&:hover': {
-            backgroundColor: '#ffffff',
+            backgroundColor: '#f3f3f3',
             color: '#4865a1', 
-            border: '2px solid #4865a1', 
-            boxShadow: 'none'        
+            border: '1px solid #4865a1', 
+            boxShadow: '1px'        
         },
     },
-    return_for_completing:{
+    DEFFERFORCOMPLETING:{
         backgroundColor: '#f6f4f5',
         color: '#000000',
-        border: '2px solid #000000',
+        border: '1px solid #000000',
         boxShadow: 'none',        
         '&:hover': {
-            backgroundColor: '#f6f4f5',
+            backgroundColor: '#ececec',
             color: '#000000',  
-            border: '2px solid #000000',
-            boxShadow: 'none'        
+            border: '1px solid #000000',
+            boxShadow: '1px'        
         },
     },
 }
 
 function EbiButton(props){
 
-    const {classes,type} = props
+    const {classes,type,onClick} = props
 
     function realizeType(){
         let res = {title:'',style:{}};
-        switch(type.toLowerCase()){
-            case 'reg_send':
-                res = {title:'ثبت و ارسال',style:classes.reg_send};
+        switch(type.toUpperCase()){
+            case 'SUBMIT':
+                res = {title:'ثبت و ارسال',style:classes.SUBMIT}; // SUBMIT
                 break;
-            case 'cancel':
-                res = {title:'انصراف از درخواست',style:classes.cancel};
+            case 'NO':
+                res = {title:'انصراف از درخواست',style:classes.NO}; // NO
                 break;
-            case 'ok':
-                res = {title:'تایید',style:classes.ok};
+            case 'APPROVE':
+                res = {title:'تایید',style:classes.APPROVE}; // APPROVE
                 break;
-            case 'not_ok':
-                res = {title:'عدم تایید',style:classes.not_ok};
+            case 'REJECT':
+                res = {title:'عدم تایید',style:classes.REJECT};// REJECT
                 break;
-            case 'saw':
-                res = {title:'مشاهده شد',style:classes.saw};
+            case 'OK':
+                res = {title:'مشاهده شد',style:classes.OK}; // OK
                 break;
-            case 'complete':
-                res = {title:'تکمیل فرآیند',style:classes.complete};
+            case 'COMPLETED':
+                res = {title:'تکمیل فرآیند',style:classes.COMPLETED}; // COMPLETED
                 break;
-            case 'accept':
-                res = {title:'قبول',style:classes.accept};
+            case 'ACCEPT':
+                res = {title:'قبول',style:classes.ACCEPT}; // ACCEPT
                 break;
-            case 'return_for_sending':
-                res = {title:'برگشت جهت ارسال',style:classes.return_for_sending};
+            case 'DEFFER':
+                res = {title:'برگشت جهت ارسال',style:classes.DEFFER}; // DEFFER
                 break;
-            case 'send_for_considering':
-                res = {title:'ارسال جهت کارشناسی',style:classes.send_for_considering};
+            case 'SENDTOEXPERT':
+                res = {title:'ارسال جهت کارشناسی',style:classes.SENDTOEXPERT}; // SENDTOEXPERT
                 break;                
-            case 'return_for_completing':
-                res = {title:'ارسال جهت کارشناسی',style:classes.return_for_completing};
+            case 'DEFFERFORCOMPLETING':
+                res = {title:'بازگشت جهت تکمیل اطلاعات',style:classes.DEFFERFORCOMPLETING}; // 
                 break;                
             default:            
         }
@@ -175,22 +163,21 @@ function EbiButton(props){
     }
 
     const resVal = realizeType();
-
-    console.log('rendering',resVal);
     
     return (<Button
             className={resVal.style}
             variant={'contained'}
+            onClick={onClick}
         >{resVal.title}</Button>
     )
 }
 
 EbiButton.propTypes = {
-    //classes: PropTypes.object.isRequired,
     type: PropTypes.oneOf([
-        'reg_send','cancel','ok','not_ok','saw',
-        'complete','accept','return_for_sending','send_for_considering','return_for_completing'
-    ]),
+        'SUBMIT','NO','APPROVE','REJECT','OK',
+        'COMPLETED','ACCEPT','DEFFER','SENDTOEXPERT','DEFFERFORCOMPLETING'
+    ]).isRequired,
+    onClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(style)(EbiButton);
