@@ -27,17 +27,18 @@ export default function ComponentSamples(props){
 
     const [selectedValue,setSelectedValue] = React.useState('');
     const dataItems = [
-        {text: 'Button', icon:IconButton },
-        {text: 'Checkbox', icon:IconCheckbox},
-        {text: 'Radio Button', icon:IconRadio},
-        {text: 'Radio Button Group', icon:IconRadioGroup},
-        {text: 'TextField', icon:IconTextField},
-        {text: 'Image', icon:IconImage},
-        {text: 'DisplayTextField', icon:IconDisplayTextField},
-        {text: 'Combobox', icon:IconCombobox},
-        {text: 'Tree', icon:IconTree},
-        {text: 'Tabs', icon:IconTabs},
-        {text: 'StackedCanvas', icon:IconStackedCanvas},
+        {text: 'Button', icon:IconButton,category: 1 },
+        {text: 'Checkbox', icon:IconCheckbox,category: 1},
+        {text: 'Radio Button', icon:IconRadio,category: 1},
+        {text: 'Radio Button Group', icon:IconRadioGroup,category: 1},
+        {text: 'TextField', icon:IconTextField,category: 1},
+        {text: 'Image', icon:IconImage,category: 1},
+        {text: 'DisplayTextField', icon:IconDisplayTextField,category: 1},
+        {text: 'Combobox', icon:IconCombobox,category: 1},
+        {text: 'Tree', icon:IconTree,category: 1},
+        {text: 'Tabs', icon:IconTabs,category: 1},
+        {text: 'StackedCanvas', icon:IconStackedCanvas,category: 1},
+        {text: 'Dialog', icon:IconStackedCanvas,category: 2}
     ];
 
     const {t} = useTranslation();

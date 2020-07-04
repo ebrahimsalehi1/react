@@ -18,6 +18,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import ButtonLanguage from './ButtonLanguage';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconInfo from '@material-ui/icons/Info';
 
 const drawerWidth = 240;
 
@@ -161,26 +163,30 @@ class MiniDrawer extends React.Component {
           <Divider />
           <List>
             {data.map((obj, index) => (
+              <Tooltip title={obj.text} placement="right">
               <ListItem button key={obj.text} onClick={(e)=>{
-                    //this.setState({selectedValue:obj.text});
                     onClick(obj.text);
-                    //console.log('text',obj.text);                    
                 }
               }>
                 <ListItemIcon>{<obj.icon/>}</ListItemIcon>
                 <ListItemText primary={obj.text} />
               </ListItem>
+              </Tooltip>
             ))}
           </List>
           <Divider />
+
+          <Divider />
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+            <Tooltip title={"About App"} placement="right">
+            <ListItem button key={"About"} onClick={e=>{
+              alert('version 1.1.1.12');
+            }}>
+                <ListItemIcon><IconInfo/></ListItemIcon>
+                <ListItemText primary={"About"} />
+            </ListItem>
+            </Tooltip>  
+          </List>            
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
