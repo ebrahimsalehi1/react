@@ -4,14 +4,23 @@ import { ExpansionPanelActions } from '@material-ui/core';
 
 describe('learn enzyme',()=>{
 
-    const Ebi1 = (props)=> (
-    <div id="ebrahimsalehi" className=".ebrahimsalehi.style">
-        <label>This is a test component</label>
-        <input type="TEXT" />
-        {props.ebrahim}
-        <button className=".btn1">test</button>
-    </div>
-    );
+    const Ebi1 = (props)=> {
+
+        const [show,setShow] = React.useState(false);
+
+        return (
+            <div id="ebrahimsalehi" className=".ebrahimsalehi.style">
+                <label>This is a test component</label>
+                <input type="TEXT" />
+                {props.ebrahim}
+                <button id="btn1" onClick={()=>{setShow(true)}}>test</button>
+                {
+                    show &&
+                    <div id="div1">test</div>
+                }
+            </div>
+        )
+    };
 
     it("1>part 1",()=>{
         const comp1 = mount(<Ebi1 />);
@@ -35,9 +44,19 @@ describe('learn enzyme',()=>{
     });
 
     it("5>part 5",()=>{
-        const comp1 = mount(<Ebi1 />);
-        //const btn = ()=> (<button>Ok</button>)
-        expect(comp1.find(".btn1").length).toBe(1);
+        const comp1 = mount(<Ebi1 />).find("button#btn1");
+        comp1.simulate('click');
+        const comp2 = mount(<Ebi1 />).find("div#div1");
+        expect(comp2.length).toBe(1);
+    });
+
+    it("6>part 6",()=>{
+        // https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675
+        const onClick = jest.fn();
+        const comp1 = mount(<Ebi1 />).find("button#btn1");
+        comp1.simulate('click');
+        //const comp2 = mount(<Ebi1 />).find("div#div1");
+        expect(onClick).toHaveBeenCalled();
     });
 
 });
