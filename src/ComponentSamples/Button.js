@@ -36,8 +36,8 @@ function ButtonSample(props){
             <br />   
             <Button type='DEFERFORCOMPLETING' onClick={e=>{alert('DEFERFORCOMPLETING');}}/>
             <br />    
-            {/* <br />   
-            <MaterialButton>This is a test</MaterialButton> */}
+            <br />   
+            <MaterialButton variant={'contained'}>این یک مثال است</MaterialButton> 
     </>
     )
 }

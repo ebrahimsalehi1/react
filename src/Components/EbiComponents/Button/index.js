@@ -1,7 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Button from '@material-ui/core/Button'
-import {withStyles} from '@material-ui/core'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import {withStyles} from '@material-ui/core';
+import {
+    SendRounded,
+    CancelScheduleSend,
+    Check,
+    Close,
+    Visibility,
+    PlaylistAddCheck,
+    CheckCircleOutline,
+    Replay,
+    HowToReg,
+    SettingsBackupRestore
+} from "@material-ui/icons";
+import Tooltip from '@material-ui/core/Tooltip';
 
 const style={
     SUBMIT:{
@@ -124,37 +138,37 @@ function EbiButton(props){
     const {classes,type,onClick} = props
 
     function realizeType(){
-        let res = {title:'',style:{}};
+        let res = {title:'',style:{},icon:null};
         switch(type.toUpperCase()){
             case 'SUBMIT':
-                res = {title:'ثبت و ارسال',style:classes.SUBMIT}; // SUBMIT
+                res = {title:'ثبت و ارسال',style:classes.SUBMIT,icon:<SendRounded/>,type:''}; // SUBMIT
                 break;
             case 'NO':
-                res = {title:'انصراف از درخواست',style:classes.NO}; // NO
+                res = {title:'انصراف از درخواست',style:classes.NO,icon:<CancelScheduleSend/>}; // NO
                 break;
             case 'APPROVE':
-                res = {title:'تایید',style:classes.APPROVE}; // APPROVE
+                res = {title:'تایید',style:classes.APPROVE,icon:<Check/>}; // APPROVE
                 break;
             case 'REJECT':
-                res = {title:'عدم تایید',style:classes.REJECT};// REJECT
+                res = {title:'عدم تایید',style:classes.REJECT,icon:<Close/>};// REJECT
                 break;
             case 'OK':
-                res = {title:'مشاهده شد',style:classes.OK}; // OK
+                res = {title:'مشاهده شد',style:classes.OK,icon:<Visibility/>}; // OK
                 break;
             case 'COMPLETED':
-                res = {title:'تکمیل فرآیند',style:classes.COMPLETED}; // COMPLETED
+                res = {title:'تکمیل فرآیند',style:classes.COMPLETED,icon:<PlaylistAddCheck/>}; // COMPLETED
                 break;
             case 'ACCEPT':
-                res = {title:'قبول',style:classes.ACCEPT}; // ACCEPT
+                res = {title:'قبول',style:classes.ACCEPT,icon:<CheckCircleOutline/>}; // ACCEPT
                 break;
             case 'DEFER':
-                res = {title:'برگشت جهت ارسال',style:classes.DEFER}; // DEFER
+                res = {title:'برگشت جهت ارسال',style:classes.DEFER,icon:<Replay/>}; // DEFER
                 break;
             case 'SENDTOEXPERT':
-                res = {title:'ارسال جهت کارشناسی',style:classes.SENDTOEXPERT}; // SENDTOEXPERT
+                res = {title:'ارسال جهت کارشناسی',style:classes.SENDTOEXPERT,icon:<HowToReg/>}; // SENDTOEXPERT
                 break;                
             case 'DEFERFORCOMPLETING':
-                res = {title:'بازگشت جهت تکمیل اطلاعات',style:classes.DEFERFORCOMPLETING}; // 
+                res = {title:'بازگشت جهت تکمیل اطلاعات',style:classes.DEFERFORCOMPLETING,icon:<SettingsBackupRestore/>}; // 
                 break;                
             default:            
         }
@@ -164,11 +178,20 @@ function EbiButton(props){
 
     const resVal = realizeType();
     
-    return (<Button
-            className={resVal.style}
-            variant={'contained'}
-            onClick={onClick}
-        >{resVal.title}</Button>
+    return (
+        <Tooltip title={resVal.title} aria-label={resVal.title}>
+            <Button
+                className={resVal.style}
+                variant={'contained'}
+                onClick={onClick}>
+                <div style={{"font-size":"20px"}}>
+                {resVal.icon}
+                </div>
+                <div style={{"margin-left":"8px","font-size":"13px"}}>
+                {resVal.title}
+                </div>
+            </Button>
+        </Tooltip>
     )
 }
 

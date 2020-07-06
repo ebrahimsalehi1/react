@@ -59,4 +59,14 @@ describe('learn enzyme',()=>{
         expect(onClick).toHaveBeenCalled();
     });
 
+    it('7>part 7',()=>{
+        const MyComp = (props) => (<button id={'button1'} onClick={props.onClick}>Click me</button>);
+        const onClick = jest.fn();
+        const comp1 = shallow(<MyComp onClick={onClick} />);
+        // { target: {value: moment('2018-01-22')} }
+        //expect(comp1.length).toBe(1);
+        comp1.find('button#button1').simulate('click');
+        expect(onClick).toHaveBeenCalled();
+    });
+
 });

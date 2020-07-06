@@ -2,9 +2,9 @@ import React from 'react';
 import {
   mount,shallow,render
 } from '../../../enzymeConfig';
-import IrisaDatePicker from '../../Components/EbiComponents/Mydate/IrisaDatePicker';
-import TimePicker from '../../Components/EbiComponents/Mydate/IrisaTimePicker';
-import {expect} from 'chai';
+import IrisaDatePicker from '../../Components/EbiComponents/DatePicker/IrisaDatePicker';
+import TimePicker from '../../Components/EbiComponents/DatePicker/IrisaTimePicker';
+//import {expect} from 'chai';
 import { Calendar } from "react-modern-calendar-datepicker";
 import TextField from '@material-ui/core/TextField';
 
@@ -33,13 +33,13 @@ describe('IrisaDatePicker test suites',()=>{
     it('is render calendar ',()=>{
 
         const comp = mount(<MyDateComp className="date1" componentType="ebi"/>);    
-        expect(comp.find(Calendar)).to.have.lengthOf(0);
+        expect(comp.find(Calendar).length).toBe(0);
     });
 
     it('is render TimePicker ',()=>{
 
         const comp = mount(<MyDateComp className="date1" componentType="ebi"/>);    
-        expect(comp.find(TimePicker)).to.have.lengthOf(0);
+        expect(comp.find(TimePicker).length).toBe(0);
 
     });
 
@@ -47,7 +47,7 @@ describe('IrisaDatePicker test suites',()=>{
 
         const currentTime = new Date().getTime();
         const comp = mount(<MyDateComp className="date1" componentType="ebi" value={currentTime}/>);    
-        expect(comp.prop('value')).to.equal(currentTime);
+        expect(comp.prop('value')).toBe(currentTime);
 
     });
 
@@ -113,13 +113,13 @@ describe('IrisaDatePicker test suites',()=>{
         wrapper.find('.foo').forEach(node=>{
             countAll++;
             //if(node.prop('data-point')==='IRISATEXTFIELD')
-            if(expect(node.hasClass('foo')).to.equal(true))
+            if(expect(node.hasClass('foo')).toBe(true))
                 count++;
         })
 
         console.log('number of is',count,countAll);   
         
-        expect(wrapper.find(TextField)).to.have.lengthOf(1);
+        expect(wrapper.find(TextField).length).toBe(1);
 
     });
 
