@@ -20,6 +20,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import ButtonLanguage from './ButtonLanguage';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconInfo from '@material-ui/icons/Info';
+import ProcessInfo from './ProcessInfo';
 
 const drawerWidth = 240;
 
@@ -176,10 +177,18 @@ class MiniDrawer extends React.Component {
           </List>
           <Divider />
 
+          <List>
+            <Tooltip title="Menu ..." placement="right">
+              <ListItem button key="Menu1 test">
+                <ListItemText>Menu1</ListItemText>
+              </ListItem>
+            </Tooltip>
+          </List>    
+
           <Divider />
           <List>
-            <Tooltip title={"About App"} placement="right">
-            <ListItem button key={"About"} onClick={e=>{
+            <Tooltip title="About App" placement="right">
+            <ListItem button key="About" onClick={e=>{
               alert('version 1.1.1.12');
             }}>
                 <ListItemIcon><IconInfo/></ListItemIcon>

@@ -38,9 +38,15 @@ export default function ComponentSamples(props){
         {text: 'Tree', icon:IconTree,category: 1},
         {text: 'Tabs', icon:IconTabs,category: 1},
         {text: 'StackedCanvas', icon:IconStackedCanvas,category: 1},
-        {text: 'Dialog', icon:IconStackedCanvas,category: 2}
+        {text: 'Dialog', icon:IconStackedCanvas,category: 2},
+
+        {text: 'menu 1', icon:IconStackedCanvas,category: 0},
     ];
 
+    // Array.prototype.groupBy = function(k) {
+    //     return this.reduce((acc, item) => ((acc[item[k]] = [...(acc[item[k]] || []), item]), acc),{});
+    //   };
+      
     const {t} = useTranslation();
 
     function onClick(type){
