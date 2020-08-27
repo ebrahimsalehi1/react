@@ -49,7 +49,7 @@ const styles = theme => ( {
         },
     },
     search: {
-        position: 'relative',
+        position: 'relative',   
         borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {

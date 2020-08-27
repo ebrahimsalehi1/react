@@ -18,6 +18,8 @@ import {
 } from '@material-ui/icons';
 
 import ButtonSample from '../ComponentSamples/Button';
+import EbiTableData from '../Components/EbiComponents/TableData';
+
 import Grid from '@material-ui/core/Grid';
 //import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
@@ -38,9 +40,11 @@ export default function ComponentSamples(props){
         {text: 'Tree', icon:IconTree,category: 1},
         {text: 'Tabs', icon:IconTabs,category: 1},
         {text: 'StackedCanvas', icon:IconStackedCanvas,category: 1},
+        {text: 'TableData', icon:IconStackedCanvas,category: 1},
+
         {text: 'Dialog', icon:IconStackedCanvas,category: 2},
 
-        {text: 'menu 1', icon:IconStackedCanvas,category: 0},
+
     ];
 
     // Array.prototype.groupBy = function(k) {
@@ -81,9 +85,9 @@ export default function ComponentSamples(props){
 
                         {selectedValue==='Tree' && <ButtonSample/>}
 
-                        {selectedValue==='Tabs' && <ButtonSample/>}
+                        {selectedValue==='Tabs' && <ButtonSample/>}*/}
 
-                        {selectedValue==='StackedCanvas' && <ButtonSample/>} */}
+                        {selectedValue==='TableData' && <EbiTableData />} 
                     </Grid>                    
                     <Grid item xs={9} md={9}>
                         
