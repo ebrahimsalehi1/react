@@ -85,14 +85,14 @@ export default function ButtonLanguage(props) {
         onClose={handleClose}
       >
       {
-        countries.map(item => (
-          <StyledMenuItem onClick={e=>{
+        countries.map((item,index) => (
+          <StyledMenuItem key={`StyledMenuItem ${index}`} onClick={e=>{
               i18n.changeLanguage(item.lang);
           }}>
-            <ListItemIcon>
-                <SendIcon fontSize="small" />
+            <ListItemIcon key={`ListItemIcon ${index}`}>
+                <SendIcon fontSize="small" key={`Icon ${index}`} />
             </ListItemIcon> 
-            <ListItemText>{item.label}</ListItemText>
+            <ListItemText key={`ListItemText ${index}`}>{item.label}</ListItemText>
           </StyledMenuItem>
         ))
       }

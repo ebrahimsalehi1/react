@@ -25,10 +25,12 @@ export default function EbiTableData() {
   });
 
   return (
+    <div style={{"width":"700px"}}>
     <MaterialTable
       title="Editable Example"
       columns={state.columns}
       data={state.data}
+      /*
       editable={{
         onRowAdd: (newData) =>
           new Promise((resolve) => {
@@ -66,6 +68,8 @@ export default function EbiTableData() {
             }, 600);
           }),
       }}
+      */
     />
+    </div>
   );
 }

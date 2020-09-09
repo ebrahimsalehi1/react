@@ -169,7 +169,7 @@ class MiniDrawer extends React.Component {
                     onClick(obj.text);
                 }
               }>
-                <ListItemIcon>{<obj.icon/>}</ListItemIcon>
+                <ListItemIcon>{<obj.icon/>}</ListItemIcon>                
                 <ListItemText primary={obj.text} />
               </ListItem>
               </Tooltip>

@@ -19,6 +19,7 @@ import {
 
 import ButtonSample from '../ComponentSamples/Button';
 import EbiTableData from '../Components/EbiComponents/TableData';
+import ObieeApperance from '../Components/EbiComponents/Appearance';
 
 import Grid from '@material-ui/core/Grid';
 //import Typography from '@material-ui/core/Typography';
@@ -40,11 +41,11 @@ export default function ComponentSamples(props){
         {text: 'Tree', icon:IconTree,category: 1},
         {text: 'Tabs', icon:IconTabs,category: 1},
         {text: 'StackedCanvas', icon:IconStackedCanvas,category: 1},
+        {text: 'Appearance', icon:IconStackedCanvas,category: 1},
         {text: 'TableData', icon:IconStackedCanvas,category: 1},
 
         {text: 'Dialog', icon:IconStackedCanvas,category: 2},
-
-
+    
     ];
 
     // Array.prototype.groupBy = function(k) {
@@ -83,9 +84,9 @@ export default function ComponentSamples(props){
 
                         {selectedValue==='Combobox' && <ButtonSample/>}
 
-                        {selectedValue==='Tree' && <ButtonSample/>}
+                        {selectedValue==='Tree' && <ButtonSample/>*/}
 
-                        {selectedValue==='Tabs' && <ButtonSample/>}*/}
+                        {selectedValue==='Appearance' && <ObieeApperance />}
 
                         {selectedValue==='TableData' && <EbiTableData />} 
                     </Grid>                    
