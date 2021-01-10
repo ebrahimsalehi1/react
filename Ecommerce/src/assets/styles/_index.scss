@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Sahel';
+  src: url('../fonts/sahel-font-v1.0.0-alpha9/Sahel.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: '100%';
+  background: linear-gradient(to right, #4e42b9,#e98223);
+  font-family: 'Sahel', Fallback, sans-serif;
+  overflow: hidden;
+}
